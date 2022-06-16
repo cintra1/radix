@@ -13,6 +13,7 @@
   --cor-texto: hsl(var(--hue), 4%, 35%);
   --cor-texto-light: hsl(var(--hue), 4%, 65%);
   --cor-body: hsl(var(--hue), 0%, 100%);
+  --input-color: hsl(var(--hue), 70%, 96%);
   --cor-container: #FFF;
   --scroll-bar-color: hsl(var(--hue), 4%, 85%);
   --scroll-thumb-color: hsl(var(--hue), 4%, 75%);
@@ -108,6 +109,7 @@ body.dark-theme {
   --scroll-thumb-color: hsl(var(--hue), 4%, 24%);
 }
 
+
 /*========== Botão Dark/Light ==========*/
 .change-theme {
   position: absolute;
@@ -155,6 +157,7 @@ body.dark-theme {
 
 .grid {
   display: grid;
+  grid-template-columns: repeat(2,1fr);
   gap: 1.5rem;
 }
 
@@ -214,15 +217,25 @@ span{
   flex-direction: column;
   align-items: center;
   row-gap: 1.5rem;
+  padding-left: 25rem;
 }
 
-.nav__link, .nav__logo, .nav__toggle {
+#search-btn{
+  display:none;
+}
+
+.nav__link, .nav__logo, .nav__toggle, .nav__link__active {
   color: var(--cor-titulo);
   font-weight: var(--fonte-semi-bold);
 }
 
 .nav__link{
   color: var(--cor-texto);
+  font-size: var(--pequena-fonte);
+}
+
+.nav__link__active{
+  color: var(--cor-principal);
   font-size: var(--pequena-fonte);
 }
 
@@ -233,6 +246,11 @@ span{
 .fa-leaf{
   padding-right: .5rem;
   color: var(--cor-principal);
+}
+
+footer .fa-leaf{
+  padding-right: .5rem;
+  color: var(--cor-titulo);
 }
 .nav__toggle {
   font-size: 1.3rem;
@@ -255,7 +273,7 @@ span{
   top: 115%;
   right: -105%;
   background: #fff;
-  border: solid var(--cor-principal) .15rem;
+  border: solid var(--cor-principal) .12rem;
   border-radius: .5rem;
   -webkit-box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
           box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
@@ -278,10 +296,12 @@ span{
 }
 
 .search-form{
-  border: solid .15rem;
+  border: solid .12rem;
   border-color: var(--cor-principal);
   border-radius: 2rem;
 }
+
+
 
 #search-box{
   border-radius: 5rem;
@@ -332,8 +352,14 @@ span{
   text-align: center;
 }
 
-.header .login-form p {
+.header .login-form p.senha{
   color: #666;
+  font-size: 0.9rem;
+}
+
+.header .login-form p.conta {
+  color: #666;
+  padding-top: 0.7rem;
   font-size: 0.9rem;
 }
 
@@ -443,6 +469,10 @@ span{
   row-gap: 3rem;
 }
 
+.home{
+  margin-bottom: 8rem;
+}
+
 .home__title {
   font-size: var(--fonte-grandona);
   font-weight: var(--fonte-bold);
@@ -462,6 +492,16 @@ span{
   border-radius: 3rem;
   font-weight: var(--fonte-semi-bold);
   transition: .3s;
+}
+
+.button--flex{
+  display: inline-flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.contact__buton i {
+  margin-left: 0.4rem;
 }
 
 .button:hover {
@@ -498,6 +538,12 @@ span{
 /*=============== SOBRE ===============*/
 .sobre__container {
   gap: 2.5rem;
+  margin-top: 4rem;
+}
+
+.sobre__container2 {
+  gap: 2.5rem;
+  margin-top: 1rem;
 }
 
 .sobre__data {
@@ -507,6 +553,7 @@ span{
 /*=============== CHAT ===============*/
 .chat__container {
   gap: 2.5rem;
+  margin-bottom: 1rem;
 }
 
 .chat__data {
@@ -591,6 +638,8 @@ span{
 /*=============== APP ===============*/
 .app__container {
   gap: 2.5rem;
+  margin-top: 4rem;
+  margin-bottom: 8rem;
 }
 
 .app__data {
@@ -607,30 +656,59 @@ span{
   justify-content: center;
   gap: .5rem;
 }
-
-/*=============== FALE ===============*/
-.fale__container {
-  padding-bottom: 3rem;
+/*==================== CONTACT ME ====================*/
+#contact__title{
+  margin-top: 1rem;
 }
 
-.fale__description {
-  text-align: center;
+.contact__container{
+  margin-top: 3rem;
+  row-gap: 3rem;
 }
 
-.fale__content {
-  row-gap: .75rem;
+.contact__information{
+  display: flex;
+  margin-bottom: var(--mb-2);
 }
 
-.fale__address {
+.contact__icon{
+  font-size: 2rem;
+  color: var(--cor-principal);
+  margin-right: var(--mb-0-75);
+}
+
+.contact__title{
+  font-size: var(--h3-fonte);
+  font-weight: 500;
+}
+
+.contact__subtitle{
   font-size: var(--pequena-fonte);
-  font-weight: var(--fonte-semi-bold);
+  color: var(--cor-texto-light);
+}
+
+.contact__content{
+  background-color: var(--input-color);
+  border-radius: .5rem;
+  padding: .75rem 1rem .25rem;
+}
+
+.contact__label{
+  font-size: var(--pequena-fonte);
   color: var(--cor-titulo);
 }
 
-.fale__information {
-  font-weight: initial;
+.contact__input{
+  width: 100%;
+  background-color: var(--input-color);
   color: var(--cor-texto);
+  font-family: var(--fonte-body);
+  font-size: var(--normal-fonte);
+  border: none;
+   outline: none;
+   padding: .25rem .5rem .5rem 0;
 }
+
 
 /*=============== FOOTER ===============*/
 .footer {
@@ -645,11 +723,18 @@ span{
 }
 .footer__container {
   row-gap: 2rem;
-
 }
 
 .footer__content{
   padding-right: 1rem;
+  margin-top: -1.5rem;
+  margin-bottom: 4rem;
+}
+
+.footer__content1{
+  padding-right: 1rem;
+  margin-top: -1.5rem;
+  font-size: 1.5rem;
 }
 
 
@@ -770,6 +855,7 @@ span{
   }
   .home__container,
   .sobre__container,
+  .sobre__container2,
   .chat__container,
   .servicos__container,
   .app__container,
@@ -782,6 +868,7 @@ span{
   }
   .home__container,
   .sobre__container,
+  .sobre__container2,
   .chat__container,
   .app__container,
   .fale__container {
@@ -838,6 +925,7 @@ span{
     width: 470px;
   }
   .sobre__container,
+  .sobre__container2,
   .chat__container,
   .app__container,
   .fale__container {
@@ -882,3 +970,6 @@ span{
   }
 }
 
+#tcc{
+  margin-bottom: 4rem;
+}

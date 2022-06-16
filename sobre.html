@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" type="image/x-icon" href="assets/img/icon.ico">
+        <!--<link rel="icon" type="imagem/png" href="assets/img/leafg (1).png">-->
+        <!--=============== BOXICONS ===============-->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+
+        <!--=============== CSS ===============-->
+        <link rel="stylesheet" href="assets/css/styles.css">
+
+        <!-- font awesome cdn link  -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+        <!--==================== UNICONS ====================-->
+        <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+
+        <title>Radix</title>
+    </head>
+    <body>
+        <!--=============== HEADER ===============-->
+        <header class="header" id="header">
+            <nav class="nav container">
+                <a href="index.html" class="nav__logo"> <i class="fa fa-leaf"></i> Radix </a>
+
+                <div class="nav__menu" id="nav-menu">
+                    <ul class="nav__list">
+
+                        <li class="nav__item">
+                            <a href="sobre.html" class="nav__link__active">Sobre</a>
+                        </li>
+
+                        <li class="nav__item">
+                            <a href="fale.html" class="nav__link">Fale Conosco</a>
+                        </li>
+                        
+                        <!-- <li class="nav__item"> 
+                            <a href="#home" class="nav__link active-link">Home</a>
+                        </li>
+                        
+                        
+                        <li class="nav__item">
+                            <a href="#app" class="nav__link">App</a>
+                        </li>
+                       
+-->
+                        <i class='uil uil-moon change-theme nav__link' id="theme-button"></i>
+                                                
+                       
+                        
+                        <li class="nav__item">
+                        <div id="login-btn" class="fas fa-user nav__link"></div>
+                        </li>
+
+                        <li class="nav__item">
+                            <div id="search-btn"></div>
+                            </li>
+
+                        
+                    </ul>
+                </div>
+
+                <div class="nav__toggle" id="nav-toggle">
+                    <i class='bx bx-grid-alt'></i>
+                </div>
+
+                <a href="app.html" class="button button__header">BAIXE O APP</a>
+            </nav>
+
+            <form action="" class="search-form">
+           
+                <input type="search" placeholder="Busque por item ou loja" id="search-box">
+                <a href="search.html" for="search-box" class="fas fa-search"></a>
+            </form>
+        
+        
+            <form action="" class="login-form">
+                <h3>login</h3>
+                <input type="email" placeholder="E-mail ou usuário" class="box">
+                <input type="password" placeholder="Digite sua senha" class="box">
+                <div class="remember">
+                    <input type="checkbox" name="" id="remember-me">
+                    <label for="remember-me">Lembrar-me</label>
+                </div>
+                <input type="submit" value="ENTRAR" class="btn button">
+                <p class="senha">Esqueceu a senha? <a href="#">Clique aqui</a></p>
+                <p class="conta">Não tem uma conta? <a href="#">Crie uma</a></p>
+            </form>
+        </header>
+
+        <main class="main">
+             <!--=============== SOBRE ===============-->
+             <section class="sobre section container" id="sobre">
+                <div class="sobre__container grid">
+                    <div class="sobre__data">
+                        <h2 class="section__title-center">Conheça um pouco mais
+                            <br>sobre nós</h2>
+                        <p class="sobre__description">Somos uma empresa vocacionada para entrega e venda de produtos agrícolas. Trabalhando com os melhores produtores do mercado, contando com selos que qualidade para o melhor aproveitamento do app.
+                        </p>
+                    </div>
+                    
+                    <img class="svg__img svg__color sobre__img" src="assets/img/Farmer-amico.svg" alt="">
+                </div>
+            </section>
+
+            <!--=============== CHAT ===============-->
+            <section class="chat section container">
+                <div class="chat__container grid">
+                    <div class="chat__data">
+                        <h2 class="section__title-center">Converse com o 
+                            <br> Produtor </h2>
+                        <p class="chat__description">Combine preços e se informe sobre os seus produtos e pedidos, crie relações de confiança entre cliente e produtor para um melhor aproveitamento da plataforma e otimização na hora de fazer seu pedido a partir do histórico de compras.
+                        </p>
+                    </div>
+
+                    <img src="assets/img/conversation-pana.svg" alt="">
+                </div>
+            </section>
+          
+               <!--==================== SERVICOS ====================-->
+               <section class="servicos section container" id="servicos">
+                <div class="servicos__bg">
+                    <h2 class="section__title-center servicos__title">
+                        Serviços que oferecemos
+                    </h2>
+                    
+                    <div class="servicos__container grid">
+                        <div class="servicos__card">
+                            <img  style="width: 12rem;" class="svg__img svg__color sobre__img" class="svg__color servicos__img" src="assets/img/Watermelon-pana.svg" alt="">
+
+
+                            <h3 class="servicos__card-title">Fresco e Orgânico</h3>
+                            <p class="servicos__card-description">
+                                Encontre uma variedade de produtos de alta qualidade e totalmente livres de agrotóxicos.
+                            </p>
+                        </div>
+
+                        <div class="servicos__card">
+                            <img style="width: 10rem;" src="assets/img/In no time-pana.svg" class="svg__img svg__color sobre__img" class="svg__color servicos__img" alt="">
+
+
+                            <h3 class="servicos__card-title">Venda seus produtos</h3>
+                            <p class="servicos__card-description">
+                                Plataforma de venda com apoio aos vendedores que tem comprometimento com seus clientes.
+                            </p>
+                        </div>
+
+                        <div class="servicos__card">
+                            
+                        <img style="width: 10rem;" src="assets/img/Delivery address-pana.svg" alt="">
+
+                            <h3 class="servicos__card-title">Entrega rápida e otimizada</h3>
+                            <p class="servicos__card-description">
+                                Acompanhe sua entrega a partir do APP, tendo uma visão mais ampla sobre a localização seu produto.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+             <!--=============== TCC ===============-->
+             <section class="sobre section container" id="tcc">
+                <div class="sobre__container2 grid">
+                    <div class="sobre__data">
+                        <h2 class="section__title-center">Aplicativo em desenvolvimento
+                            </h2>
+                        <p class="sobre__description">A empresa Radix veio de uma iniciativa de um projeto de TCC, no curso de Desenvolvimento de Sistemas na Escola Técnica Estadual de São Paulo, mande sugestões e correções de problemas para aperfeiçoamento do nosso projeto.
+                        </p>
+                    </div>
+                    
+                    <img class="svg__img svg__color sobre__img" src="assets/img/Team goals-pana.svg" alt="">
+                </div>
+            </section>
+
+
+        <!--=============== FOOTER ===============-->
+        <footer class="footer section">
+            <div class="footer__container container grid">
+                <div class="footer__content1">
+                    <a href="index.html" class="nav__logo"> <i class="fa fa-leaf"></i> Radix </a>
+                    
+                </div>
+
+                <div class="footer__content">
+                    <a href="#" class="footer__logo">EMPRESA</a>
+                    <p class="footer__description">A Radix é o seu supermercado orgânico e saudável, que conecta você ao pequeno produtor. Com entrega rápida e otimizada.</p>
+                </div>
+
+                <div class="footer__content">
+                    <h1 class="footer__title">INTEGRANTES</h1>
+                    <ul class="footer__links">
+                        <li><a href="#" class="footer__link">Mateus Cintra </a></li>
+                        <li><a href="#" class="footer__link">Diego Carvalho</a></li>
+                        <li><a href="#" class="footer__link">Felipe Kurt</a></li>
+                        <li><a href="#" class="footer__link">Bruna Amorin</a></li>
+                        <li><a href="#" class="footer__link">Leonardo Moura</a></li>
+                    </ul>
+                </div>
+
+               
+
+                <div class="footer__content">
+                    <h3 class="footer__title"></h3>
+                    <ul class="footer__links">
+                        <li><a href="#" class="footer__link"></a></li>
+                        <li><a href="#" class="footer__link"></a></li>
+                        <li><a href="#" class="footer__link"></a></li>
+                    </ul>
+                </div>
+
+                <div class="footer__social">
+                    <a href="#" class="footer__social-link"><i class='bx bxl-facebook-circle '></i></a>
+                    <a href="#" class="footer__social-link"><i class='bx bxl-twitter'></i></a>
+                    <a href="#" class="footer__social-link"><i class='bx bxl-instagram-alt'></i></a>
+                </div>
+            </div>
+           
+        </footer>
+
+        <!--=============== SCROLL UP ===============-->
+        <a href="#" class="scrollup" id="scroll-up">
+            <i class='bx bx-up-arrow-alt scrollup__icon'></i>
+        </a>
+
+        <!--=============== MAIN JS ===============-->
+        <script src="assets/js/main.js"></script>
+    </body>
+</html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico">
+    <!--<link rel="icon" type="imagem/png" href="assets/img/leafg (1).png">-->
+    <!--=============== BOXICONS ===============-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+
+    <!--=============== CSS ===============-->
+    <link rel="stylesheet" href="assets/css/stylesProd.css">
+
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!--==================== UNICONS ====================-->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+
+    <title>Radix</title>
+</head>
+<body>
+    <!--=============== HEADER ===============-->
+    <header class="header" id="header">
+        <nav class="nav container">
+            <a href="index.html" class="nav__logo"> <i class="fa fa-leaf"></i> Radix </a>
+
+            <div class="nav__menu" id="nav-menu">
+                <ul class="nav__list">
+
+                    <form action="" class="search-form">
+                       
+                            <input type="search" placeholder="Alface" id="search-box">
+                        <a href="search.html">
+                            <label for="search-box" class="fas fa-search" style="margin-right: -2rem;"></label>
+                        </a>
+                    </form>
+
+                    <!-- <i class='uil uil-moon change-theme nav__link' id="theme-button" style="margin-left: -2.4rem;"></i> -->
+
+                    <li class="nav__item">
+                    <div id="login-btn" class="fas fa-user nav__link" style="margin-left: -3rem;"></div>
+                    </li>
+    
+                </ul>
+            </div>
+            <div class="nav__toggle" id="nav-toggle">
+                <i class='bx bx-grid-alt'></i>
+            </div>
+
+        </nav>
+
+        <form action="" class="login-form">
+            <h3>login</h3>
+            <input type="email" placeholder="E-mail ou usuário" class="box">
+            <input type="password" placeholder="Digite sua senha" class="box">
+            <div class="remember">
+                <input type="checkbox" name="" id="remember-me">
+                <label for="remember-me">Lembrar-me</label>
+            </div>
+            <input type="submit" value="login now" class="btn button">
+            <p>Esqueceu a senha? <a href="#">Clique aqui</a></p>
+            <p>Não tem uma conta? <a href="#">Crie uma</a></p>
+        </form>
+    </header>
+
+    <main class="main">
+        <!--=============== HOME ===============-->
+        <section class="home section" id="home">
+            <div class="bg__Produtor">
+                
+                <img class="img__Prod" src="assets/img/bgprodutor.png" alt="">
+                <a href="search.html">
+                <div class="box__circle2">
+                    <i class="uil uil-arrow-left"></i>
+                </div></a>
+            </div>
+            
+            <div class="perfil">
+
+                    <div class="circle__prod">
+                
+                        <img class="img__Perfil" src="assets/img/bombom.jpg" alt="">
+                    </div>
+
+                    <div class="perfil__data">
+                        <h1 class="perfil__title">Alfaces do Ricardinho</h1>
+                        <p class="home__description">Rua XYZ, Vila 123 - São Paulo</p>
+                        <p class="home__description"> <span style="color: #70C28D;">Frete: </span> R$ 10,00 (45 - 50 minutos)</p>
+                        <p class="home__description"> 4.5<i class="uil uil-star"></i></p>   
+                    </div>
+
+                    <div class="selo">
+                        <p class="perfil__selo">Selo Produtor confiável <img src="assets/img/folha.png" alt=""></p>
+                    </div>
+            </div>
+
+           <div class="boxes">
+           <div class="home__container container grid box">
+                <div class="home__box home__container container grid">
+
+                    <div class="title">
+                        <h1 class="title__prod">40 Amoras frescas</h1>
+                        <div class="box__img">
+                            <img src="assets/img/amora.png" alt="">
+                        </div>
+                    </div>
+                    <div class="description">
+                        <p class="home__description2">Amoras colhidas com muito carinho e dedicação 
+                        por Luiz Ricardo, e entregues para você em sua 
+                        casa em cerca de 35 minutos</p> 
+                        <p class="home__price"> <span style="color: #70C28D;">R$ </span>40,00 </p>
+                    </div>
+                   
+                </div>
+           </div>
+           
+           <div class="home__container container grid box">
+            <div class="home__box home__container container grid">
+
+                <div class="title">
+                    <h1 class="title__prod">30 Amoras frescas</h1>
+                    <div class="box__img">
+                        <img src="assets/img/amora.png" alt="">
+                    </div>
+                </div>
+                <div class="description">
+                    <p class="home__description2">Amoras colhidas com muito carinho e dedicação 
+                    por Luiz Ricardo, e entregues para você em sua 
+                    casa em cerca de 35 minutos</p> 
+                    <p class="home__price"> <span style="color: #70C28D;">R$ </span>30,00 </p>
+                </div>
+               
+            </div>
+       </div>
+
+           
+
+          </div>
+        </section>
+
+    </main>
+
+     <!--=============== FOOTER ===============-->
+     <footer class="footer section">
+        <div class="footer__container container grid">
+            <div class="footer__content">
+                <a href="#" class="footer__logo">Radix</a>
+                <p class="footer__description">Farm to Fork.<br> Seus produtos agrícolas.</p>
+            </div>
+
+            <div class="footer__content">
+                <h3 class="footer__title">Integrantes</h3>
+                <ul class="footer__links">
+                    <li><a href="#" class="footer__link">Mateus Cintra </a></li>
+                    <li><a href="#" class="footer__link">Diego Carvalho</a></li>
+                    <li><a href="#" class="footer__link">Felipe Kurt</a></li>
+                    <li><a href="#" class="footer__link">Bruna Amorin</a></li>
+                    <li><a href="#" class="footer__link">Leonardo Moura</a></li>
+                </ul>
+            </div>
+
+            <div class="footer__content">
+                <h3 class="footer__title"></h3>
+                <ul class="footer__links">
+                    
+                    <li><a href="#" class="footer__link"></a></li>
+                    <li><a href="#" class="footer__link"></a></li>
+                </ul>
+            </div>
+
+            <div class="footer__content">
+                <h3 class="footer__title"></h3>
+                <ul class="footer__links">
+                    <li><a href="#" class="footer__link"></a></li>
+                    <li><a href="#" class="footer__link"></a></li>
+                    <li><a href="#" class="footer__link"></a></li>
+                </ul>
+            </div>
+
+            <div class="footer__social">
+                <a href="#" class="footer__social-link"><i class='bx bxl-facebook-circle '></i></a>
+                <a href="#" class="footer__social-link"><i class='bx bxl-twitter'></i></a>
+                <a href="#" class="footer__social-link"><i class='bx bxl-instagram-alt'></i></a>
+            </div>
+        </div>
+       
+    </footer>
+</body>
+</html>
