@@ -113,6 +113,19 @@ form.sign-in-form {
   justify-content: center;
 }
 
+.nav__logo{
+  position: absolute;
+  top: 2%;
+  left: 2%;
+  font-weight: 600;
+  text-decoration: none;
+  color: white;
+}
+
+.nav__logo i{
+  margin-right: 0.3rem;
+}
+
 .social-icon {
   height: 46px;
   width: 46px;
