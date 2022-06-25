@@ -413,4 +413,10 @@ form.sign-in-form {
     bottom: 28%;
     left: 50%;
   }
+
+  .sign-in-form{
+    margin-bottom: 7.5rem;
+  }
+
+
 }
