@@ -170,15 +170,16 @@ body.dark-theme {
 }
 
 .header .logo i {
-  color:var(--cor-principal);;
-  
+  color:var(--cor-body);
   font-size: 1rem;
 }
+
+
 
 /*=============== HEADER ===============*/
 .header {
   width: 100%;
-  background-color: var(--cor-body);
+  background-color: var(--cor-principal);
   position: fixed;
   top: 0;
   left: 0;
@@ -233,13 +234,15 @@ span{
 
 
 
+
+
 .nav__link, .nav__logo, .nav__toggle, .nav__link__active {
   color: var(--cor-titulo);
   font-weight: var(--fonte-semi-bold);
 }
 
 .nav__link{
-  color: var(--cor-texto);
+  color: #FFF;
   font-size: var(--pequena-fonte);
 }
 
@@ -254,7 +257,7 @@ span{
 
 .fa-leaf{
   padding-right: .5rem;
-  color: var(--cor-principal);
+  color: #FFF;
 }
 
 footer .fa-leaf{
@@ -562,14 +565,12 @@ footer .fa-leaf{
   margin-left: 0.4rem;
 }
 
-.button:hover {
-  background-color: var(--cor-principal-alt);
-}
+
 
 .button__header {
   display: none;
-  color: #FFF;
-  background-color: #70C28D;
+  color: #70C28D;
+  background-color: #FFF;
 }
 
 .button-link {
@@ -608,10 +609,6 @@ footer .fa-leaf{
   text-align: center;
 }
 
-.sobre__description,
-.chat__description{
-  text-align: justify;
-}
 /*=============== CHAT ===============*/
 .chat__container {
   gap: 2.5rem;
