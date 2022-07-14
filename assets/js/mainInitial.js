@@ -1,3 +1,19 @@
+let cart = document.querySelector('.shopping-cart');
+
+document.querySelector('#cart-btn').onclick = () =>{
+    cart.classList.toggle('active');
+    searchForm.classList.remove('active');
+    loginForm.classList.remove('active');
+    navbar.classList.remove('active');
+}
+
+const inputEle = document.getElementById('enter');
+inputEle.addEventListener('keyup', function(e){
+  var key = e.which || e.keyCode;
+  if (key == 13) { // codigo da tecla enter
+    window.location.href = "search.html"
+  }
+});
 
 /*=============== SHOW MENU ===============*/
 const showMenu = (toggleId, navId) =>{

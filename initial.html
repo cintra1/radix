@@ -22,42 +22,51 @@
     <!--==================== UNICONS ====================-->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
 
+    
+
     <title>Radix</title>
 </head>
 
 <body>
     <!--=============== HEADER ===============-->
     <header class="header" id="header">
-        <nav class="nav container">
-            <a href="index.html" class="nav__logo"> <i class="fa fa-leaf"></i> Radix </a>
+        <nav class="nav nav__container">
+            <a href="initial.html" class="nav__logo first"> <i class="fa fa-leaf"></i>Radix</a>
+            
 
             <div class="nav__menu" id="nav-menu">
                 <ul class="nav__list__initial">
 
                     <li class="nav__item">
-                        <a href="sobre.html" class="nav__link">Sobre</a>
+                        <a href="fale.html" class="nav__link">Produtores</a>
+                    </li>
+
+                    <li class="nav__item"> 
+                        <a href="#home" class="nav__link">Frutas</a>
+                    </li>
+                    
+                    <li class="nav__item">
+                        <a href="#app" class="nav__link">Vegetais</a>
                     </li>
 
                     <li class="nav__item">
-                        <a href="fale.html" class="nav__link">Fale Conosco</a>
+                        <a href="#app" class="nav__link">Especiarias</a>
                     </li>
 
-                    <!-- <li class="nav__item"> 
-                            <a href="#home" class="nav__link active-link">Home</a>
-                        </li>
-                        
-                        
-                        <li class="nav__item">
-                            <a href="#app" class="nav__link">App</a>
-                        </li>
-                       
--->
-                    <i class='uil uil-moon change-theme nav__link' id="theme-button"></i>
+                   
 
+                    <form action="" class="search-form">
+                        <label for="search-box" class="fas fa-search" ></label>
+                        <input id="enter" type="search" placeholder="Busque por produtor ou item" id="search-box">
+                    </form>
+
+                    <li class="nav__item endereco">
+                        <a href="#app" class="nav__link__endereco">Seu endereço, 123 <i class="uil uil-angle-down"></i></a>
+                    </li>
+                    
                     <li class="nav__item">
-                        <div id="search-btn" class="fas fa-search nav__link"></div>
+                        <div id="cart-btn" class="uil uil-shopping-bag nav__link"></div>
                     </li>
-
 
                     <li class="nav__item">
                         <a href="login.html" class="fas fa-user nav__link"></a>
@@ -70,14 +79,45 @@
                 <i class='bx bx-grid-alt'></i>
             </div>
 
-            <a href="app.html" class="button button__header">BAIXE O APP</a>
+            
         </nav>
 
-        <form action="" class="search-form">
+        
 
-            <input type="search" placeholder="Busque por item ou loja" id="search-box">
-            <a href="search.html" for="search-box" class="fas fa-search"></a>
-        </form>
+        <div class="shopping-cart">
+            <div class="box">
+                <i class="fas fa-times"></i>
+                <img src="assets/img/cart-1.jpg" alt="">
+                <div class="content">
+                    <h3>Brócolis</h3>
+                    <span class="quantity">1</span>
+                    <span class="multiply">x</span>
+                    <span class="price">R$2.50</span>
+                </div>
+            </div>
+            <div class="box">
+                <i class="fas fa-times"></i>
+                <img src="assets/img/cart-2.jpg" alt="">
+                <div class="content">
+                    <h3>Leite - 0 lactose</h3>
+                    <span class="quantity">1</span>
+                    <span class="multiply">x</span>
+                    <span class="price">R$6.99</span>
+                </div>
+            </div>
+            <div class="box">
+                <i class="fas fa-times"></i>
+                <img src="assets/img/cart-3.jpg" alt="">
+                <div class="content">
+                    <h3>Trigo</h3>
+                    <span class="quantity">1</span>
+                    <span class="multiply">x</span>
+                    <span class="price">R$15.00</span>
+                </div>
+            </div>
+            <h3 class="total"> Total : <span>56.97</span> </h3>
+            <a href="#" class="btn">Finalizar Compra</a>
+        </div>
 
 
         <form action="" class="login-form">

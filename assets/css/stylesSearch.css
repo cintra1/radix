@@ -272,6 +272,7 @@ span{
   transition: .4s linear;
 }
 
+
 .header .search-form.active{
   right: 2rem;
   -webkit-transition: .4s linear;
