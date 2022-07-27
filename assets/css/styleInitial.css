@@ -235,7 +235,7 @@ span{
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1rem !important;
+  gap: 2rem !important;
   padding-left: 2rem;
 }
 
