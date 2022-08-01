@@ -91,19 +91,22 @@ include('php/conexao.php');
 require_once 'php/cadastro.php';
   $u = new Usuario;
 //verificar se a pessoa clicou no btnCadastrar
-if(isset($_POST['cpf']))
+if(isset($_POST['cpfCnpj']))
 {
     $nome = addslashes($_POST['nome']);
-    $cpf = addslashes($_POST['cpf']);
+    $cpf = addslashes($_POST['cpfCnpj']);
     $email = addslashes($_POST['email']);
     $senha = addslashes($_POST['senha']);
+    $senha = addslashes($_POST['imagem']);
+    $senha = addslashes($_POST['endereco']);
+
     //verificar se esta preenchido
-    if(!empty($nome) && !empty($cpf) && !empty($email) && !empty($senha))
+    if(!empty($nome) && !empty($cpfCnpj) && !empty($email) && !empty($senha) && !empty($imagem) && !empty($endereco))
     {
         $u->conectar("Radix","localhost","root","");
         if($u->msgErro == "")//ta ok
         {
-                if($u->cadastrar($nome,$cpf,$email,$senha))
+                if($u->cadastrar($nome,$cpfCnpj,$email,$senha,$imagem,$endereco))
                 {
                     ?>
                      <div id="msg-sucesso">
