@@ -110,11 +110,6 @@ form.sign-in-form {
 .social-text {
   padding: 0.7rem 0;
   font-size: 1rem;
-  text-align: center;
-}
-
-.social-text a{
-  text-decoration: none;
 }
 
 .social-media {
@@ -181,12 +176,28 @@ form.sign-in-form {
   background-color: #56a371;
 }
 
+div#msg-sucesso
+{
+    position: absolute;
+    top:83%;
+    left: 13.2%;
+    width: 21rem;
+    margin: 10px auto;
+    padding: 10px;
+    text-align: center;
+    border-radius: 0.5rem;
+    background-color: #84C49A;
+    border:  0.13rem solid #447856;
+    font-weight:500;
+    color: white;
+}
+
 div.msg-erro
 {
     position: absolute;
-    top:76%;
-    left: 63.3%;
-    width: 24rem;
+    top:83%;
+    left: 13.2%;
+    width: 21rem;
     margin: 10px auto;
     padding: 10px;
     border-radius: 0.5rem;

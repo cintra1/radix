@@ -1,3 +1,6 @@
+<?php
+   include('php/protect.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -38,7 +41,7 @@
                 <ul class="nav__list__initial">
 
                     <li class="nav__item">
-                        <a href="#produtores" class="nav__link">Produtores</a>
+                        <a href="#produtores" class="nav__link">Bem vindo: <?php echo $_SESSION['nome']; ?> </a>
                     </li>
 
                     <li class="nav__item"> 

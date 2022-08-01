@@ -5,13 +5,13 @@ document.querySelector('#cart-btn').onclick = () =>{
     searchForm.classList.remove('active');
     loginForm.classList.remove('active');
     navbar.classList.remove('active');
-}
+};
 
 const inputEle = document.getElementById('enter');
 inputEle.addEventListener('keyup', function(e){
   var key = e.which || e.keyCode;
   if (key == 13) { // codigo da tecla enter
-    window.location.href = "search.html"
+    window.location.href = "search.html";
   }
 });
 

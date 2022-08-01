@@ -1,3 +1,6 @@
+<?php
+   include('php/protect.php');
+?>
 <!DOCTYPE html>
     <html lang="en">
     <head>
@@ -7,7 +10,10 @@
         <!--<link rel="icon" type="imagem/png" href="assets/img/leafg (1).png">-->
         <!--=============== BOXICONS ===============-->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
-
+        <!--=============== LETRA ===============-->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
         <!--=============== CSS ===============-->
         <link rel="stylesheet" href="assets/css/stylesVendedor.css">
 
@@ -25,7 +31,8 @@
         <!--=============== HEADER ===============-->
         <header class="header" id="header">
             <nav class="nav container">
-                <a href="index.html" class="nav__logo"> <i class="fa fa-leaf"></i></a>
+                <a id = "radix" href="index.html" class="nav__logo"> <i class="fa fa-leaf"></i> Radix </a>
+               
 
                 <div class="nav__menu" id="nav-menu">
                     <ul class="nav__list">
@@ -61,26 +68,60 @@
             </form>
         </header>
 
-        <main class="main">
-            <!--=============== HOME ===============-->
-            <section class="home section" id="home">
-            <div class="svg">
-                <div class="home__container container grid">
+         <!--=============== BODY ===============-->       
 
-                    <img class="svg__img svg__color home__img" src="assets/img/Take Away-rafiki.svg" alt="">
+         <section class="home section" id="home">
+            
+            <div class="perfil">
 
-                    <div class="home__data">
-                        <h1 class="home__title">Faça As Coisas <br> Com Radix</h1>
-                        <p class="home__description">Tranquilidade e facilidade com 
-                            o sistema de compra, venda e entrega da Radix.</p>
-
-                        <a href="initial.html" class="button">Começar a comprar</a>
-
-                    </div>   
+                    <div class="circle__prod">
+                
+                        <img class="img__Perfil" src="assets/img/bombom.jpg" alt="">
                     </div>
-                </div>
-            </section>
 
+                    <div class="perfil__data">
+                        <h1 class="perfil__title">bem vindo <?php echo $_SESSION['nome']; ?> !</h1>
+                        <p class="status">Status: loja fechada</p>
+
+                    </div>
+
+                    <a href="#" class="button .button__header__abrir button__abrir">ABRIR</a>
+            </div>
+        </section>    
+    <div id="cima" >
+        <div id="um">
+            <h2>Pedidos abertos</h2>
+        </div>
+
+        <div id="dois">
+            <h2>Pedidos finalizads</h2>
+        </div>
+
+        <div id="tres">
+            <h2>Editar produtos</h2>
+        </div>
+    </div>
+
+    <div id="baixo" >
+   
+        <div id="quatro">
+            <h2>Editar perfil</h2>
+        </div>
+
+        <div id="cinco">
+            <h2>Selo de Produtor</h2>
+        </div>
+
+        <div id="seis">
+            <h2>Gastos semanais</h2>
+        </div>  
+    </div>
+
+    <div class="avaliações">
+        <div class="av">
+            <a href="indexVendedor.html"><h3>Ler avaliações dos clientes</h3></a>
+        </div>
+    </div>
 
         <!--=============== FOOTER ===============-->
         <footer class="footer section">
