@@ -200,7 +200,6 @@ span{
   display: flex;
   justify-content: 1rem;
   align-items: center;
-  margin-left: 5rem;
 }
 
 @media screen and (max-width: 767px) {
@@ -261,10 +260,13 @@ span{
   margin-left: 1rem;
 }
 
-.uil-shopping-bag, .fa-user{
+.uil-shopping-bag, .fa-user, .uil-signout{
   color:#70C28D !important;
 }
 
+.uil-signout{
+  font-size: 1.07rem !important;
+}
 .nav__link{
   color: var(--cor-texto);
   font-size: 0.8rem;
@@ -379,7 +381,7 @@ footer .fa-leaf{
 
 .header .search-form a {
   font-size: 1rem;
-  margin-left: 1.2rem;
+  margin-left: 0.2rem;
   cursor: pointer;
   color: var(--cor-prim);
 }
@@ -697,6 +699,13 @@ input[type="search"]::-webkit-search-results-decoration {
   display: none;
   color: #FFF;
   background-color: #70C28D;
+}
+
+.button__header__LOG {
+  display: none;
+  color: #FFF;
+  background-color: #70C28D;
+  
 }
 
 .button-link {
@@ -1182,7 +1191,7 @@ input[type="search"]::-webkit-search-results-decoration {
   }
   .nav__list,.nav__list__initial {
     flex-direction: row;
-    column-gap: 2.5rem;
+    column-gap: 2rem;
   }
   .nav__toggle {
     display: none;
@@ -1201,7 +1210,7 @@ input[type="search"]::-webkit-search-results-decoration {
 
 /* GRANDÃO */
 @media screen and (min-width: 968px) {
-  .button__header {
+  .button__header, .button__header__LOG{
     display: block;
   }
   .svg__img {

@@ -38,7 +38,7 @@
             <i class="fas fa-lock"></i>
             <input type="password" placeholder="Senha" name="senha"/>
           </div>
-          <input type="submit" class="btn" value="Sign up" />
+          <input type="submit" class="btn" value="Sign up" name="sub" />
           <p class="social-text"></p>
           <div class="social-media">
           
@@ -84,7 +84,7 @@ include('php/conexao.php');
 require_once 'php/cadastro.php';
   $u = new Usuario;
 //verificar se a pessoa clicou no btnCadastrar
-if(isset($_POST['cpf']))
+if(isset($_POST['sub']))
 {
     $nome = addslashes($_POST['nome']);
     $cpf = addslashes($_POST['cpf']);

@@ -41,7 +41,7 @@
                 <ul class="nav__list__initial">
 
                     <li class="nav__item">
-                        <a href="#produtores" class="nav__link">Bem vindo: <?php echo $_SESSION['nome']; ?> </a>
+                        <a href="#produtores" class="nav__link"><?php echo $_SESSION['nome']; ?> </a>
                     </li>
 
                     <li class="nav__item"> 
@@ -76,8 +76,8 @@
                         <a href="login.php" class="fas fa-user nav__link"></a>
                         <!--<div id="login-btn" class="fas fa-user nav__link"></div>-->
                     </li>
-                    <li class="nav__item">
-                        <a href="php/logout.php">Sair</a>
+                    <li class="nav__item">  
+                        <a href="php/logout.php" class="uil uil-signout nav__link"></a>
                     </li>
                 </ul>
             </div>

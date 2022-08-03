@@ -1,5 +1,5 @@
 <?php
-   include('php/protect.php');
+   include('php/protectVend.php');
 ?>
 <!DOCTYPE html>
     <html lang="en">
@@ -44,7 +44,8 @@
                     <i class='bx bx-grid-alt'></i>
                 </div>
 
-                <a href="app.html" class="button button__header">LOGOUT</a>
+                <a href="php/logout.php" class="button button__header">LOGOUT</a>
+ 
             </nav>
 
             <form action="" class="search-form">
@@ -75,8 +76,8 @@
             <div class="perfil">
 
                     <div class="circle__prod">
-                
-                        <img class="img__Perfil" src="assets/img/bombom.jpg" alt="">
+                       <!--<img class="img__Perfil" src="assets/img/bombom.jpg" alt="">-->
+                       <img class="img__Perfil" src="upload/<?php echo $_SESSION['imagem']; ?>" alt="">
                     </div>
 
                     <div class="perfil__data">

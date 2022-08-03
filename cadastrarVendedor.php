@@ -20,7 +20,7 @@
 
        
         </form>
-        <form action="#" method="POST" class="sign-up-form">
+        <form action="#" method="POST" class="sign-up-form" enctype="multipart/form-data">
           <h2 class="title">Registrar-se</h2>
           <div class="input-field">
             <i class="fas fa-user"></i>
@@ -28,7 +28,7 @@
           </div>
           <div class="input-field">
           <i class="uil uil-postcard "></i>
-            <input type="text" placeholder="CPF / CNPJ" name="cpf"/>
+            <input type="text" placeholder="CPF / CNPJ" name="cpfCnpj"/>
           </div>
           <div class="input-field">
             <i class="fas fa-envelope"></i>
@@ -43,9 +43,9 @@
             <input type="text" placeholder="Endereço" name="endereco"/>
           </div>
           
-            <input type="file" placeholder="Imagem" name="img"/>
+          <input type="file" name="imagem"/>
           
-          <input type="submit" class="btn" value="Sign up" />
+          <input type="submit" class="btn" value="Sign up" name="sub"/>
           <p class="social-text"></p>
           <div class="social-media">
           
@@ -88,24 +88,36 @@
     <?php
 include('php/conexao.php');
 
-require_once 'php/cadastro.php';
+require_once 'php/cadastroVendedor.php';
   $u = new Usuario;
 //verificar se a pessoa clicou no btnCadastrar
-if(isset($_POST['cpf']))
+if(isset($_POST['sub']))
 {
+
+    $extensao = strtolower(substr($_FILES['imagem']['name'], -4)); 
+    $novo_nome = md5(time()) . $extensao;
+    $diretorio = "upload/";
+
+    move_uploaded_file($_FILES['imagem']['tmp_name'], $diretorio.$novo_nome);
+
     $nome = addslashes($_POST['nome']);
-    $cpf = addslashes($_POST['cpf']);
+    $cpfCnpj = addslashes($_POST['cpfCnpj']);
     $email = addslashes($_POST['email']);
     $senha = addslashes($_POST['senha']);
+    $imagem = $novo_nome;
+    $endereco = addslashes($_POST['endereco']);
+
     //verificar se esta preenchido
-    if(!empty($nome) && !empty($cpf) && !empty($email) && !empty($senha))
+    if(!empty($nome) && !empty($cpfCnpj) && !empty($email) && !empty($senha) && !empty($imagem) && !empty($endereco))
     {
         $u->conectar("Radix","localhost","root","");
         if($u->msgErro == "")//ta ok
         {
-                if($u->cadastrar($nome,$cpf,$email,$senha))
+
+
+                if($u->cadastrar($nome,$cpfCnpj,$email,$senha,$imagem,$endereco))
                 {
-                    ?>
+                      ?>
                      <div id="msg-sucesso">
                          Cadastrado com sucesso!
                      </div>

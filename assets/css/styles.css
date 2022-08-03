@@ -126,6 +126,10 @@ body.dark-theme {
   background-color: var(--cor-container);
 }
 
+.dark-theme .servicos__bg{
+  background-color: var(--cor-container);
+}
+
 
 .section {
   padding: 4.5rem 0 1rem;

@@ -113,7 +113,7 @@ if(isset($_POST['email']) || isset($_POST['senha'])){
       $email = $mysqli->real_escape_string($_POST['email']);
       $senha = $mysqli->real_escape_string($_POST['senha']);
 
-      $sql_code = "SELECT * FROM tblCliente WHERE email = '$email' AND senha = '$senha'";
+      $sql_code = "SELECT * FROM tblVendedor WHERE email = '$email' AND senha = '$senha'";
       $sql_query = $mysqli->query($sql_code) or die("Falha na exec do código SQL: ".$mysqli->error);
 
       $quantidade = $sql_query->num_rows;
@@ -128,6 +128,7 @@ if(isset($_POST['email']) || isset($_POST['senha'])){
 
         $_SESSION['idVendedor'] = $usuario['idVendedor'];
         $_SESSION['nome'] = $usuario['nome'];
+        $_SESSION['imagem'] = $usuario['imagem'];
 
         
         header("Location: indexVendedor.php");
