@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="widht=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/styleLembrete.css">
+    <title>Radix</title>
+</head>
+<body>
+    <div class="wrapper">
+        <h2 class="title">Tarefas Radix</h2>
+        <div class="inputFields">
+            <input type="text" id="taskValue" placeholder="Escreva uma tarefa.">
+            <button type="submit" id="addBtn" class="btn"> <i class="fa fa-plus"></i> </button>
+        </div> 
+        <div class="content">
+            <ul id="tasks">
+                
+            </ul>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            //mostrar tarefa
+            function loadTasks(){
+                $.ajax({
+                url: "php/show-tasks.php",
+                type: "POST",
+                success: function(data){
+                    $("#tasks").html(data);
+                }
+            });
+            }
+
+            loadTasks();
+
+            //add task
+            $("#addBtn").on("click", function(e) {
+                e.preventDefault();
+
+                var task = $("#taskValue").val();
+
+            $.ajax({
+                url: "php/add-task.php",
+                type: "POST",
+                data: {task: task},
+                success: function(data){
+                    loadTasks();
+                    $("#taskValue").val('');
+                    if(data == 0){
+                        alert("Algo deu errado. Tente novamente.");
+                    }
+                }
+                });
+            });
+
+            //remover tarefa
+            $(document).on("click","#removeBtn", function(e) {
+                e.preventDefault();
+                var idLembrete = $("#delete").data('id');
+                
+                $.ajax({
+                    url: "php/remove-task.php",
+                    type: "POST",
+                    data: {idLembrete: idLembrete},
+                    success: function(data){
+                        loadTasks();
+                        if(data == 0){
+                            alert("Algo deu errado. Tente novamente.");
+                        }
+                    }
+
+                })
+                });
+        });
+    </script>
+</body>
+</html>

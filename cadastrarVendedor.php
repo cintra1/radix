@@ -113,8 +113,6 @@ if(isset($_POST['sub']))
         $u->conectar("Radix","localhost","root","");
         if($u->msgErro == "")//ta ok
         {
-
-
                 if($u->cadastrar($nome,$cpfCnpj,$email,$senha,$imagem,$endereco))
                 {
                       ?>
