@@ -573,7 +573,7 @@ footer .fa-leaf{
 }
 
 .button__abrir{
-  margin-left: 55%;
+  left: 85%;
   margin-top: 1rem;
   color: var(--cor-principal);
   text-align: center;
@@ -581,6 +581,8 @@ footer .fa-leaf{
   padding: 0.8rem !important;
   white-space: nowrap;
   cursor: pointer;
+  position:absolute;
+
 }
 
 .perfil__selo img{
