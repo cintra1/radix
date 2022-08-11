@@ -5,7 +5,7 @@
     <meta name="viewport" content="widht=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/styleLembrete.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/stylePunicoes.css">
     <link rel="icon" type="image/x-icon" href="assets/img/icon.ico">
     <title>Radix</title>
 </head>
@@ -31,24 +31,28 @@
     </header>
 
     <div class="caixa__grande">
-        <h2 class="title">Novo Lembrete</h2>
+        <h2 class="title">Aplicar Punições</h2>
         <div class="inputFields">
             <div class="caixa">
-                <input type="text" id="taskValue" placeholder="Escreva uma tarefa.">
+                <input type="text" id="taskValue" placeholder="Tipo de Conta">
+                <input type="text" id="recValue" placeholder="Reclamações">
+                <button type="submit" id="addBtn" class="btn"> Pesquisar </button>
+            </div>
+            <div class="caixa__d">
+                <div class="results">
+                    <h2>Resultado da consulta = 300 contas</h2>
+                </div>
             </div>
             <div class="caixa__div">
-                <input type="text" id="creatorValue" placeholder="Criado por...">
-                <input type="text" id="dateValue" placeholder="Data">
+                <input type="text" id="statusValue" placeholder="Tipon de punição">
+                <input type="text" id="assValue" placeholder="Assunto e-mail">
             </div>
             <div>
-                <input type="text" id="reqValue" placeholder="Requisitados">
-            </div>
-            <div class="caixa__div">
-                <input type="text" id="statusValue" placeholder="Status">
-                <input type="text" id="cstValue" placeholder="Cor status">
+                <input type="text" id="reqValue" placeholder="Corpo e-mail">
             </div>
             
-            <button type="submit" id="addBtn" class="btn"> <i class="fa fa-plus"></i> Criar Lembrete </button>
+            <button type="submit" id="addBtn" class="btn1"> <i class="fa fa-plus"></i> Enviar Punição </button>
+            <div class="espaco"></div>
         </div> 
         <div class="content">
             <ul id="tasks">

@@ -5,7 +5,7 @@
     <meta name="viewport" content="widht=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/styleLembrete.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/styleCupom.css">
     <link rel="icon" type="image/x-icon" href="assets/img/icon.ico">
     <title>Radix</title>
 </head>
@@ -31,24 +31,16 @@
     </header>
 
     <div class="caixa__grande">
-        <h2 class="title">Novo Lembrete</h2>
+        <h2 class="title">Alterar Status</h2>
         <div class="inputFields">
-            <div class="caixa">
-                <input type="text" id="taskValue" placeholder="Escreva uma tarefa.">
-            </div>
             <div class="caixa__div">
-                <input type="text" id="creatorValue" placeholder="Criado por...">
-                <input type="text" id="dateValue" placeholder="Data">
+                <input type="text" id="creatorValue" placeholder="Nome Cupom">
+                <input type="text" id="dateValue" placeholder="Enviar para">
             </div>
             <div>
-                <input type="text" id="reqValue" placeholder="Requisitados">
+                <input type="text" id="detValue" placeholder="Detalhes sobre o Cupom">
             </div>
-            <div class="caixa__div">
-                <input type="text" id="statusValue" placeholder="Status">
-                <input type="text" id="cstValue" placeholder="Cor status">
-            </div>
-            
-            <button type="submit" id="addBtn" class="btn"> <i class="fa fa-plus"></i> Criar Lembrete </button>
+            <button type="submit" id="addBtn" class="btn"> <i class="fa fa-plus"></i> Emitir </button>
         </div> 
         <div class="content">
             <ul id="tasks">
