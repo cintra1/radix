@@ -1031,7 +1031,6 @@ footer .fa-leaf{
   padding: .3rem;
   border-radius: .25rem;
   z-index: var(--z-tooltip);
-  opacity: .8;
   transition: .4s;
 }
 
