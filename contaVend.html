@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="widht=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/styleContaVend.css">
+    <link rel="icon" type="image/x-icon" href="assets/img/icon.ico">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <title>Radix</title>
+</head>
+<body>
+     <!--=============== HEADER ===============-->
+     <header class="header" id="header">
+        <nav class="nav container3">
+            <a id = "radix" href="index.html" class="nav__logo"> <i class="fa fa-leaf"></i> Radix </a>
+           
+
+            <div class="nav__menu" id="nav-menu">
+                <ul class="nav__list">
+                   
+                </ul>
+            </div>
+
+            <div class="nav__toggle" id="nav-toggle">
+                <i class='bx bx-grid-alt'></i>
+            </div>
+
+            <a href="app.html" class="button button__header">LOGOUT</a>
+        </nav>
+    </header>
+
+    <div class="caixa__grande">
+        <div class="inputFields">
+            <div class="caixa">
+                <div class="fist">
+                    <div class="box__circle">
+                        <img src="assets/img/semente.png" alt="">
+                    </div>
+                    <div class="home__data">
+                        <h1 class="home__titlet">Maria Amoras</h1>
+                        <div class="caixinha">
+                            <div>
+                                <p class="home__description">Ricardinho</p>    
+                                <p class="home__description"> 4.5<i class="uil uil-star"></i></p> 
+                            </div>
+                            <div>
+                                <button type="submit" id="addBtn" class="btn4">Desativar Conta </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <input type="text" id="recValue" placeholder="Quantidade de Estrelas">
+                <button type="submit" id="addBtn" class="btn"> Pesquisar </button>
+            </div>
+            </div>
+        </div> 
+    </div>
+
+    <div class="boxes">
+        <div class="caixa__cima">
+            <div class="box__vend">
+                <h2>40 Amoras Fresquinhas</h2>
+                <p><span class="box__span">Cliente:</span> Felipe Kurt</p>
+                <p><span class="box__span">Quantidade:</span> 1</p>
+                <p><span class="box__span">Endereço:</span> Rua ABC, 45</p>
+                <p><span class="box__span">Total:</span> R$40,00</p>
+                <p><span class="box__span">Entregador:</span> Luiz Carlos Costa Gandra</p>
+                <p><span class="box__span">Avaliação do Cliente:</span> 4.5<i class="uil uil-star"></i></p>
+
+            </div>
+
+            <div class="box__vend">
+                <h2>40 Amoras Fresquinhas</h2>
+                <p><span class="box__span">Cliente:</span> Felipe Kurt</p>
+                <p><span class="box__span">Quantidade:</span> 1</p>
+                <p><span class="box__span">Endereço:</span> Rua ABC, 45</p>
+                <p><span class="box__span">Total:</span> R$40,00</p>
+                <p><span class="box__span">Entregador:</span> Luiz Carlos Costa Gandra</p>
+                <p><span class="box__span">Avaliação do Cliente:</span> 4.5<i class="uil uil-star"></i></p>
+
+            </div>
+
+            <div class="box__vend">
+                <h2>40 Amoras Fresquinhas</h2>
+                <p><span class="box__span">Cliente:</span> Felipe Kurt</p>
+                <p><span class="box__span">Quantidade:</span> 1</p>
+                <p><span class="box__span">Endereço:</span> Rua ABC, 45</p>
+                <p><span class="box__span">Total:</span> R$40,00</p>
+                <p><span class="box__span">Entregador:</span> Luiz Carlos Costa Gandra</p>
+                <p><span class="box__span">Avaliação do Cliente:</span> 4.5<i class="uil uil-star"></i></p>
+
+            </div>
+        </div>
+
+        <div class="caixa__baixo">
+            <div class="box__vend2">
+                <h2>Felipe Kurt</h2>
+                <p class="justify">Amoras de muita qualidade, chegaram fresquinhas e 
+                    muito rápido, nenhuma estava podre muito bom,
+                    com certeza pedirei de novo !</p>
+            </div>
+
+            <div class="box__vend2">
+                <h2>Felipe Kurt</h2>
+                <p class="justify">Amoras de muita qualidade, chegaram fresquinhas e 
+                    muito rápido, nenhuma estava podre muito bom,
+                    com certeza pedirei de novo !</p>
+            </div>
+
+            <div class="box__vend2">
+                <h2>Felipe Kurt</h2>
+                <p class="justify">Amoras de muita qualidade, chegaram fresquinhas e 
+                    muito rápido, nenhuma estava podre muito bom,
+                    com certeza pedirei de novo !</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            //mostrar tarefa
+            function loadTasks(){
+                $.ajax({
+                url: "php/show-tasks.php",
+                type: "POST",
+                success: function(data){
+                    $("#tasks").html(data);
+                }
+            });
+            }
+
+            loadTasks();
+
+            //add task
+            $("#addBtn").on("click", function(e) {
+                e.preventDefault();
+
+                var task = $("#taskValue").val();
+
+            $.ajax({
+                url: "php/add-task.php",
+                type: "POST",
+                data: {task: task},
+                success: function(data){
+                    loadTasks();
+                    $("#taskValue").val('');
+                    if(data == 0){
+                        alert("Algo deu errado. Tente novamente.");
+                    }
+                }
+                });
+            });
+
+            //remover tarefa
+            $(document).on("click","#removeBtn", function(e) {
+                e.preventDefault();
+                var idLembrete = $("#delete").data('id');
+                
+                $.ajax({
+                    url: "php/remove-task.php",
+                    type: "POST",
+                    data: {idLembrete: idLembrete},
+                    success: function(data){
+                        loadTasks();
+                        if(data == 0){
+                            alert("Algo deu errado. Tente novamente.");
+                        }
+                    }
+
+                })
+                });
+        });
+    </script>
+</body>
+</html>

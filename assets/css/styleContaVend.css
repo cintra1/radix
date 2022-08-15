@@ -29,6 +29,7 @@ body{
 .caixa__grande{
   position: absolute;
   top: 8%;
+  left: 3%;
 }
  .title .inputFields{
     margin: 25px 0;
@@ -43,14 +44,14 @@ body{
     height: 12rem;
     width: 60rem;
     margin-bottom: 5rem;
-    margin-left: 3rem;
+    
 }
 
  .inputFields input[type="text"]{
     border: 1px solid #84CA9D;
     outline: none;
     width: calc(100% - 60px);
-    height: 100%;
+    height: 3.5rem;
     border-radius: 3px;
     padding: 0 10px;
     font-size: 1rem;
@@ -80,16 +81,40 @@ body{
 font-size: 1rem;
 }
 
-
-
 .caixa__d{
   text-align: center;
 }
 
+.caixa__cima{
+  position: absolute;
+  top: 36%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3rem;
+}
+
+.caixa__baixo{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3rem;
+}
+
+.boxes{
+  margin-top: 36%;
+  margin-left: 5.5rem;
+}
+.caixinha{
+  display: grid;
+  grid-template-columns: repeat(2, 42% 100%);
+}
+
 .caixa{
   display: grid;
-  grid-template-columns: repeat(2, 83.5% 100%);
+  grid-template-columns: repeat(3, 42% 73% 100%);
   margin-top: 2rem;
+}
+.home__data{
+  margin-left: 6rem;
 }
 
 #addBtn{
@@ -122,7 +147,7 @@ font-size: 1rem;
 
 .inputFields button.btn {
   width: 20%;
-  height: 100%;
+  height: 3.5rem;
   background:#84CA9D;
   color: #FFF;
   outline: none;
@@ -132,6 +157,21 @@ font-size: 1rem;
   font-size: 1rem;
   cursor: pointer;
   transition: .3s;
+}
+
+.inputFields button.btn4 {
+  width: 9rem;
+  height: 2.2rem;
+  background:#FFF;
+  color:#84CA9D;
+  outline: none;
+  border: solid 0.1rem #84CA9D;
+  border-radius: 3px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: .3s;
+  margin-left: -5rem;
+  margin-top: 0.3rem;
 }
 
 
@@ -664,8 +704,7 @@ footer .fa-leaf{
 /*=============== HOME ===============*/
 .fist{
   display: grid;
-  grid-template-columns: repeat(2, 22% 100%);
-  padding-top: 3.5rem;
+  grid-template-columns: repeat(2, 8.5% 100%);
 }
 
 .home__container {
@@ -705,7 +744,7 @@ footer .fa-leaf{
 
 .home__titlet {
   font-weight: var(--fonte-semi-bold);
-  font-size: 0.85rem;
+  font-size: 2rem;
 }
 
 
@@ -718,7 +757,7 @@ main{
 }
 
 .box__circle img{
-  width: 1.6rem;
+  width: 3.47rem;
 }
 
 .home__box{
@@ -737,23 +776,59 @@ main{
 }
 
 .box__circle{
-  width: 3rem;
-  height: 3rem;
+  width: 6.5rem;
+  height: 6.5rem;
   background-color: #F2F2F2;
-  margin-left: 0.6rem;
   border-radius: 100%;
   text-align: center;
-  padding-top: 0.75rem;
+  padding-top: 1.5rem;
 }
 
 .box__vendas{
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   text-align: center;
+  gap: 1rem;
 }
 
-.box__vendas h2{
+.box__vend{
+  width: 24rem;
+  height: 13rem;
+  box-shadow: 0 2px 5px rgba(0,0,0,.5);
+  border-radius: 0.8rem;
+  padding: 1.4rem;
+  font-size: 0.88rem;
+}
+
+.box__vend2{
+  background-color: #CEEAD8;
+  width: 24rem;
+  height: 13rem;
+  box-shadow: 0 2px 5px rgba(0,0,0,.5);
+  border-radius: 0.8rem;
+  padding: 1.4rem;
+  text-align: center;
+  font-size: 0.88rem;
+}
+
+.box__vend2 h2{
   opacity: 100%;
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+}
+
+.justify{
+  text-align: justify;
+}
+
+.box__span{
+  color: #70C28D;
+}
+
+.box__vend h2{
+  font-size: 1rem;
+  opacity: 100%;
+  margin-bottom: 0.8rem;
 }
 
 .title__vendas{
@@ -818,7 +893,6 @@ main{
 }
 
 .home__description {
-  margin-bottom: var(--mb-2);
   font-size: 0.8rem;
 }
 
