@@ -113,6 +113,7 @@ if(isset($_POST['email']) || isset($_POST['senha'])){
       $email = $mysqli->real_escape_string($_POST['email']);
       $senha = $mysqli->real_escape_string($_POST['senha']);
 
+      if($email != 'root'){
       $sql_code = "SELECT * FROM tblCliente WHERE email = '$email' AND senha = '$senha'";
       $sql_query = $mysqli->query($sql_code) or die("Falha na exec do código SQL: ".$mysqli->error);
 
@@ -129,12 +130,7 @@ if(isset($_POST['email']) || isset($_POST['senha'])){
         $_SESSION['idCliente'] = $usuario['idCliente'];
         $_SESSION['nome'] = $usuario['nome'];
 
-        if($email != 'adm@admin.com'){
-          header("Location: initial.php");
-        }else{
-          header("Location: indexVendedor.php");
-        }
-        
+        header("Location: initial.php");
 
       }else{
         ?>
@@ -145,6 +141,34 @@ if(isset($_POST['email']) || isset($_POST['senha'])){
         <?php
        
       }
+    }else{
+      $sql_code = "SELECT * FROM tblAdm WHERE userAdm = '$email' AND senhaAdm = '$senha'";
+      $sql_query = $mysqli->query($sql_code) or die("Falha na exec do código SQL: ".$mysqli->error);
+
+      $quantidade = $sql_query->num_rows;
+
+      if($quantidade == 1){
+
+        $usuario = $sql_query->fetch_assoc();
+
+        if(!isset($_SESSION)){
+          session_start();
+        }
+
+        $_SESSION['idADM'] = $usuario['idADM'];
+        $_SESSION['userAdm'] = $usuario['userAdm'];
+
+        header("Location: initial.php");
+
+      }else{
+        ?>
+          <div class="msg-erro">
+              Verifique se a conta de administrador está inserida no banco.
+          </div>
+        <?php
+       
+      }
+    }
   }
 }
 

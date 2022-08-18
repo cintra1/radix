@@ -159,7 +159,7 @@ body.dark-theme {
 
 .nav__container {
   max-width: 968px;
-  margin-left: var(--mb-1-5);
+  margin-left: 5%;
   margin-right: var(--mb-1-5);
 }
 
@@ -356,7 +356,7 @@ footer .fa-leaf{
 }
 
 .header .search-form {
-  width: 30rem;
+  width: 24rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
