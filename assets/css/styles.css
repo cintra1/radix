@@ -248,7 +248,6 @@ span{
 .nav__link{
   color: var(--cor-texto);
   font-size: var(--pequena-fonte);
-  margin-left:1.5rem;
 }
 
 .nav__link__active{
