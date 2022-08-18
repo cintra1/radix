@@ -158,7 +158,7 @@ if(isset($_POST['email']) || isset($_POST['senha'])){
         $_SESSION['idADM'] = $usuario['idADM'];
         $_SESSION['userAdm'] = $usuario['userAdm'];
 
-        header("Location: initial.php");
+        header("Location: indexAdm.php");
 
       }else{
         ?>
