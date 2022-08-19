@@ -128,7 +128,11 @@ if(isset($_POST['email']) || isset($_POST['senha'])){
 
         $_SESSION['idVendedor'] = $usuario['idVendedor'];
         $_SESSION['nome'] = $usuario['nome'];
+        $_SESSION['cpfCnpj'] = $usuario['cpfCnpj'];
+        $_SESSION['email'] = $usuario['email'];
+        $_SESSION['senha'] = $usuario['senha'];
         $_SESSION['imagem'] = $usuario['imagem'];
+        $_SESSION['endereco'] = $usuario['endereco'];
 
         
         header("Location: indexVendedor.php");

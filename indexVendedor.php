@@ -95,7 +95,7 @@
         </div>
 
         <div id="dois">
-            <h2>Pedidos finalizads</h2>
+            <h2>Pedidos finalizados</h2>
         </div>
 
         <div id="tres">
@@ -106,7 +106,9 @@
     <div id="baixo" >
    
         <div id="quatro">
+            <a href="alterarVend.php">
             <h2>Editar perfil</h2>
+            </a>
         </div>
 
         <div id="cinco">
