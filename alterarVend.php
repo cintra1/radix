@@ -8,7 +8,7 @@ include('php/protectVend.php');
     <meta name="viewport" content="widht=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/styleAlter.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/styleAlterar.css">
     <link rel="icon" type="image/x-icon" href="assets/img/icon.ico">
     <title>Radix</title>
 </head>
@@ -49,8 +49,10 @@ include('php/protectVend.php');
                 <input id='img' name="imagem" type="file" value="<?php echo $_SESSION['imagem']; ?>">
                 <label for='img'>ALTERAR FOTO</label>
             </div>
-            
-            <input type="submit" class="btn" value="Alterar Dados" name="sub"/>
+            <div class="btns">
+                <input type="submit" class="btn3" value="Limpar Campos" name="sub"/>
+                <input type="submit" class="btn2" value="Alterar Dados" name="sub"/>
+            </div>
         </form> 
        
     </div>
