@@ -1,3 +1,9 @@
+<?php 
+include("php/conexao.php");
+
+$consulta = "SELECT * FROM tblProduto";
+$con = $mysqli->query($consulta) or die($mysqli->error);
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,9 +11,12 @@
     <meta name="viewport" content="widht=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/stylesProd.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/styleProduto.css">
     <link rel="icon" type="image/x-icon" href="assets/img/icon.ico">
     <title>Radix</title>
+
+     <!--==================== UNICONS ====================-->
+     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
 </head>
 <body>
      <!--=============== HEADER ===============-->
@@ -33,80 +42,27 @@
     <div class="caixa__grande">
         <h2 class="title__top">Home Vendedor > Editar Produtos</h2>
         <div class="boxes">
+            <?php while($dado = $con->fetch_array()){ ?>
             <div class="home__container container grid box">
                  <div class="home__box home__container container grid">
  
                      <div class="title">
-                         <h1 class="title__prod">40 Amoras frescas</h1>
+                         <h1 class="title__prod"><?php echo $dado["nome"]; ?></h1>   
                          <div class="box__img">
-                             <img src="assets/img/amora.png" alt="">
+                             <img src="upload/<?php echo $dado["foto"]; ?>" alt="">
                          </div>
                      </div>
                      <div class="description">
-                         <p class="home__description2">Amoras colhidas com muito carinho e dedicação 
-                         por Luiz Ricardo, e entregues para você em sua 
-                         casa em cerca de 35 minutos</p> 
-                         <p class="home__price"> <span style="color: #70C28D;">R$ </span>40,00 </p>
+                     <a class="btn4" href="alterarProd.php?idProduto=<?php echo $dado["idProduto"]; ?>"><i class="uil uil-pen"></i></a>
+                         <p class="home__description2"><?php echo $dado["detalhe"]; ?></p> 
+                         <p class="home__price"> <span style="color: #70C28D;">R$ </span><?php echo $dado["preco"]; ?>,00 </p>
                      </div>
+                     
                 </div>
             </div>
-
-            <div class="home__container container grid box">
-                <div class="home__box home__container container grid">
-
-                    <div class="title">
-                        <h1 class="title__prod">40 Amoras frescas</h1>
-                        <div class="box__img">
-                            <img src="assets/img/amora.png" alt="">
-                        </div>
-                    </div>
-                    <div class="description">
-                        <p class="home__description2">Amoras colhidas com muito carinho e dedicação 
-                        por Luiz Ricardo, e entregues para você em sua 
-                        casa em cerca de 35 minutos</p> 
-                        <p class="home__price"> <span style="color: #70C28D;">R$ </span>40,00 </p>
-                    </div>
-               </div>
-           </div>
-
-           <div class="home__container container grid box">
-            <div class="home__box home__container container grid">
-
-                <div class="title">
-                    <h1 class="title__prod">40 Amoras frescas</h1>
-                    <div class="box__img">
-                        <img src="assets/img/amora.png" alt="">
-                    </div>
-                </div>
-                <div class="description">
-                    <p class="home__description2">Amoras colhidas com muito carinho e dedicação 
-                    por Luiz Ricardo, e entregues para você em sua 
-                    casa em cerca de 35 minutos</p> 
-                    <p class="home__price"> <span style="color: #70C28D;">R$ </span>40,00 </p>
-                </div>
-           </div>
-       </div>
-
-       <div class="home__container container grid box">
-        <div class="home__box home__container container grid">
-
-            <div class="title">
-                <h1 class="title__prod">40 Amoras frescas</h1>
-                <div class="box__img">
-                    <img src="assets/img/amora.png" alt="">
-                </div>
-            </div>
-            <div class="description">
-                <p class="home__description2">Amoras colhidas com muito carinho e dedicação 
-                por Luiz Ricardo, e entregues para você em sua 
-                casa em cerca de 35 minutos</p> 
-                <p class="home__price"> <span style="color: #70C28D;">R$ </span>40,00 </p>
-            </div>
-       </div>
+            <?php } ?>
         </div>
-
-   
-        </div>
+        
 
         <div class="btns">
             <input type="submit" class="btn3" value="Adicionar Produto" name="sub"/>
