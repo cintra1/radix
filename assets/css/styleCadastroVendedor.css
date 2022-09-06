@@ -210,6 +210,17 @@ div.msg-erro
     color: white;
 }
 
+input[type='file'] {
+  display: none
+}
+
+label {
+  color: #70C28D;
+  cursor: pointer;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
 .social-text span:hover{
   color: #56a371;
 }

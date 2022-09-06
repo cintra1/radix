@@ -99,7 +99,9 @@
         </div>
 
         <div id="tres">
-            <h2>Editar produtos</h2>
+        <a href="produtos.php">
+            <h2> Meus produtos</h2>
+        </a>
         </div>
     </div>
 

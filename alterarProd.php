@@ -41,21 +41,28 @@ include('php/load.php');
         <h2 class="title">Home Vendedor > Editar Produtos > Alterar Produto</h2>
         <form action="#" method="POST" class="alter-form" enctype="multipart/form-data">
             <div class="caixa2">
-                <input type="text" id="taskValue" name="idProduto" value="<?php echo $_GET['idProduto']; ?>">
-                <h1><i class="uil uil-angle-down"></i></h1>
+            <label for="idProd">ID do Produto:
+                <input type="text" id="idProd" name="idProduto" value="<?php echo $_GET['idProduto']; ?>"  readonly=“true”>
+            </label>
             </div>
             <div class="caixa">
-                <input type="text" id="taskValue" placeholder="Nome Produto" name="nome" value="<?php echo $value['nome']; ?>">
-                <input type="text" id="recValue" placeholder="Preço" name="preco" value="<?php echo $value['preco']; ?>">
+            <label for="nome">Nome:<BR>
+                <input type="text" id="nome" placeholder="Nome Produto" name="nome" value="<?php echo $value['nome']; ?>">
+            </label>
+            <label for="preco" id="preco">Preço:
+                <input type="text"  placeholder="Preço" name="preco" value="<?php echo $value['preco']; ?>">
+            </label>
             </div>
-            <div>
-                <input type="text" id="reqValue" placeholder="Detalhes Produto" name="detalhe" value="<?php echo $value['detalhe']; ?>">
+            <div class="caixa3">
+            <label for="detalhe">Detalhes :
+                <input wrap="hard" type="text" id="detalhe" placeholder="Detalhes Produto" name="detalhe" value="<?php echo $value['detalhe']; ?>">
+            </label>
             </div>
             <div class="baixo__vend"> 
-                <input id='img' name="imagem" type="file">
-                <label for='img'>ADICIONAR FOTO</label>
-                <input type="submit" class="btn3" value="Limpar Campos" name="sub"/>
-                <input type="submit" class="btn2" value="Adicionar Produto" name="sub">
+                <input id='img' name="foto" type="file">
+                <label for='img' class="label__img">ADICIONAR FOTO</label>
+                <input type="submit" class="btn3" value="Desativar Produto" name="del"/>
+                <input type="submit" class="btn2" value="Alterar Produto" name="sub">
             </div>
             <div class="result"></div>
     </form> 
@@ -64,5 +71,112 @@ include('php/load.php');
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="assets/js/alterarProd.js"></script>
+
+<?php
+
+include('php/conexao.php');
+require_once 'php/editarProduto.php';
+  $u = new Usuario;
+
+//verificar se a pessoa clicou no btnCadastrar
+if(isset($_POST['sub']))
+{
+
+    $extensao = strtolower(substr($_FILES['foto']['name'], -4)); 
+    $novo_nome = md5(time()) . $extensao;
+    $diretorio = "upload/";
+
+    move_uploaded_file($_FILES['foto']['tmp_name'], $diretorio.$novo_nome);
+
+    $idProduto = addslashes($_GET['idProduto']);
+    $nome = addslashes($_POST['nome']);
+    $preco = addslashes($_POST['preco']);
+    $foto = $novo_nome;
+    $detalhe = addslashes($_POST['detalhe']);
+    $idVendedor = addslashes($_SESSION['idVendedor']);
+
+    //verificar se esta preenchido
+    if(!empty($nome) && !empty($preco) && !empty($detalhe) && !empty($foto))
+    {
+        $u->conectar("Radix","localhost","root","");
+        if($u->msgErro == "")//ta ok
+        {
+                if($u->atualizar($idProduto, $nome, $preco, $foto, $detalhe))
+                {
+                      ?>
+                     <div id="msg-sucesso">
+                         Atualizado com sucesso! 
+                     </div>
+                    <?php
+                    
+                }
+                else
+                {
+                    header("Location: produtos.php");
+                }
+        }
+        else
+        {
+            ?>
+             <div class="msg-erro">
+                    <?php echo "Erro: ".$u->msgErro;?>
+                </div>
+            <?php
+            
+        }
+    }
+    else
+    {
+        ?>
+            <div class="msg-erro">
+                Preencha todos os campos!
+            </div>
+        <?php
+        
+    }
+}
+
+?>
+
+<?php
+
+include('php/conexao.php');
+require_once 'php/editarProduto.php';
+  $u = new Usuario;
+if(isset($_POST['del']))
+{
+    $idProduto = addslashes($_GET['idProduto']);
+    $statusProduto = '0';
+
+        $u->conectar("Radix","localhost","root","");
+        if($u->msgErro == "")//ta ok
+        {
+                if($u->deletar($idProduto, $statusProduto))
+                {
+                      ?>
+                     <div id="msg-sucesso">
+                         Deletado com sucesso!
+                     </div>
+                    <?php
+                    
+                }
+                else
+                {
+                    header("Location: produtos.php");
+                }
+        }
+        else
+        {
+            ?>
+             <div class="msg-erro">
+                    <?php echo "Erro: ".$u->msgErro;?>
+                </div>
+            <?php
+            
+        }
+    }
+
+    ?>
+
 </body>
 </html>

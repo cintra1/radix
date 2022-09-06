@@ -1,8 +1,15 @@
 <?php 
 include("php/conexao.php");
+require('php/connection.php');
+include('php/protectVend.php');
 
-$consulta = "SELECT * FROM tblProduto";
-$con = $mysqli->query($consulta) or die($mysqli->error);
+
+$idVendedor = $_SESSION['idVendedor'];
+
+$consulta = "SELECT * FROM tblProduto WHERE statusProduto <> 0 and idVendedor = $idVendedor";
+
+$con = $pdo->query($consulta) or die($mysqli->error);
+$conn = $mysqli->query($consulta) or die($mysqli->error);
 ?>
 <!DOCTYPE html>
 <html>
@@ -11,7 +18,7 @@ $con = $mysqli->query($consulta) or die($mysqli->error);
     <meta name="viewport" content="widht=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/styleProduto.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/stylesProduto.css">
     <link rel="icon" type="image/x-icon" href="assets/img/icon.ico">
     <title>Radix</title>
 
@@ -42,7 +49,7 @@ $con = $mysqli->query($consulta) or die($mysqli->error);
     <div class="caixa__grande">
         <h2 class="title__top">Home Vendedor > Editar Produtos</h2>
         <div class="boxes">
-            <?php while($dado = $con->fetch_array()){ ?>
+            <?php if($con->rowCount() > 0){ while($dado = $conn->fetch_array()){ ?>
             <div class="home__container container grid box">
                  <div class="home__box home__container container grid">
  
@@ -60,74 +67,25 @@ $con = $mysqli->query($consulta) or die($mysqli->error);
                      
                 </div>
             </div>
-            <?php } ?>
+            <?php }}else{
+                ?>
+                <h1 class="title__sem">Nenhum produto adicionado</h1>
+                <h1 class="title__sem2">Clique no botão abaixo para iniciar sua jornada como vendedor.</h1>
+                <img class="img2" src="assets/img/sem-prod.svg" alt="" style="width:23rem !important; margin-left:75%; margin-top: -1rem;  margin-bottom: 5rem;">
+                <?php
+            } ?>
         </div>
         
 
         <div class="btns">
-            <input type="submit" class="btn3" value="Adicionar Produto" name="sub"/>
-            <input type="submit" class="btn3" id="d" value="Alterar Produto" name="sub"/>
-            <input type="submit" class="btn3" id="t" value="Deletar Produto" name="sub"/>
+            <a href="novoProd.php"><input type="submit" class="btn3" value="Adicionar Produto" name="sub"/></a>
+            
         </div>
     </div>
 
     
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            //mostrar tarefa
-            function loadTasks(){
-                $.ajax({
-                url: "php/show-tasks.php",
-                type: "POST",
-                success: function(data){
-                    $("#tasks").html(data);
-                }
-            });
-            }
-
-            loadTasks();
-
-            //add task
-            $("#addBtn").on("click", function(e) {
-                e.preventDefault();
-
-                var task = $("#taskValue").val();
-
-            $.ajax({
-                url: "php/add-task.php",
-                type: "POST",
-                data: {task: task},
-                success: function(data){
-                    loadTasks();
-                    $("#taskValue").val('');
-                    if(data == 0){
-                        alert("Algo deu errado. Tente novamente.");
-                    }
-                }
-                });
-            });
-
-            //remover tarefa
-            $(document).on("click","#removeBtn", function(e) {
-                e.preventDefault();
-                var idLembrete = $("#delete").data('id');
-                
-                $.ajax({
-                    url: "php/remove-task.php",
-                    type: "POST",
-                    data: {idLembrete: idLembrete},
-                    success: function(data){
-                        loadTasks();
-                        if(data == 0){
-                            alert("Algo deu errado. Tente novamente.");
-                        }
-                    }
-
-                })
-                });
-        });
-    </script>
+    
 </body>
 </html>

@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="assets/css/styleCadastroVend.css" />
+  <link rel="stylesheet" href="assets/css/styleCadastroVendedor.css" />
   <link rel="icon" type="image/x-icon" href="assets/img/icon.ico">
     <!--==================== UNICONS ====================-->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
@@ -44,6 +44,8 @@
           </div>
           
           <input type="file" name="imagem"/>
+          <input id='img' name="imagem" type="file">
+                <label for='img'>ADICIONAR FOTO</label>
           
           <input type="submit" class="btn" value="Sign up" name="sub"/>
           <p class="social-text"></p>

@@ -73,6 +73,7 @@ if(isset($_POST['sub']))
     $detalhe = addslashes($_POST['detalhe']);
     $idVendedor = addslashes($_SESSION['idVendedor']);
     $foto = $novo_nome;
+    $statusProduto = '1';
 
     //verificar se esta preenchido
     if(!empty($nome) && !empty($preco) && !empty($detalhe) && !empty($idVendedor))
@@ -80,7 +81,7 @@ if(isset($_POST['sub']))
         $u->conectar("Radix","localhost","root","");
         if($u->msgErro == "")//ta ok
         {
-                if($u->cadastrar($nome, $preco, $foto, $detalhe, $idVendedor))
+                if($u->cadastrar($nome, $preco, $foto, $detalhe, $idVendedor, $statusProduto))
                 {
                       ?>
                      <div id="msg-sucesso">
@@ -95,6 +96,7 @@ if(isset($_POST['sub']))
                            Produto adicionado!
                         </div>
                     <?php
+                     header("Location: produtos.php");
                 }
         }
         else
