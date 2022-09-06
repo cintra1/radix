@@ -49,7 +49,7 @@ include('php/load.php');
             <label for="nome">Nome:<BR>
                 <input type="text" id="nome" placeholder="Nome Produto" name="nome" value="<?php echo $value['nome']; ?>">
             </label>
-            <label for="preco" id="preco">Preço:
+            <label for="preco" id="preco">Preço (Utilizar . ):
                 <input type="text"  placeholder="Preço" name="preco" value="<?php echo $value['preco']; ?>">
             </label>
             </div>

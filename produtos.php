@@ -62,7 +62,7 @@ $conn = $mysqli->query($consulta) or die($mysqli->error);
                      <div class="description">
                      <a class="btn4" href="alterarProd.php?idProduto=<?php echo $dado["idProduto"]; ?>"><i class="uil uil-pen"></i></a>
                          <p class="home__description2"><?php echo $dado["detalhe"]; ?></p> 
-                         <p class="home__price"> <span style="color: #70C28D;">R$ </span><?php echo $dado["preco"]; ?>,00 </p>
+                         <p class="home__price"> <span style="color: #70C28D;">R$ </span><?php echo number_format($dado["preco"],2,",","."); ?> </p> 
                      </div>
                      
                 </div>
