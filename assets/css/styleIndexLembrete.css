@@ -1205,7 +1205,7 @@ footer .fa-leaf{
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(2,1fr);
   margin-left: 5%;
-  margin-top: 0.4rem;
+  margin-top: 1rem;
 }
 
 .btn4 {
