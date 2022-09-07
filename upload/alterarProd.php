@@ -1,8 +1,6 @@
 <?php 
 include('php/protectVend.php');
 include('php/load.php');
-
-include('php/protectIDProd.php');
 ?>
 <!DOCTYPE html>
 <html>

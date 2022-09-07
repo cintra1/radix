@@ -15,7 +15,7 @@ Class Usuario
         }                
     }
 
-    public function cadastrar($nome, $cpfCnpj, $email, $senha, $imagem, $endereco)
+    public function cadastrar($nome, $cpfCnpj, $email, $senha, $imagem, $endereco, $statusConta)
     {
         global $pdo;
         //verificar se ja existe o email cadastrado
@@ -32,8 +32,8 @@ Class Usuario
         else
         {
             //caso nao, realizar cadastro
-            $sql = $pdo->prepare("INSERT INTO tblVendedor (nome, cpfCnpj, email, senha, imagem, endereco) 
-                VALUES (:n, :t, :e, :s, :i, :d)");
+            $sql = $pdo->prepare("INSERT INTO tblVendedor (nome, cpfCnpj, email, senha, imagem, endereco, statusConta) 
+                VALUES (:n, :t, :e, :s, :i, :d, :st)");
             
              $sql->bindValue(":n",$nome);
              $sql->bindValue(":t",$cpfCnpj);
@@ -41,6 +41,7 @@ Class Usuario
              $sql->bindValue(":s",$senha);
              $sql->bindValue(":i",$imagem);
              $sql->bindValue(":d",$endereco);
+             $sql->bindValue(":st",$statusConta);
              $sql->execute();
              return true;
         } 

@@ -1,5 +1,12 @@
 <?php
-   include('php/protect.php');
+   include('php/protectLembrete.php');
+   include("php/conexao.php");
+   require('php/connection.php');
+   
+   $consulta = "SELECT * FROM tblLembrete";
+
+    $con = $pdo->query($consulta) or die($mysqli->error);
+    $conn = $mysqli->query($consulta) or die($mysqli->error);
 ?>
 <!DOCTYPE html>
     <html lang="en">
@@ -15,7 +22,7 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
         <!--=============== CSS ===============-->
-        <link rel="stylesheet" href="assets/css/styleILembrete.css">
+        <link rel="stylesheet" href="assets/css/styleIndexLembrete.css">
 
         <!-- font awesome cdn link  -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
@@ -74,50 +81,35 @@
             
             <div class="perfil">
                     <div class="perfil__data">
-                        <h1 class="perfil__title">Controle de Lembretes</h1>
+                        <h1 class="perfil__title">Lembretes para Reuniões, Alterações</h1>
                     </div>
-                    <a href="lembrete.html" class="button  button__abrir">
+                    <a href="lembrete.php" class="button  button__abrir">
                      <i class="fa fa-plus"></i> Novo Lembrete
                     </a>
             </div>
-        </section>    
-    <div id="cima" >
-        <div class="box esquerda">
-            <h2>Reunião para discutir contrato com empresa X</h2>
-            <p>Criado por: Cintra</p>
-            <p>Data: 10/06/2023</p>
-            <p>Requisitados: Diego, Kurt</p>
-            <p>Status: <span style="color: red;">Urgente</span></p>
+        </section>  
+
+        <div id="cima" class="caixa__grande">
+        <?php while($dado = $conn->fetch_array()){ ?>
+          <div class="box esquerda">
+          <a class="btn4" href="alterarLembrete.php?idLembrete=<?php echo $dado["idLembrete"]; ?>"><i class="uil uil-pen"></i></a>
+            <h2><?php echo $dado["titulo"]; ?></h2>
+            <p>Criado por: <?php echo $dado["criador"]; ?></p>
+            <p>Data: <?php echo $dado["data"]; ?></p>
+            <p>Requisitados: <?php echo $dado["requisitados"]; ?></p>
+            <p>Status: 
+                <?php if($dado["statusLembrete"] == 'Urgente') { ?>
+                    <span style="color: red;"><?php echo $dado["statusLembrete"]; ?></span>
+                <?php }else if($dado["statusLembrete"] == 'Importante') {?>
+                    <span style="color: #e37712;"><?php echo $dado["statusLembrete"]; ?></span>
+                <?php }else if($dado["statusLembrete"] == 'Comum') {?>
+                    <span style="color: green;"><?php echo $dado["statusLembrete"]; ?></span>
+                <?php }else if($dado["statusLembrete"] == 'Muito Comum'){ ?>
+                    <span style="color: #1eb6e8;"><?php echo $dado["statusLembrete"]; ?></span>
+                <?php } ?>
+            </p>
         </div>
-
-        <div class="box">
-            <h2 style="margin-left: -11.5rem;">Implementação de Python</h2>
-            <p>Criado por: Cintra</p>
-            <p>Data: 10/06/2023</p>
-            <p>Requisitados: Diego, Kurt</p>
-            <p>Status: <span style="color: green;">Comum</span></p>
-        </div>
-
-    </div>
-
-    <div id="baixo" >
-   
-        <div class="box2 esquerda" style="margin-right: 3rem;">
-            <h2>Reunião para expandir a aréa de acesso de Radix</h2>
-            <p>Criado por: Cintra</p>
-            <p>Data: 10/06/2023</p>
-            <p>Requisitados: Diego, Kurt</p>
-            <p>Status: <span style="color: green;">Comum</span></p>
-        </div>
-
-        <div class="box2">
-            <h2 class="baixo__menos">Reunião para discutir melhoras no App</h2>
-            <p>Criado por: Cintra</p>
-            <p>Data: 10/06/2023</p>
-            <p>Requisitados: Diego, Kurt</p>
-            <p>Status: <span style="color: red;">Urgente</span></p>
-        </div>
-
+        <?php } ?>
     </div>
 
         <!--=============== FOOTER ===============-->
@@ -163,11 +155,6 @@
             </div>
            
         </footer>
-
-        <!--=============== SCROLL UP ===============-->
-        <a href="#" class="scrollup" id="scroll-up">
-            <i class='bx bx-up-arrow-alt scrollup__icon'></i>
-        </a>
 
         <!--=============== MAIN JS ===============-->
         <script src="assets/js/main.js"></script>

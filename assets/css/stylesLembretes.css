@@ -21,6 +21,11 @@ body{
   top: 8%;
 }
 
+.caixa__div{
+display: grid;
+grid-template-columns: repeat(2, 75% 30%);
+}
+
  .title{
     font-weight: 800;
     margin-left: -5rem;
@@ -55,6 +60,28 @@ body{
     font-size: 1rem;
     transition: .3s;
 }
+.inputFields select{
+  border: 1px solid #84CA9D;
+  outline: none;
+  width: calc(100% - 60px);
+  height: 100%;
+  border-radius: 3px;
+  padding: 0 10px;
+  font-size: 1rem;
+  transition: .3s;
+  padding-right: 10rem;
+}
+
+.inputFields input[type="date"]{
+  border: 1px solid #84CA9D;
+  outline: none;
+  width: calc(100% - 60px);
+  height: 100%;
+  border-radius: 3px;
+  padding: 0 10px;
+  font-size: 1rem;
+  transition: .3s;
+}
 
 
  .inputFields input[type="text"]:focus{
@@ -62,10 +89,7 @@ body{
 
 }
 
-.caixa__div{
-  display: grid;
-  grid-template-columns: repeat(2, 75% 30%);
-}
+
 
 #dateValue, #cstValue{
   margin-left: -3rem;

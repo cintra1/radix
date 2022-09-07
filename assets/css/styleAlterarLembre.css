@@ -1,3 +1,291 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body{
+    width: 100%;
+    min-height: 100vh;
+    background: #84CA9D;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+ .title{
+    font-weight: 800;
+    text-align: center;
+    font-size: 2rem;
+    color: #70C28D;
+    margin-top: 8%;
+    margin-bottom: 3rem;
+}
+
+ .title .inputFields{
+    margin: 25px 0;
+    display: block;
+}
+
+input[type='file']{
+  display: none
+}
+
+input[type='date'], select{
+  border: none;
+}
+
+.label__img{
+  margin-left: -1.3rem;
+  color: #70C28D;
+  cursor: pointer;
+  font-size: 2rem;
+  font-weight: 600;
+  border: none;
+}
+
+.title .alter-form{
+  margin: 25px 0;
+  display: block;
+}
+
+.alter-form{
+  margin: 25px 0;
+  display: grid;
+  grid-template-rows: repeat(5, 18% 18% 18% 18% 18% );
+  gap: 0.7rem;
+  height: 20rem;
+  width: 60rem;
+  margin-bottom: 10rem;
+}
+
+#req{
+  width: 50rem;
+}
+
+.alter-form input[type="text"], #req, #st, #cr, #data{
+  border: none;
+  outline: none;
+}
+
+form label, #req2, #st2, #cr2, #data2{
+  border: 1px solid #84CA9D;
+  outline: none;
+  width: calc(100% - 60px);
+  height: 100%;
+  border-radius: 3px;
+  padding: 0 10px;
+  transition: .3s;
+  color: #70C28D;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.alter-form input[type="text"]:focus{
+  border-color: #84CA9D;
+
+}
+
+#addBtn{
+  margin-left: -5.45rem;
+}
+
+#preco{
+  margin-left: -3rem;
+}
+
+#assValue{
+  margin-left: -2.47rem;
+}
+
+.results{
+    text-align: center;
+    width: 22rem;
+    height: 4rem;
+    display: inline-block;
+    margin: 1vw 1vw;
+    border-radius: 1rem;
+    padding-top: 1.8%;
+    box-shadow: 0px 2px 5px rgba(0,0,0,.4);
+    margin-top: -0.5rem;
+}
+
+.results h2{
+  font-size: 1rem;
+}
+
+.caixa__div{
+  display: grid;
+  grid-template-columns: repeat(2, 52% 52%);
+}
+
+.caixa__d{
+  text-align: center;
+}
+
+.caixa{
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+}
+
+#st{
+  width: 55rem;
+}
+
+#data{
+  width: 13rem;
+}
+.caixa3{
+  display: grid;
+  grid-template-columns: repeat(2, 75% 30%);
+}
+
+#data2{
+  margin-left: -3rem !important;
+}
+
+#nome{
+  width: 40rem;
+}
+
+.caixa2{
+  display: grid;
+  grid-template-columns: repeat(2, 28% 70%);
+}
+
+.caixa2 p{
+ margin-left: 26%;
+}
+
+.caixa2 h1{
+  color: #70C28D;
+  margin-left: -6.2rem !important;
+  margin-top: 0.5rem;
+  font-weight: 500;
+}
+
+.inputFields button.btn1 {
+    width: 15rem;
+    height: 3.5rem;
+    background:#84CA9D;
+    color: #FFF;
+    outline: none;
+    border: none;
+    box-shadow: 0 0 5px rgba(0,0,0,.1);
+    border-radius: 3px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: .3s;
+    margin-top: 1rem;
+}
+
+.btn2 {
+  width: 20%;
+  height: 100%;
+  background:#84CA9D;
+  color: #FFF;
+  outline: none;
+  border: none;
+  box-shadow: 0 0 5px rgba(0,0,0,.1);
+  border-radius: 3px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: .3s;
+  margin-top: 1rem;
+  margin-left: 5%;
+  font-weight: 600;
+}
+
+.btn3 {
+  width: 20%;
+  height: 100%;
+  background-color:#FFFFFF;
+  color: #70C28D;
+  outline: none;
+  border: solid 0.15rem #70C28D;
+  box-shadow: 0 0 5px rgba(0,0,0,.1);
+  border-radius: 3px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: .3s;
+  margin-top: 1rem;
+  font-weight: 600;
+  margin-left: 9rem;
+}
+
+.baixo__vend{
+  margin-left: -8.9rem;
+}
+
+
+.inputFields button.btn {
+  width: 20%;
+  height: 100%;
+  background:#84CA9D;
+  color: #FFF;
+  outline: none;
+  border: none;
+  box-shadow: 0 0 5px rgba(0,0,0,.1);
+  border-radius: 3px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: .3s;
+}
+
+
+ .content ul li{
+    display: block;
+    background: #f1f1f1;
+    border-radius: 3px;
+    margin: 8px 0;
+    padding: 10px 0;
+    border: rgba(0, 0, 0, .1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1rem;
+    position: relative;
+    overflow: hidden;
+}
+
+ .content ul li .text{
+    color: #111;
+    padding-left: 10px;
+}
+
+ .content ul li .icon{
+    width: 50px;
+    display: flex;
+    height: 100%;
+    background-color: #e74c3c;
+    position: absolute;
+    right: -50px;
+    top: 0;
+    color: #fff;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 0 3px 3px 0;
+    transition: .3s linear;
+}
+
+ .content ul li:hover .icon {
+    right: 0%;
+}
+
+ .content .pending-text{
+    color: #111;
+    font-weight: 500;
+    font-size: 1rem;
+    margin-top: 20px;
+    text-transform: capitalize;
+}
+
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
 
 /*=============== VARIAVEIS ===============*/
@@ -185,7 +473,6 @@ body.dark-theme {
   left: 0;
   z-index: var(--z-fixed);
   transition: .5s;
-  margin-bottom: 2vw;
 }
 
 span{
@@ -450,19 +737,6 @@ footer .fa-leaf{
   color: var(--cor-principal);
 }
 
-.btn {
-  margin-top: 1rem;
-  display: inline-block;
-  padding: .8rem 3rem;
-  background:var(--cor-principal);
-  border-radius: 0.5rem;
-  color: #fff;
-  font-size: 1rem;
-  cursor: pointer;
-  text-transform: uppercase;
-  border: none;
-}
-
 .btn:hover {
   background: var(--cor-principal-alt);
 }
@@ -542,8 +816,6 @@ footer .fa-leaf{
 }
 
 .perfil__title{
-  margin-top: 1rem;
-  margin-bottom: -2rem;
   font-weight: var(--fonte-bold);
   font-family: var(--fonte-body);
   font-size: 2rem;
@@ -559,7 +831,8 @@ footer .fa-leaf{
 
 .perfil{
   align-items: center;
-  display: flex;
+  display:grid;
+  grid-template-columns: 7.5% 83% 6.3%;
 }
 
 .perfil__data{
@@ -573,16 +846,11 @@ footer .fa-leaf{
 }
 
 .button__abrir{
-  left: 85%;
-  margin-top: 1rem;
+  float: right;
   color: var(--cor-principal);
   text-align: center;
   border-radius: 0.3rem !important;
-  padding: 0.8rem !important;
-  white-space: nowrap;
-  cursor: pointer;
-  position:absolute;
-
+  padding: 0.7rem !important;
 }
 
 .perfil__selo img{
@@ -628,6 +896,12 @@ footer .fa-leaf{
   background-color: #FFF;
 }
 
+
+.button__header__abrir {
+  display: none;
+  color: #FFF;
+  background-color: #70C28D;
+}
 
 
 .button-link {
@@ -1206,16 +1480,34 @@ footer .fa-leaf{
   margin-bottom: 1vw;
   margin-top: -6vw;
 }
-
-.box{
-  width: 40vw;
+#um{
+  background-color: #dac3cf;
+  width: 20vw;
   height: 15vw;
   display: inline-block;
   margin: 1vw 1vw;
   border-radius: 1rem;
   margin-top: 7.5vw;
-  padding-top: 1vw;
-  box-shadow: 0 0 4px rgba(0, 0, 0, 0.6);
+  padding-top: 6vw;
+}
+#dois{
+  background-color: #f3f3b8 ;
+  width: 20vw;
+  height: 15vw;
+  display: inline-block;
+  margin: 1vw 1vw;
+  border-radius: 1rem;
+  padding-top: 6vw;
+}
+
+#tres{
+  background-color: #f8e9dd;
+  width: 20vw;
+  height: 15vw;
+  display: inline-block;
+  margin: 1vw 1vw;
+  border-radius: 1rem;
+  padding-top: 6vw;
 }
 
 #baixo{
@@ -1224,63 +1516,44 @@ footer .fa-leaf{
 
 }
 
-.box h2{
-  margin-top: 0.5rem;
-  margin-bottom: 0.8rem;
-}
-
-.box p {
-  margin-left: 2rem;
-  margin-right: 1.5rem;
-  text-align: justify;
-  color: black;
-  opacity: 75%;
-}
-
-.esquerda{
-  margin-right: 3rem;
-}
-
-
-.box2{
-  width: 40vw;
+#quatro{
+  background-color: #c9e9f5;
+  width: 20vw;
   height: 15vw;
   display: inline-block;
   margin: 1vw 1vw;
   border-radius: 1rem;
-  padding-top: 1vw;
+  padding-top: 6vw;
   margin-top: 3vw;
-  box-shadow: 0 0 4px rgba(0, 0, 0, 0.6);
+  
+}
+#cinco{
+  background-color: #d5f8d8;
+  width: 20vw;
+  height: 15vw;
+  display: inline-block;
+  margin: 1vw 1vw;
+  border-radius: 1rem;
+  padding-top: 6vw;
 }
 
-.box2 h2{
-  margin-top: 0.5rem;
-  margin-bottom: 0.8rem;
-}
-
-.baixo__menos{
-  margin-left: -4rem;
-}
-
-.box2 p {
-  margin-left: 2rem;
-  margin-right: 1.5rem;
-  text-align: justify;
-  color: black;
-  opacity: 75%;
+#seis{
+  background-color: rgb(246, 213, 249);
+  width: 20vw;
+  height: 15vw;
+  display: inline-block;
+  margin: 1vw 1vw;
+  border-radius: 1rem;
+  padding-top: 6vw;
 }
 
 h2{
-  font-size: 1.2rem;
-  opacity: 85%;
+  opacity: 75%;
+  font-size: 1.3rem;
 }
 
 a#radix{
   color: white;
-}
-
-.menos{
-  margin-left: -5rem !important
 }
 
 .av{

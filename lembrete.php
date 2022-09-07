@@ -1,3 +1,7 @@
+<?php
+   include('php/protectLembrete.php');
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,7 +9,7 @@
     <meta name="viewport" content="widht=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/styleLembrete.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/stylesLembretes.css">
     <link rel="icon" type="image/x-icon" href="assets/img/icon.ico">
     <title>Radix</title>
 </head>
@@ -38,17 +42,22 @@
             </div>
             <div class="caixa__div">
                 <input type="text" id="creatorValue" placeholder="Criado por...">
-                <input type="text" id="dateValue" placeholder="Data">
+                <input type="date" id="dateValue" placeholder="Data">
             </div>
             <div>
                 <input type="text" id="reqValue" placeholder="Requisitados">
             </div>
-            <div class="caixa__div">
-                <input type="text" id="statusValue" placeholder="Status">
-                <input type="text" id="cstValue" placeholder="Cor status">
+            <div class="caix">
+                <!-- <input type="text" id="statusValue" placeholder="Status"> -->
+                <select id="statusValue" placeholder="Status">
+                    <option value="Urgente" style="color: red;"> Urgente</option>
+                    <option value="Importante" style="color: #e37712;"> Importante</option>
+                    <option value="Comum" style="color: green;"> Comum </option>
+                    <option value="Muito Comum" style="color: #1eb6e8;"> Muito comum</option>
+                </select>
             </div>
             
-            <button type="submit" id="addBtn" class="btn"> <i class="fa fa-plus"></i> Criar Lembrete </button>
+            <button type="submit" id="addBtn" class="btn" onclick="window.location.href='indexLembretes.php'"> <i class="fa fa-plus"></i> Criar Lembrete </button>
         </div> 
         <div class="content">
             <ul id="tasks">
@@ -78,14 +87,22 @@
                 e.preventDefault();
 
                 var task = $("#taskValue").val();
+                var criador = $("#creatorValue").val();
+                var data = $("#dateValue").val();
+                var requisitados = $("#reqValue").val();
+                var statusLembrete = $("#statusValue").val();
 
             $.ajax({
                 url: "php/add-task.php",
                 type: "POST",
-                data: {task: task},
+                data: {task: task, criador:criador, data: data, requisitados: requisitados, statusLembrete: statusLembrete},
                 success: function(data){
                     loadTasks();
                     $("#taskValue").val('');
+                    $("#creatorValue").val('');
+                    $("#dateValue").val('');
+                    $("#reqValue").val('');
+                    $("#statusValue").val('');
                     if(data == 0){
                         alert("Algo deu errado. Tente novamente.");
                     }

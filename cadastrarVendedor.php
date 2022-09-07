@@ -108,6 +108,7 @@ if(isset($_POST['sub']))
     $senha = addslashes($_POST['senha']);
     $imagem = $novo_nome;
     $endereco = addslashes($_POST['endereco']);
+    $statusConta = '1';
 
     //verificar se esta preenchido
     if(!empty($nome) && !empty($cpfCnpj) && !empty($email) && !empty($senha) && !empty($imagem) && !empty($endereco))
@@ -115,7 +116,7 @@ if(isset($_POST['sub']))
         $u->conectar("Radix","localhost","root","");
         if($u->msgErro == "")//ta ok
         {
-                if($u->cadastrar($nome,$cpfCnpj,$email,$senha,$imagem,$endereco))
+                if($u->cadastrar($nome,$cpfCnpj,$email,$senha,$imagem,$endereco,$statusConta))
                 {
                       ?>
                      <div id="msg-sucesso">

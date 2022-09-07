@@ -1,8 +1,9 @@
 <?php 
-include('php/protectVend.php');
-include('php/load.php');
+include('php/protectLembrete.php');
+include('php/loadLembrete.php');
 
-include('php/protectIDProd.php');
+include('php/protectIDLembrete.php');
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -11,7 +12,7 @@ include('php/protectIDProd.php');
     <meta name="viewport" content="widht=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/styleAlterarProd.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/styleAlterarLembre.css">
     <link rel="icon" type="image/x-icon" href="assets/img/icon.ico">
     <title>Radix</title>
     
@@ -40,31 +41,47 @@ include('php/protectIDProd.php');
     </header>
 
     <div class="caixa__grande">
-        <h2 class="title">Home Vendedor > Editar Produtos > Alterar Produto</h2>
+        <h2 class="title">Editar Lembretes</h2>
         <form action="#" method="POST" class="alter-form" enctype="multipart/form-data">
             <div class="caixa2">
-            <label for="idProd">ID do Produto:
-                <input type="text" id="idProd" name="idProduto" value="<?php echo $_GET['idProduto']; ?>"  readonly=“true”>
+            <label for="idProd">ID do Lembrete:
+                <input type="text" id="idProd" name="idLembrete" value="<?php echo $_GET['idLembrete']; ?>"  readonly=“true”>
             </label>
             </div>
             <div class="caixa">
-            <label for="nome">Nome:<BR>
-                <input type="text" id="nome" placeholder="Nome Produto" name="nome" value="<?php echo $value['nome']; ?>">
-            </label>
-            <label for="preco" id="preco">Preço (Utilizar . ):
-                <input type="text"  placeholder="Preço" name="preco" value="<?php echo $value['preco']; ?>">
+            <label for="nome">Título da Tarefa:<BR>
+                <input type="text" id="nome" placeholder="Nome Produto" name="titulo" value="<?php echo $value['titulo']; ?>">
             </label>
             </div>
             <div class="caixa3">
-            <label for="detalhe">Detalhes :
-                <input wrap="hard" type="text" id="detalhe" placeholder="Detalhes Produto" name="detalhe" value="<?php echo $value['detalhe']; ?>">
+            <label for="cr" id="cr2" >Criado por:<br>
+                <input type="text"  id="cr" placeholder="Criador" name="criador" value="<?php echo $value['criador']; ?>">
+            </label>
+
+            <label for="data" id="data2">Data:<br>
+                <input wrap="hard" type="date" id="data" placeholder="Detalhes Produto" name="data" value="<?php echo $value['data']; ?>">
             </label>
             </div>
+            <div class="caixa">
+            <label for="req" id="req2">Requisitados:
+                <input id="req" type="text" id="reqValue" name="requisitados" placeholder="Requisitados" value="<?php echo $value['requisitados']; ?>">
+            </div>
+            </label>
+            <div class="caixa">
+                <!-- <input type="text" id="statusValue" placeholder="Status"> -->
+                <label for="st" id="st2">Status:<Br>
+                <select id="st" placeholder="Status" name="statusLembrete"> 
+                    <option value="Urgente">Urgente</option>
+                    <option value="Importante">Importante</option>
+                    <option value="Comum">Comum</option>
+                    <option value="Muito Comum">Muito comum</option>
+                </select>
+                </label>
+            </div>
+
             <div class="baixo__vend"> 
-                <input id='img' name="foto" type="file">
-                <label for='img' class="label__img">ADICIONAR FOTO</label>
-                <input type="submit" class="btn3" value="Desativar Produto" name="del"/>
-                <input type="submit" class="btn2" value="Alterar Produto" name="sub">
+                <input type="submit" class="btn3" value="Excluir Lembrete" name="del"/>
+                <input type="submit" class="btn2" value="Alterar Lembrete" name="sub">
             </div>
             <div class="result"></div>
     </form> 
@@ -77,33 +94,26 @@ include('php/protectIDProd.php');
 <?php
 
 include('php/conexao.php');
-require_once 'php/editarProduto.php';
+require_once 'php/editarLembrete.php';
   $u = new Usuario;
 
 //verificar se a pessoa clicou no btnCadastrar
 if(isset($_POST['sub']))
 {
-
-    $extensao = strtolower(substr($_FILES['foto']['name'], -4)); 
-    $novo_nome = md5(time()) . $extensao;
-    $diretorio = "upload/";
-
-    move_uploaded_file($_FILES['foto']['tmp_name'], $diretorio.$novo_nome);
-
-    $idProduto = addslashes($_GET['idProduto']);
-    $nome = addslashes($_POST['nome']);
-    $preco = addslashes($_POST['preco']);
-    $foto = $novo_nome;
-    $detalhe = addslashes($_POST['detalhe']);
-    $idVendedor = addslashes($_SESSION['idVendedor']);
+    $idLembrete = addslashes($_GET['idLembrete']);
+    $titulo = addslashes($_POST['titulo']);
+    $criador = addslashes($_POST['criador']);
+    $data = addslashes($_POST['data']);
+    $requisitados = addslashes($_POST['requisitados']);
+    $statusLembrete = addslashes($_POST['statusLembrete']);
 
     //verificar se esta preenchido
-    if(!empty($nome) && !empty($preco) && !empty($detalhe) && !empty($foto))
+    if(!empty($titulo) && !empty($criador) && !empty($data) && !empty($requisitados) && !empty($statusLembrete))
     {
         $u->conectar("Radix","localhost","root","");
         if($u->msgErro == "")//ta ok
         {
-                if($u->atualizar($idProduto, $nome, $preco, $foto, $detalhe))
+                if($u->atualizar($idLembrete, $titulo, $criador, $data, $requisitados,  $statusLembrete))
                 {
                       ?>
                      <div id="msg-sucesso">
@@ -114,7 +124,7 @@ if(isset($_POST['sub']))
                 }
                 else
                 {
-                    header("Location: produtos.php");
+                    header("Location: indexLembretes.php");
                 }
         }
         else
@@ -143,17 +153,16 @@ if(isset($_POST['sub']))
 <?php
 
 include('php/conexao.php');
-require_once 'php/editarProduto.php';
+require_once 'php/editarLembrete.php';
   $u = new Usuario;
 if(isset($_POST['del']))
 {
-    $idProduto = addslashes($_GET['idProduto']);
-    $statusProduto = '0';
+    $idLembrete = addslashes($_GET['idLembrete']);
 
         $u->conectar("Radix","localhost","root","");
         if($u->msgErro == "")//ta ok
         {
-                if($u->deletar($idProduto, $statusProduto))
+                if($u->deletar($idLembrete))
                 {
                       ?>
                      <div id="msg-sucesso">
@@ -164,7 +173,7 @@ if(isset($_POST['del']))
                 }
                 else
                 {
-                    header("Location: produtos.php");
+                    header("Location: indexLembretes.php");
                 }
         }
         else

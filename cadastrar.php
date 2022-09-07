@@ -90,13 +90,14 @@ if(isset($_POST['sub']))
     $cpf = addslashes($_POST['cpf']);
     $email = addslashes($_POST['email']);
     $senha = addslashes($_POST['senha']);
+    $statusConta = '1';
     //verificar se esta preenchido
     if(!empty($nome) && !empty($cpf) && !empty($email) && !empty($senha))
     {
         $u->conectar("Radix","localhost","root","");
         if($u->msgErro == "")//ta ok
         {
-                if($u->cadastrar($nome,$cpf,$email,$senha))
+                if($u->cadastrar($nome,$cpf,$email,$senha,$statusConta))
                 {
                     ?>
                      <div id="msg-sucesso">
