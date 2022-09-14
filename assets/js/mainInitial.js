@@ -1,3 +1,22 @@
+let navbar = document.querySelector('.navbar')
+let a = document.querySelector('.fa-search')
+let menu = document.querySelector('.nav')
+
+document.querySelector('#menu-btn').onclick = () =>{
+    navbar.classList.toggle('active');
+    loginForm.classList.remove('active');
+    searchForm.classList.remove('active');
+}
+
+let searchForm = document.querySelector('.search-form');
+
+document.querySelector('#search-btn').onclick = () =>{
+    searchForm.classList.toggle('active');
+    loginForm.classList.remove('active');
+    navbar.classList.remove('active');
+    menu.classList.remove('show-menu');
+}
+ 
 let cart = document.querySelector('.shopping-cart');
 
 document.querySelector('#cart-btn').onclick = () =>{
@@ -5,6 +24,7 @@ document.querySelector('#cart-btn').onclick = () =>{
     searchForm.classList.remove('active');
     loginForm.classList.remove('active');
     navbar.classList.remove('active');
+    menu.classList.remove('show-menu');
 };
 
 const inputEle = document.getElementById('enter');
@@ -127,15 +147,7 @@ themeButton.addEventListener('click', () => {
     localStorage.setItem('selected-icon', getCurrentIcon())
 })
 
-//adddddddddddddd
 
-let searchForm = document.querySelector('.search-form');
-
-document.querySelector('#search-btn').onclick = () =>{
-    searchForm.classList.toggle('active');
-    loginForm.classList.remove('active');
-    navbar.classList.remove('active');
-}
 
 let loginForm = document.querySelector('.login-form');
 
@@ -144,6 +156,7 @@ document.querySelector('#login-btn').onclick = () =>{
     searchForm.classList.remove('active');
     navbar.classList.remove('active');
 }
+
 
 
 
