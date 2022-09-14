@@ -1206,14 +1206,54 @@ footer .fa-leaf{
 }
 
 .caixa{
-  height: 42rem;
+  height: 30rem;
   width: 80%;
   margin-bottom: 2rem;
   display: grid;
-  grid-template-rows: repeat(6, 1fr);
+  grid-template-rows: repeat(2, 1fr);
   row-gap: 2.5rem;
   margin-left: 5%;
   margin-bottom: 4rem;
+}
+
+
+.caixa__cima{
+  display: grid;
+  grid-template-columns: repeat(2, 12%);
+  margin-left: 1.5rem;
+}
+
+.caixa__baixo h2{
+  font-size: 2rem !important;
+  position: absolute;
+}
+
+.caixa__baixo{
+  text-align: justify;
+  margin-left: 2rem;
+}
+
+.selos{
+  display: grid;
+  grid-template-columns: repeat(6,100% 150% 180% 160% 150%);
+  margin-left: 1rem;
+}
+
+.gradiente{
+  width:65rem; 
+  height:4rem;  
+  background-color: #21a366;
+  background-image: linear-gradient(90deg, #21a366 13%, #71d6a7 25%, #e6e645 76%, #f04545 88%);
+  border-radius: 4rem;
+}
+
+.semente{
+  width:4rem; 
+  height:4rem;  
+  background-color: #8BC6EC;
+  background-image: linear-gradient(135deg, #8BC6EC 0%, #34a5ac 100%);
+  border-radius: 100%;
+
 }
 
 .caixa h2, .caixa p{
@@ -1250,14 +1290,6 @@ footer .fa-leaf{
 
 
 
-.caixa__baixo{
-  height: 15rem;
-  width: 97%;
-  margin-bottom: 1vw;
-  border-radius: 1rem;
-  display: grid;
-  grid-template-columns: repeat(3, 33%);
-}
 
 .caixa__grid2{
   margin-top: 35%;
