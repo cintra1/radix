@@ -20,12 +20,14 @@
     <!-- font awesome cdn link  -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!--==================== UNICONS ====================-->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
 
-    
+
 
     <title>Radix</title>
 </head>
@@ -34,51 +36,44 @@
     <!--=============== HEADER ===============-->
     <header class="header" id="header">
         <nav class="nav nav__container">
+
+            <nav class="navbar">
+                <a href="#home"><?php echo $_SESSION["nome"]; ?></a>
+                <a href="#packages">Produtores</a>
+                <a href="#services">Frutas</a>
+                <a href="#pricing">Vegetais</a>
+                <a href="#review">Especiarias</a>
+            </nav>
+
             <a href="initial.html" class="nav__logo first"> <i class="fa fa-leaf"></i>Radix</a>
-            
 
             <div class="nav__menu" id="nav-menu">
                 <ul class="nav__list__initial">
-
-                    <li class="nav__item">
-                        <a href="#produtores" class="nav__link"><?php echo $_SESSION['nome']; ?> </a>
-                    </li>
-
-                    <li class="nav__item"> 
-                        <a href="#frutas" class="nav__link">Frutas</a>
-                    </li>
-                    
-                    <li class="nav__item">
-                        <a href="#vegetais" class="nav__link">Vegetais</a>
-                    </li>
-
-                    <li class="nav__item">
-                        <a href="#espec" class="nav__link">Especiarias</a>
-                    </li>
-
-                   
-
+                <div></div>
                     <form action="" class="search-form">
+                        <input id="enter" type="search" placeholder="busque por produtor ou item..." id="search-box">
                         <a href="search.html">
-                        <label for="search-box" class="fas fa-search" ></label></a>
-                        <input id="enter" type="search" placeholder="Busque por produtor ou item" id="search-box">
+                            <label for="search-box" class="fas fa-search"></label></a>
                     </form>
 
-                    <li class="nav__item endereco">
-                        <a href="#app" class="nav__link__endereco">Seu endereço, 123 <i class="uil uil-angle-down"></i></a>
-                    </li>
-                    
-                    <li class="nav__item">
-                        <div id="cart-btn" class="uil uil-shopping-bag nav__link"></div>
-                    </li>
+                    <div class="nav__icon">
+                        
+                        
+                            <div class="fas fa-search" id="search-btn" style="display: none"></div>
+                       
+                        
+                        <li class="nav__item">
+                            <div id="cart-btn" class="uil uil-shopping-bag nav__link"></div>
+                        </li>
 
-                    <li class="nav__item">
-                        <a href="login.php" class="fas fa-user nav__link"></a>
-                        <!--<div id="login-btn" class="fas fa-user nav__link"></div>-->
-                    </li>
-                    <li class="nav__item">  
-                        <a href="php/logout.php" class="uil uil-signout nav__link"></a>
-                    </li>
+                        <li class="nav__item">
+                            <a href="login.php" class="fas fa-user nav__link"></a>
+                            <!--<div id="login-btn" class="fas fa-user nav__link"></div>-->
+                        </li>
+                        <li class="nav__item">
+                            <div class="fas fa-bars nav__link" id="menu-btn"></div>
+                        </li>
+                    </div>
                 </ul>
             </div>
 
@@ -86,10 +81,10 @@
                 <i class='bx bx-grid-alt'></i>
             </div>
 
-            
+
         </nav>
 
-        
+
 
         <div class="shopping-cart">
             <div class="box">
@@ -126,19 +121,6 @@
             <a href="#" class="btn">Finalizar Compra</a>
         </div>
 
-
-        <form action="" class="login-form">
-            <h3>login</h3>
-            <input type="email" placeholder="E-mail ou usuário" class="box">
-            <input type="password" placeholder="Digite sua senha" class="box">
-            <div class="remember">
-                <input type="checkbox" name="" id="remember-me">
-                <label for="remember-me">Lembrar-me</label>
-            </div>
-            <input type="submit" value="ENTRAR" class="btn button">
-            <p class="senha">Esqueceu a senha? <a href="#">Clique aqui</a></p>
-            <p class="conta">Não tem uma conta? <a href="#">Crie uma</a></p>
-        </form>
     </header>
 
     <main class="main initial__home">
