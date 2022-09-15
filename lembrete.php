@@ -1,5 +1,5 @@
 <?php
-   include('php/protectLembrete.php');
+   include('php/protectAdm.php');
 ?>
 
 <!DOCTYPE html>

@@ -1,5 +1,5 @@
 <?php 
-include('php/protectLembrete.php');
+include('php/protectAdm.php');
 include('php/loadLembrete.php');
 
 include('php/protectIDLembrete.php');

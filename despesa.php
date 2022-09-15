@@ -1,5 +1,5 @@
 <?php
-include('php/protectVend.php');
+include('php/protectAdm.php');
 ?>
 <!DOCTYPE html>
 <html>
@@ -9,7 +9,7 @@ include('php/protectVend.php');
     <meta name="viewport" content="widht=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/stylesNovoProduto.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/styleDespesas.css">
     <link rel="icon" type="image/x-icon" href="assets/img/icon.ico">
     <title>Radix</title>
 </head>
@@ -36,52 +36,50 @@ include('php/protectVend.php');
     </header>
 
     <div class="caixa__grande">
-        <h2 class="title">Home Vendedor > Editar Produtos > Novo Produto</h2>
+        <h2 class="title">Nova Despesa</h2>
         <form action="#" method="POST" class="alter-form" enctype="multipart/form-data">
             <div class="caixa">
-                <input type="text" id="taskValue" placeholder="Nome Produto" name="nome">
-                <input type="text" id="recValue" placeholder="Preço" name="preco">
+                <input type="text" id="taskValue" placeholder="Descrição" name="descricao">
+            </div>
+            <div class="caixa__div">
+                <input type="text" id="creatorValue" placeholder="Conta" name="conta">
+                <input type="date" id="dateValue" placeholder="Data" name="dia">
             </div>
             <div>
-                <input type="text" id="reqValue" placeholder="Detalhes Produto" name="detalhe">
+                <input type="text" id="reqValue" placeholder="Valor" name="valor">
             </div>
-            <div class="baixo__vend">
-                <input id='img' name="imagem" type="file">
-                <label for='img'>ADICIONAR FOTO</label>
-                <input type="submit" class="btn3" value="Limpar Campos" name="sub" />
-                <input type="submit" class="btn2" value="Adicionar Produto" name="sub">
+            <div>
+                <select id="statusValue" placeholder="Situação" name="situacao">
+                    <option value="Não Pago" style="color: red;"> Não Pago </option>
+                    <option value="Pago" style="color: green;"> Pago </option>
+                </select>
             </div>
-        </form>
 
+            <button type="submit" id="addBtn" class="btn" name="sub"> <i class="fa fa-plus"></i> Criar Despesa </button>
+        </form>
     </div>
 
     <?php
     include('php/conexao.php');
 
-    require_once 'php/adicionarProd.php';
+    require_once 'php/adicionarDespesa.php';
     $u = new Usuario;
     //verificar se a pessoa clicou no btnCadastrar
     if (isset($_POST['sub'])) {
 
-        $extensao = strtolower(substr($_FILES['imagem']['name'], -4));
-        $novo_nome = md5(time()) . $extensao;
-        $diretorio = "upload/";
-
-        move_uploaded_file($_FILES['imagem']['tmp_name'], $diretorio . $novo_nome);
-
-        $nome = addslashes($_POST['nome']);
-        $preco = addslashes($_POST['preco']);
-        $detalhe = addslashes($_POST['detalhe']);
-        $idVendedor = addslashes($_SESSION['idVendedor']);
-        $foto = $novo_nome;
-        $statusProduto = '1';
+        $descricao = addslashes($_POST['descricao']);
+        $conta = addslashes($_POST['conta']);
+        $valor = addslashes($_POST['valor']);
+        $dia = addslashes($_POST['dia']);
+        $idAdm = addslashes($_SESSION['idADM']);
+        $situacao = addslashes($_POST['situacao']);
 
         //verificar se esta preenchido
-        if (!empty($nome) && !empty($preco) && !empty($detalhe) && !empty($idVendedor)) {
+        if (!empty($descricao) && !empty($conta) && !empty($valor) && !empty($dia) && !empty($situacao)) {
             $u->conectar("Radix", "localhost", "root", "");
             if ($u->msgErro == "") //ta ok
             {
-                if ($u->cadastrar($nome, $preco, $foto, $detalhe, $idVendedor, $statusProduto)) {
+                if ($u->cadastrar($dia, $descricao, $valor, $conta, $situacao, $idAdm)) {
     ?>
                     <div id="msg-sucesso">
                         Cadastrado com sucesso!
@@ -93,7 +91,7 @@ include('php/protectVend.php');
                         Produto adicionado!
                     </div>
                 <?php
-                    header("Location: produtos.php");
+                    header("Location: indexPagamentos.php");
                 }
             } else {
                 ?>
@@ -114,6 +112,8 @@ include('php/protectVend.php');
     }
 
     ?>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </body>
 
 </html>

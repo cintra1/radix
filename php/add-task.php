@@ -2,14 +2,12 @@
 
 include 'conexao.php';
 
-$task = $_POST['task'];
-$criador = $_POST['criador'];
-$data = $_POST['data'];
-$requisitados = $_POST['requisitados'];
-$statusLembrete = $_POST['statusLembrete'];
+$nome = $_POST['nome'];
+$detalhe = $_POST['detalhe'];
+$num = $_POST['num'];
 
-$sql = "INSERT INTO tblLembrete (titulo,criador,data,requisitados,statusLembrete) VALUES ('$task','$criador','$data',
-'$requisitados','$statusLembrete')";
+
+$sql = "INSERT INTO tblCupom (nome,detalhe,num) VALUES ('$nome','$detalhe','$num')";
 $result = mysqli_query($mysqli, $sql);
 
 if ($result) {

@@ -1,5 +1,5 @@
 <?php
-   include('php/protectLembrete.php');
+   include('php/protectAdm.php');
    include("php/conexao.php");
    require('php/connection.php');
    
