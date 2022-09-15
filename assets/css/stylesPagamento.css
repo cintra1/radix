@@ -1204,17 +1204,16 @@ footer .fa-leaf{
   display: grid;
   grid-template-columns: repeat(2, 71% 20%);
   margin: 1vw 1vw;
-
   margin-left: 3rem;
 }
 
 .direita{
   display: grid;
-  grid-template-rows: repeat(3, 1fr);
+  grid-template-rows: repeat(4, 1fr);
 }
 
 .direita2{
-  margin-top: -1.2rem;
+  margin-top: -10rem;
   margin-bottom: 2rem;
 }
 
@@ -1223,7 +1222,7 @@ footer .fa-leaf{
     width: 95%;
     text-align: center;
     margin: 1vw 1vw;
-    border-radius: 1rem;
+    border-radius: 1rem; 
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
 }
 
@@ -1246,11 +1245,23 @@ footer .fa-leaf{
 .box__pequena{
   height: 4rem;
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(6, 15% 20% 25.6% 20% 15% 0%);
   text-align: center;
+  border-radius: 1rem;
   border-bottom: #ccc solid 0.05rem;
   padding-top: 0.6rem;
 }
+
+.btn4 {
+  color: #70C28D;
+  font-size: 1.25rem;
+  cursor: pointer;
+  transition: .3s;
+  font-weight: 600;
+  text-align: center;
+  margin-top: -0.5rem !important;
+}
+
 
 .box__pequena h2{
   font-size: 1rem;
@@ -1283,6 +1294,7 @@ footer .fa-leaf{
 .baixo{
   display: grid;
   grid-template-columns: repeat(2, 62% 20%);
+  margin-bottom: 1.5rem;
 }
 
 .box h2{
@@ -1336,11 +1348,10 @@ footer .fa-leaf{
     margin: 1vw 1vw;
     border-radius: 5rem;
     border: 0.15rem solid #84CA9D;
-    display: flex;
     margin-left: 75%;
     padding-top: 0.2rem;
     white-space: nowrap;
-    padding-left: 7%;
+    text-align: center;
   }
   
   .box3 i{

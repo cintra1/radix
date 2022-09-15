@@ -9,6 +9,15 @@ $consulta = "SELECT * FROM tblDespesas WHERE idAdm = '$idADM'";
 
 $con = $pdo->query($consulta) or die($mysqli->error);
 $conn = $mysqli->query($consulta) or die($mysqli->error);
+
+$somaT = "SELECT SUM(valor) AS total FROM tblDespesas";
+$s = $mysqli->query($somaT) or die($mysqli->error);
+
+$somaPagas = "SELECT SUM(valor) AS total FROM tblDespesas WHERE situacao = 'Pago'";
+$s2 = $mysqli->query($somaPagas) or die($mysqli->error);
+
+$somaN = "SELECT SUM(valor) AS total FROM tblDespesas WHERE situacao = 'Não Pago'";
+$s3 = $mysqli->query($somaN) or die($mysqli->error);
 ?>
 
 <!DOCTYPE html>
@@ -26,7 +35,7 @@ $conn = $mysqli->query($consulta) or die($mysqli->error);
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
     <!--=============== CSS ===============-->
-    <link rel="stylesheet" href="assets/css/stylePagamento.css">
+    <link rel="stylesheet" href="assets/css/stylesPagamento.css">
 
     <!-- font awesome cdn link  -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
@@ -94,6 +103,7 @@ $conn = $mysqli->query($consulta) or die($mysqli->error);
                     <h2><?php echo $dado["descricao"]; ?></h2>
                     <h2><?php echo $dado["conta"]; ?></h2>
                     <h2><?php echo number_format($dado["valor"], 2, ",", "."); ?></h2>
+                    <h2><a class="btn4" href="alterarDespesa.php?idDespesas=<?php echo $dado["idDespesas"]; ?>"><i class="uil uil-pen"></i></a></h2>
                 </div>
             <?php } ?>
 
@@ -102,29 +112,29 @@ $conn = $mysqli->query($consulta) or die($mysqli->error);
             <div class="box__direita">
                 <div>
                     <h2 class="title__direita">Despesas Totais</h2>
-                    <h2 class="valor__direita">R$ 8.250,00</h2>
-                </div>
-                <div class="box__circle2">
-                    <i class="uil uil-angle-down"></i>
+                    <h2 class="valor__direita">R$
+                        <?php while ($dado = $s->fetch_array()) {
+                            echo number_format($dado['total'], 2, ",", "."); ?></h2>
+                <?php } ?>
                 </div>
             </div>
 
             <div class="box__direita">
                 <div>
                     <h2 class="title__direita">Despesas Pagas</h2>
-                    <h2 class="valor__direita">R$ 2.250,00</h2>
-                </div>
-                <div class="box__circle2">
-                    <i class="uil uil-angle-down"></i>
+                    <h2 class="valor__direita">R$ <?php while ($dado = $s2->fetch_array()) {
+                                                        echo number_format($dado['total'], 2, ",", "."); ?></h2>
+                <?php } ?></h2>
                 </div>
             </div>
 
             <div class="box__direita">
                 <div>
                     <h2 class="title__direita">Despesas Pendentes</h2>
-                    <h2 class="valor__direita">R$ 6.000,00</h2>
+                    <h2 class="valor__direita">R$ <?php while ($dado = $s3->fetch_array()) {
+                                                        echo number_format($dado['total'], 2, ",", "."); ?></h2>
+                <?php } ?></h2>
                 </div>
-                <div></div>
             </div>
         </div>
     </div>
@@ -139,65 +149,12 @@ $conn = $mysqli->query($consulta) or die($mysqli->error);
         <div class="direita2">
             <div class="box3">
                 <a href="despesa.php">
-                <h2><i class="fa fa-plus"></i> Nova Despesa </h2></a>
-            </div>
-
-            <div class="box3 alt">
-                <h2>Alterar Situação</h2>
+                    <h2> Nova Despesa </h2>
+                </a>
             </div>
         </div>
 
     </div>
-
-
-    <!--=============== FOOTER ===============-->
-    <footer class="footer section">
-        <div class="footer__container container grid">
-            <div class="footer__content1">
-                <a href="index.html" class="nav__logo"> <i class="fa fa-leaf"></i> Radix </a>
-
-            </div>
-
-            <div class="footer__content">
-                <a href="#" class="footer__logo">EMPRESA</a>
-                <p class="footer__description">A Radix é o seu supermercado orgânico e saudável, que conecta você ao pequeno produtor. Com entrega rápida e otimizada.</p>
-            </div>
-
-            <div class="footer__content">
-                <h1 class="footer__title">INTEGRANTES</h1>
-                <ul class="footer__links">
-                    <li><a href="#" class="footer__link">Mateus Cintra </a></li>
-                    <li><a href="#" class="footer__link">Diego Carvalho</a></li>
-                    <li><a href="#" class="footer__link">Felipe Kurt</a></li>
-                    <li><a href="#" class="footer__link">Bruna Amorin</a></li>
-                    <li><a href="#" class="footer__link">Leonardo Moura</a></li>
-                </ul>
-            </div>
-
-
-
-            <div class="footer__content">
-                <h3 class="footer__title"></h3>
-                <ul class="footer__links">
-                    <li><a href="#" class="footer__link"></a></li>
-                    <li><a href="#" class="footer__link"></a></li>
-                    <li><a href="#" class="footer__link"></a></li>
-                </ul>
-            </div>
-
-            <div class="footer__social">
-                <a href="#" class="footer__social-link"><i class='bx bxl-facebook-circle '></i></a>
-                <a href="#" class="footer__social-link"><i class='bx bxl-twitter'></i></a>
-                <a href="#" class="footer__social-link"><i class='bx bxl-instagram-alt'></i></a>
-            </div>
-        </div>
-
-    </footer>
-
-    <!--=============== SCROLL UP ===============-->
-    <a href="#" class="scrollup" id="scroll-up">
-        <i class='bx bx-up-arrow-alt scrollup__icon'></i>
-    </a>
 
     <!--=============== MAIN JS ===============-->
     <script src="assets/js/main.js"></script>
