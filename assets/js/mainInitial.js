@@ -1,11 +1,13 @@
 let navbar = document.querySelector('.navbar')
 let a = document.querySelector('.fa-search')
 let menu = document.querySelector('.nav')
+let cart = document.querySelector('.shopping-cart')
 
 document.querySelector('#menu-btn').onclick = () =>{
     navbar.classList.toggle('active');
     loginForm.classList.remove('active');
     searchForm.classList.remove('active');
+    cart.classList.remove('active');
 }
 
 let searchForm = document.querySelector('.search-form');
@@ -14,10 +16,9 @@ document.querySelector('#search-btn').onclick = () =>{
     searchForm.classList.toggle('active');
     loginForm.classList.remove('active');
     navbar.classList.remove('active');
-    menu.classList.remove('show-menu');
+    navbar.classList.remove('show-menu');
 }
  
-let cart = document.querySelector('.shopping-cart');
 
 document.querySelector('#cart-btn').onclick = () =>{
     cart.classList.toggle('active');

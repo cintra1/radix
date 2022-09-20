@@ -1041,7 +1041,8 @@ footer .fa-leaf{
   .servicos__container,
   .app__container,
   .fale__container,
-  .footer__container {
+  .footer__container,
+  .contact__container {
     grid-template-columns: repeat(2, 1fr);
   }
   .home__img {
@@ -1072,6 +1073,10 @@ footer .fa-leaf{
   body {
     margin: 0;
   }
+  .container{
+    margin-left: auto;
+    margin-right: auto;
+  }
   .section {
     padding: 6rem 0 2rem;
   }
@@ -1094,7 +1099,9 @@ footer .fa-leaf{
   .app__buttons {
     justify-content: initial;
   }
-  
+  .contact__container{
+    grid-template-rows: auto;
+  }
 }
 
 /* GRANDÃO */
@@ -1149,8 +1156,23 @@ footer .fa-leaf{
   .scrollup {
     right: 2rem;
   }
+
+  .contact__form{
+    width: 460px;
+  }
+
+   .contact__inputs{
+    grid-template-columns: repeat(2, 1fr );
+  }
 }
 
 #tcc{
   margin-bottom: 4rem;
+}
+
+
+@media screen and (max-width: 707px) {
+  .contact__container{
+    grid-template-columns: repeat(1)!important;
+  }
 }
