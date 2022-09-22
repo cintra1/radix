@@ -1731,7 +1731,7 @@ footer .copyright{
     font-size: 32px;
   }
   .feature{
-    justify-content: space-between;
+    justify-content: center;
   }
   .feature .f__box{
     width: 155px;
