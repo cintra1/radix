@@ -877,47 +877,64 @@ input[type="search"]::-webkit-search-results-decoration {
 }
 
 /*=============== INITIAL ===============*/
-.feature{
+.prodetails{
   display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 5rem;
-  flex-wrap: wrap;
-  margin-top: 7rem;
+  margin-top: 20px;
 }
 
-.feature .f__box{
-  width: 180px;
-  text-align: center;
-  padding: 25px 15px;
-  box-shadow: 20px 20px 34px rgba(0, 0, 0, 0.03);
-  border: 1px solid #cce7d0;
-  border-radius: 4px;
-  margin: 15px 0;
+.prodetails .single-pro-image{
+  width: 40%;
+  margin-right: 50px;
 }
 
-.feature .f__box:hover{
-  box-shadow: 20px 20px 54px rgba(70, 62, 221, 0.1);
+.small-img-group{
+  display: flex;
+  justify-content: space-between;
 }
 
-.feature .f__box img{
-  width: 100%;
+.small-img-col{
+  flex-basis: 24%;
+  cursor: pointer;
+}
+
+.single-pro-details{
+  width: 50%;
+  padding-top: 30px;
+}
+
+.single-pro-details h4{
+  padding: 40px 0 20px 0;
+}
+
+.single-pro-details h2{
+  font-size: 26px;
+}
+
+.single-pro-details select{
+  display: block;
+  padding: 5px 10px;
   margin-bottom: 10px;
 }
 
-.feature .f__box p{
-  line-height: 1;
-  border-radius: 4px;
-  color: var(--cor-prim);
-  font-weight: 700;
-  margin-top: -0.3rem;
+.single-pro-details input{
+  width: 50px;
+  height: 47px;
+  padding-left: 10px;
+  font-size: 16px;
+  margin-right: 10px;
 }
 
-.feature .f__box h6{
-  padding: 0;
-  line-height: 1;
-  border-radius: 4px;
-  color: var(--cor-texto);
+.single-pro-details button{
+  background-color: #70C28D !important;
+  color: #FFF !important;
+}
+
+.single-pro-details input:focus{
+  outline: none;
+}
+
+.single-pro-details span{
+  line-height: 25px;
 }
 
 .produtos1{
@@ -1646,41 +1663,7 @@ footer .copyright{
 
   
 }
-
-@media (max-width:447px){
-  .initial__container{
-    display: none;
-  }
-  .box__inv{
-    margin-top: -17rem;
-  }
-
-  .content2 h3{
-    font-size: 2rem !important;
-  }
-
-  .content2 p{
-    font-size: 0.8rem !important;
-  }
-}
-
-@media (max-width:358px){
-  .box__inv{
-    margin-top: -17rem;
-    height: 50rem !important;
-  }
-}
-
-
 @media (max-width:799px){
-
-  .content2 h3{
-    line-height: 50px;
-  }
-
-  .box__inv{
-    height: 19rem !important;
-  }
 
   .section-p1{
     padding: 40px 80px;
@@ -1721,6 +1704,17 @@ footer .copyright{
 }
 
 @media (max-width: 477px){
+  .prodetails{
+    display: flex;
+    flex-direction: column;
+  }
+  .prodetails .single-pro-image{
+    width: 100%;
+    margin-right: 0px;
+  }
+  .prodetails .single-pro-details{
+    width: 100%;
+  }
   .section-p1{
     padding: 20px;
   }
@@ -1833,3 +1827,4 @@ footer .copyright{
     height: 24rem;
   }
 }
+
