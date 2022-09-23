@@ -1297,10 +1297,9 @@ footer .copyright{
   right: 1rem;
   bottom: -20%;
   display: inline-flex;
-  padding: .3rem;
+  padding: .45rem;
   border-radius: .25rem;
   z-index: var(--z-tooltip);
-  opacity: .8;
   transition: .4s;
 }
 
@@ -1310,7 +1309,7 @@ footer .copyright{
 }
 
 .scrollup__icon {
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   color: #fff;
 }
 
