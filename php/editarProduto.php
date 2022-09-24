@@ -15,11 +15,11 @@ Class Usuario
         }                
     }
 
-    public function atualizar($idProduto, $nome, $preco, $foto, $detalhe)
+    public function atualizar($idProduto, $nomeProd, $preco, $foto, $detalhe)
     {
         global $pdo;
       
-            $sql = $pdo->prepare("UPDATE tblProduto SET nome = '$nome', preco = '$preco',
+            $sql = $pdo->prepare("UPDATE tblProduto SET nomeProd = '$nomeProd', preco = '$preco',
              foto = '$foto', detalhe = '$detalhe'
              WHERE idProduto = '$idProduto'");
 

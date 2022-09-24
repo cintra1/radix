@@ -10,7 +10,7 @@
    $_SESSION['dados'] = array();
    $idCliente = $_SESSION['idCliente']; 
 
-   $consulta = "SELECT * FROM tblProduto WHERE statusProduto <> 0 LIMIT 8";
+   $consulta = "SELECT * FROM tblProduto WHERE statusProduto <> 0  ORDER BY RAND() LIMIT 8";
 
    $con = $pdo->query($consulta) or die($mysqli->error);
    $conn = $mysqli->query($consulta) or die($mysqli->error);
@@ -20,6 +20,11 @@
 
     $con2 = $pdo->query($consulta2) or die($mysqli->error);
     $conn2 = $mysqli->query($consulta2) or die($mysqli->error);
+
+    $consulta3 = "SELECT * FROM tblProduto WHERE statusProduto <> 0 ORDER BY RAND() LIMIT 8";
+
+    $con3 = $pdo->query($consulta3) or die($mysqli->error);
+    $conn3 = $mysqli->query($consulta3) or die($mysqli->error);
 
    $soma = "SELECT SUM(p.preco*i.qtde) AS total FROM tblProduto as p inner join tblItem as i on p.idProduto = i.idProduto where statusItem <> 0";
    $s = $mysqli->query($soma) or die($mysqli->error);
@@ -80,7 +85,7 @@
     <header class="header" id="header">
         <nav class="nav nav__container">
 
-            <nav class="navbar">
+            <nav class="navbar naves">
                 <a href="initial.php">Home</a>
                 <a href="#packages">Produtores</a>
                 <a href="#services">Frutas</a>
@@ -101,9 +106,7 @@
 
                     <div class="nav__icon">
                         
-                        
-                            <div class="fas fa-search" id="search-btn" style="display: none"></div>
-                       
+                        <div class="fas fa-search" id="search-btn" style="display: none"></div>
                         
                         <li class="nav__item">
                             <div id="cart-btn" class="uil uil-shopping-bag nav__link"></div>
@@ -266,45 +269,21 @@
             <h2>Novos produtos</h2>
             <p>Seja o primeiro a experimentar esses produtos</p>
             <div class="prod__container">
-                <div class="prod">
-                    <img src="assets/img/products/p8.png" alt="">
-                    <div class="des">
-                        <span>Produtor: Luiz Ricardo</span>
-                        <h5>Cartoon AStronaut tshirts</h5>
-                        <div class="star">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <h4>R$70,00</h4>
-                    </div>
-                    <a href="#"><i class="fas fa-shopping-cart"></i></a>
-                </div>
+            <?php
+             
+            while($dado3 = $conn3->fetch_array()){   
 
-                <div class="prod">
-                    <img src="assets/img/products/p7.png" alt="">
-                    <div class="des">
-                        <span>Produtor: Luiz Ricardo</span>
-                        <h5>Cartoon AStronaut tshirts</h5>
-                        <div class="star">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <h4>R$70,00</h4>
-                    </div>
-                    <a href="#"><i class="fas fa-shopping-cart"></i></a>
-                </div>
+            $idProduto = $dado3["idProduto"];
+            $consultaVend2 = "SELECT nome as nomeVend FROM tblVendedor as v inner join tblProduto as p on v.idVendedor = p.idVendedor where idProduto = $idProduto";
 
+            $connVend2 = $mysqli->query($consultaVend2) or die($mysqli->error);
+            ?>
                 <div class="prod">
-                    <img src="assets/img/products/p6.png" alt="">
+                    <img src="upload/<?php echo $dado3["foto"]; ?>" alt="">
                     <div class="des">
-                        <span>Produtor: Luiz Ricardo</span>
-                        <h5>Cartoon AStronaut tshirts</h5>
+                        <span>Produtor: <?php while ($dado4 = $connVend2->fetch_array()) {
+                                                        echo $dado4['nomeVend']; ?></span>
+                        <h5><?php echo $dado3["nomeProd"]; ?></h5><?php } ?></h2>
                         <div class="star">
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
@@ -312,95 +291,11 @@
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
                         </div>
-                        <h4>R$70,00</h4>
+                        <h4>R$ <?php echo number_format($dado3["preco"], 2, ",", "."); ?></h4>
                     </div>
-                    <a href="#"><i class="fas fa-shopping-cart"></i></a>
+                    <a href="sproduto.php?idProduto=<?php echo $dado3["idProduto"]; ?>"><i class="fas fa-shopping-cart"></i></a>
                 </div>
-
-                <div class="prod">
-                    <img src="assets/img/products/p5.png" alt="">
-                    <div class="des">
-                        <span>Produtor: Luiz Ricardo</span>
-                        <h5>Cartoon AStronaut tshirts</h5>
-                        <div class="star">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <h4>R$70,00</h4>
-                    </div>
-                    <a href="#"><i class="fas fa-shopping-cart"></i></a>
-                </div>
-
-                <div class="prod">
-                    <img src="assets/img/products/p4.png" alt="">
-                    <div class="des">
-                        <span>Produtor: Luiz Ricardo</span>
-                        <h5>Cartoon AStronaut tshirts</h5>
-                        <div class="star">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <h4>R$70,00</h4>
-                    </div>
-                    <a href="#"><i class="fas fa-shopping-cart"></i></a>
-                </div>
-
-                <div class="prod">
-                    <img src="assets/img/products/p3.png" alt="">
-                    <div class="des">
-                        <span>Produtor: Luiz Ricardo</span>
-                        <h5>Cartoon AStronaut tshirts</h5>
-                        <div class="star">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <h4>R$70,00</h4>
-                    </div>
-                    <a href="#"><i class="fas fa-shopping-cart"></i></a>
-                </div>
-
-                <div class="prod">
-                    <img src="assets/img/products/p7.png" alt="">
-                    <div class="des">
-                        <span>Produtor: Luiz Ricardo</span>
-                        <h5>Cartoon AStronaut tshirts</h5>
-                        <div class="star">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <h4>R$70,00</h4>
-                    </div>
-                    <a href="#"><i class="fas fa-shopping-cart"></i></a>
-                </div>
-
-                <div class="prod">
-                    <img src="assets/img/products/p8.png" alt="">
-                    <div class="des">
-                        <span>Produtor: Luiz Ricardo</span>
-                        <h5>Cartoon AStronaut tshirts</h5>
-                        <div class="star">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <h4>R$70,00</h4>
-                    </div>
-                    <a href="#"><i class="fas fa-shopping-cart"></i></a>
-                </div>
+            <?php } ?>
             </div>
         </section>
 

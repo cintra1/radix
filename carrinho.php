@@ -4,6 +4,12 @@
    include('php/protect.php');
    include('php/loadItem.php');
 
+   
+if (isset($_POST['sub'])) {
+    header("Location: initial.php");
+ }
+
+
    $_SESSION['dados'] = array();
 
    $idCliente = $_SESSION['idCliente']; 

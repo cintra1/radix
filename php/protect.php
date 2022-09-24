@@ -4,6 +4,6 @@
     }
 
 if(!isset($_SESSION['idCliente'])){
-    die("Você não pode acessar essa página porque você não está logado.<P><a href=\"login.php\">Entrar</a></P>");
+    header("Location: initial.html");
 }
 ?>

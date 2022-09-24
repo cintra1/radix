@@ -1,4 +1,5 @@
 let navbar = document.querySelector('.naves')
+let nv = document.querySelector('.nv')
 let a = document.querySelector('.fa-search')
 let menu = document.querySelector('.nav')
 let cart = document.querySelector('.shopping-cart')
@@ -7,6 +8,7 @@ let cartes = document.querySelector('.cartes')
 document.querySelector('#menu-btn').onclick = () =>{
     navbar.classList.toggle('active');
     cartes.classList.remove('active');
+    nv.classList.toggle('active');
 }
 
 let searchForm = document.querySelector('.search-form');

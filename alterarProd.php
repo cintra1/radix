@@ -49,7 +49,7 @@ include('php/protectIDProd.php');
             </div>
             <div class="caixa">
             <label for="nome">Nome:<BR>
-                <input type="text" id="nome" placeholder="Nome Produto" name="nome" value="<?php echo $value['nome']; ?>">
+                <input type="text" id="nome" placeholder="Nome Produto" name="nomeProd" value="<?php echo $value['nomeProd']; ?>">
             </label>
             <label for="preco" id="preco">Preço (Utilizar . ):
                 <input type="text"  placeholder="Preço" name="preco" value="<?php echo $value['preco']; ?>">
@@ -91,19 +91,19 @@ if(isset($_POST['sub']))
     move_uploaded_file($_FILES['foto']['tmp_name'], $diretorio.$novo_nome);
 
     $idProduto = addslashes($_GET['idProduto']);
-    $nome = addslashes($_POST['nome']);
+    $nomeProd = addslashes($_POST['nomeProd']);
     $preco = addslashes($_POST['preco']);
     $foto = $novo_nome;
     $detalhe = addslashes($_POST['detalhe']);
     $idVendedor = addslashes($_SESSION['idVendedor']);
 
     //verificar se esta preenchido
-    if(!empty($nome) && !empty($preco) && !empty($detalhe) && !empty($foto))
+    if(!empty($nomeProd) && !empty($preco) && !empty($detalhe) && !empty($foto))
     {
         $u->conectar("Radix","localhost","root","");
         if($u->msgErro == "")//ta ok
         {
-                if($u->atualizar($idProduto, $nome, $preco, $foto, $detalhe))
+                if($u->atualizar($idProduto, $nomeProd, $preco, $foto, $detalhe))
                 {
                       ?>
                      <div id="msg-sucesso">
