@@ -1,0 +1,263 @@
+<?php
+   include("php/conexao.php");
+   require('php/connection.php');
+   include('php/protect.php');
+   include('php/loadItem.php');
+
+   $_SESSION['dados'] = array();
+
+   $idCliente = $_SESSION['idCliente']; 
+   $consulta = "SELECT * FROM tblPedido as ped inner join tblItem as i on ped.idItem = i.idItem inner join tblProduto as p on i.idProduto = p.idProduto WHERE ped.idCliente = $idCliente and statusItem <> 0";
+
+   $con = $pdo->query($consulta) or die($mysqli->error);
+   $conn = $mysqli->query($consulta) or die($mysqli->error);
+
+   $soma = "SELECT SUM(p.preco*i.qtde) AS total FROM tblProduto as p inner join tblItem as i on p.idProduto = i.idProduto where statusItem <> 0";
+   $s = $mysqli->query($soma) or die($mysqli->error);
+
+   $soma2 = "SELECT SUM(p.preco*i.qtde) AS total FROM tblProduto as p inner join tblItem as i on p.idProduto = i.idProduto where statusItem <> 0";
+   $s2 = $mysqli->query($soma2) or die($mysqli->error);
+
+   $sql = $pdo->query("SELECT * from tblItem as i inner join tblProduto as p on i.idProduto = p.idProduto
+   inner join tblVendedor as v on p.idVendedor = v.idVendedor where idCliente = $idCliente and statusItem <> 0;");
+  if($sql->rowCount() > 0){
+  foreach($sql->fetchAll() as $value){
+      array_push(
+          $_SESSION['dados'],
+          array(
+              'idCliente' =>  $value['idCliente'],
+              'idItem' =>  $value['idItem'],
+              'idVendedor' =>  $value2['idVendedor'],
+              'qtde' => $value['qtde'],
+              'preco' => $value['preco'],
+              'nomeProd' => $value['nomeProd']
+          )
+      );
+  }}
+?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="assets/img/icon.ico">
+    <!--<link rel="icon" type="imagem/png" href="assets/img/leafg (1).png">-->
+    <!--=============== BOXICONS ===============-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+
+    <!--=============== CSS ===============-->
+    <link rel="stylesheet" href="assets/css/styleCarrinho.css">
+
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!--==================== UNICONS ====================-->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+
+
+
+    <title>Radix</title>
+</head>
+
+<body>
+    <!--=============== HEADER ===============-->
+    <header class="header" id="header">
+        <nav class="nav nav__container">
+
+            <nav class="navbar">
+                <a href="initial.php">Home</a>
+                <a href="#packages">Produtores</a>
+                <a href="#services">Frutas</a>
+                <a href="#pricing">Vegetais</a>
+                <a href="#review">Especiarias</a>
+            </nav>
+
+            <a href="initial.html" class="nav__logo first"> <i class="fa fa-leaf"></i>Radix</a>
+
+            <div class="nav__menu" id="nav-menu">
+                <ul class="nav__list__initial">
+                    <div></div>
+                    <form action="" class="search-form">
+                        <input id="enter" type="search" placeholder="busque por produtor ou item..." id="search-box">
+                        <a href="search.html">
+                            <label for="search-box" class="fas fa-search"></label></a>
+                    </form>
+
+                    <div class="nav__icon">
+
+                        <div class="fas fa-search" id="search-btn" style="display: none"></div>
+
+                        <li class="nav__item">
+                            <a href="login.php" class="fas fa-user nav__link"></a>
+                            <!--<div id="login-btn" class="fas fa-user nav__link"></div>-->
+                        </li>
+                        <li class="nav__item">
+                            <div class="fas fa-bars nav__link" id="menu-btn"></div>
+                        </li>
+                    </div>
+                </ul>
+            </div>
+
+            <div class="nav__toggle" id="nav-toggle">
+                <i class='bx bx-grid-alt'></i>
+            </div>
+        </nav>
+
+        <main class="main initial__home">
+
+    </header>
+
+    <main class="main initial__home">
+        <!--=============== cARRINHO ===============-->
+        <section class="page__header">
+            <h2>carrinho</h2>
+            <p>Conclua sua Compra</p>
+        </section>
+    <section class="cart section-p1">
+        <table width="100%">
+            <thead>
+                <tr>
+                    <td>Excluir</td>
+                    <td>Imagem</td>
+                    <td>Produto</td>
+                    <td>Preço</td>
+                    <td>Quantidade</td>
+                    <td>Subtotal</td>
+                </tr>
+            </thead>
+            <tbody>
+            <?php  if($con->rowCount() > 0){ while($dado = $conn->fetch_array()){   ?>
+                <tr>
+                    <td><a href="#"></a><i class="far fa-times-circle"></i></a></td>
+                    <td><img src="upload/<?php echo $dado["foto"]; ?>" alt=""></td>
+                    <td><?php echo $dado["nomeProd"]; ?></td>
+                    <td>R$ <?php echo number_format($dado['preco'], 2, ",", "."); ?></td>
+                    <td><input type="number" value="<?php echo $dado["qtde"]; ?>"></td>
+                    <td>R$ <?php echo number_format(($dado['preco']*$dado['qtde']), 2, ",", "."); ?></td>
+                </tr>
+            <?php } } else {?>
+                <tr>
+                    <td>Você não tem produtos adicionados no carrinho.</td>
+                </tr>
+                <?php } ?>
+            </tbody>
+        </table>
+    </section>
+
+    <section class="cart-add section-p1">
+        <div class="cupom">
+            <h3>Aplicar Cupom</h3>
+            <div>
+                <input type="text" placeholder="Insira seu cupom">
+                <button class="normal">Aplicar</button>
+            </div>
+        </div>
+
+        <div class="subtotal">
+            <h3>Total</h3>
+            <table>
+                <tr>
+                    <td>Subtotal</td>
+                    <td>R$ <?php while ($dado = $s->fetch_array()) {
+                                                        echo number_format($dado['total'], 2, ",", "."); ?></h3> <?php } ?></td>
+                </tr>
+                <tr>
+                    <td>Entrega</td>
+                    <td>Grátis</td>
+                </tr>
+                <tr>
+                    <td><strong>Total</strong></td>
+                    <td><strong>R$ <?php while ($dado2 = $s2->fetch_array()) {
+                                                        echo number_format($dado2['total'], 2, ",", "."); ?></h3> <?php } ?></strong></td>
+                </tr>
+            </table>
+            <form action="#" method="POST" enctype="multipart/form-data">
+            <input class="normal final" type="submit" name="sub" value="Finalizar Compra">
+            </form>
+        </div>
+        
+    </section>
+
+    <div class="alinhar">
+        <div id="linha-horizontal"></div>
+    </div>
+
+    <!--=============== FOOTER ===============-->
+    <footer class="section-p1">
+        <div class="col">
+            <a href="index.html" class="nav__logo logo"> <i class="fa fa-leaf" style="color: #70C28D;"></i> Radix </a>
+            <h4>Contato</h4>
+            <p><strong>Endereço:</strong> Rua ABC, 300</p>
+            <p><strong>Telefone:</strong> +55 (11) 91111-5555</p>
+            <p><strong>Horas:</strong> 10:00 - 18:00, Segunda a Sexta</p>
+            <div class="follow">
+                <h4>Nos siga</h4>
+                <div class="icon">
+                    <i class="fab fa-facebook-f"></i>
+                    <i class="fab fa-twitter"></i>
+                    <i class="fab fa-instagram"></i>
+                    <i class="fab fa-pinterest-p"></i>
+                    <i class="fab fa-youtube"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <h4>Sobre</h4>
+            <a href="#">Sobre nós</a>
+            <a href="#">Informações sobre entrega</a>
+            <a href="#">Política de privacidade</a>
+        </div>
+
+        <div class="col">
+            <h4>Minha Conta</h4>
+            <a href="#">Fazer Login</a>
+            <a href="#">Carrinho</a>
+            <a href="#">Ajuda</a>
+        </div>
+
+        <div class="col install">
+            <h4>Baixar App</h4>
+            <p>Baixar da App Store ou Google Play</p>
+            <div class="row">
+                <img src="assets/img/pay/app.jpg" alt="">
+                <img src="assets/img/pay/play.jpg" alt="">
+            </div>
+            <p>Gateways de Pagamento Seguros</p>
+            <img src="assets/img/pay/pay.png" alt="">
+        </div>
+
+        <div class="copyright">
+            <p>© Copyright 2021 - Radix - Todos os direitos reservados Radix com Agência de Restaurantes Online S.A.</p>
+        </div>
+    </footer>
+    <!--=============== SCROLL UP ===============-->
+    <a href="#" class="scrollup" id="scroll-up">
+        <i class='bx bx-up-arrow-alt scrollup__icon'></i>
+    </a>
+
+    <!--=============== MAIN JS ===============-->
+    <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+
+    <script src="assets/js/mainInitial.js"></script>
+
+<?php 
+    if (isset($_POST['sub'])) {
+    foreach($_SESSION['dados'] as $produtos){
+        $insert = $pdo->prepare("
+        UPDATE tblItem SET statusItem = 0 WHERE idCliente = ?;");
+        $insert->bindParam(1,$produtos['idCliente']);
+        $insert->execute();
+    } 
+}
+
+?>
+</body>
+</html>

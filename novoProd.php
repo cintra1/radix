@@ -39,7 +39,7 @@ include('php/protectVend.php');
         <h2 class="title">Home Vendedor > Editar Produtos > Novo Produto</h2>
         <form action="#" method="POST" class="alter-form" enctype="multipart/form-data">
             <div class="caixa">
-                <input type="text" id="taskValue" placeholder="Nome Produto" name="nome">
+                <input type="text" id="taskValue" placeholder="Nome Produto" name="nomeProd">
                 <input type="text" id="recValue" placeholder="Preço" name="preco">
             </div>
             <div>
@@ -69,7 +69,7 @@ include('php/protectVend.php');
 
         move_uploaded_file($_FILES['imagem']['tmp_name'], $diretorio . $novo_nome);
 
-        $nome = addslashes($_POST['nome']);
+        $nomeProd = addslashes($_POST['nomeProd']);
         $preco = addslashes($_POST['preco']);
         $detalhe = addslashes($_POST['detalhe']);
         $idVendedor = addslashes($_SESSION['idVendedor']);
@@ -77,11 +77,11 @@ include('php/protectVend.php');
         $statusProduto = '1';
 
         //verificar se esta preenchido
-        if (!empty($nome) && !empty($preco) && !empty($detalhe) && !empty($idVendedor)) {
+        if (!empty($nomeProd) && !empty($preco) && !empty($detalhe) && !empty($idVendedor)) {
             $u->conectar("Radix", "localhost", "root", "");
             if ($u->msgErro == "") //ta ok
             {
-                if ($u->cadastrar($nome, $preco, $foto, $detalhe, $idVendedor, $statusProduto)) {
+                if ($u->cadastrar($nomeProd, $preco, $foto, $detalhe, $idVendedor, $statusProduto)) {
     ?>
                     <div id="msg-sucesso">
                         Cadastrado com sucesso!

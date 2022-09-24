@@ -82,7 +82,12 @@
 
                     <div class="perfil__data">
                         <h1 class="perfil__title">bem vindo <?php echo $_SESSION['nome']; ?> !</h1>
-                        <p class="status">Status: loja fechada</p>
+                        <p class="status">Status: <?php 
+                        if($_SESSION['statusConta'] == 1){
+                            ?> Conta Ativada <?php
+                        }else{
+                            ?> Conta Desativada (Verifique as políticas de nosso aplicativo) <?php
+                        }?></p>
 
                     </div>
 
@@ -98,21 +103,21 @@
             <h2>Pedidos finalizados</h2>
         </div>
 
-        <div id="tres">
         <a href="produtos.php">
-            <h2> Meus produtos</h2>
+            <div id="tres">
+                <h2> Meus produtos</h2>
+            </div>
         </a>
-        </div>
     </div>
 
     <div id="baixo" >
-   
-        <div id="quatro">
-            <a href="alterarVend.php">
-            <h2>Editar perfil</h2>
-            </a>
-        </div>
 
+        <a href="alterarVend.php">
+            <div id="quatro">
+                <h2>Editar perfil</h2>
+            </div>
+        </a>
+    
         <div id="cinco">
             <h2>Selo de Produtor</h2>
         </div>

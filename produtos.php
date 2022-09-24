@@ -42,7 +42,7 @@ $conn = $mysqli->query($consulta) or die($mysqli->error);
                 <i class='bx bx-grid-alt'></i>
             </div>
 
-            <a href="app.html" class="button button__header">LOGOUT</a>
+            <a href="php/logout.php" class="button button__header">LOGOUT</a>
         </nav>
     </header>
 
@@ -54,7 +54,7 @@ $conn = $mysqli->query($consulta) or die($mysqli->error);
                  <div class="home__box home__container container grid">
  
                      <div class="title">
-                         <h1 class="title__prod"><?php echo $dado["nome"]; ?></h1>   
+                         <h1 class="title__prod"><?php echo $dado["nomeProd"]; ?></h1>   
                          <div class="box__img">
                              <img src="upload/<?php echo $dado["foto"]; ?>" alt="">
                          </div>

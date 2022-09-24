@@ -1,3 +1,49 @@
+<?php
+   include("php/conexao.php");
+   require('php/connection.php');
+   include('php/protect.php');
+   include('php/loadItem.php');
+   
+   if (isset($_POST['sub'])) {
+   header("Location: carrinho.php");
+}
+   $_SESSION['dados'] = array();
+   $idCliente = $_SESSION['idCliente']; 
+
+   $consulta = "SELECT * FROM tblProduto WHERE statusProduto <> 0 LIMIT 8";
+
+   $con = $pdo->query($consulta) or die($mysqli->error);
+   $conn = $mysqli->query($consulta) or die($mysqli->error);
+
+   $consulta2 = "SELECT * from tblItem as i inner join tblProduto as p on i.idProduto = p.idProduto
+    inner join tblVendedor as v on p.idVendedor = v.idVendedor where idCliente = $idCliente and statusItem <> 0";
+
+    $con2 = $pdo->query($consulta2) or die($mysqli->error);
+    $conn2 = $mysqli->query($consulta2) or die($mysqli->error);
+
+   $soma = "SELECT SUM(p.preco*i.qtde) AS total FROM tblProduto as p inner join tblItem as i on p.idProduto = i.idProduto where statusItem <> 0";
+   $s = $mysqli->query($soma) or die($mysqli->error);
+
+    $sql = $pdo->query("SELECT * from tblItem as i inner join tblProduto as p on i.idProduto = p.idProduto
+     inner join tblVendedor as v on p.idVendedor = v.idVendedor where idCliente = $idCliente and statusItem <> 0;");
+    if($sql->rowCount() > 0){
+    foreach($sql->fetchAll() as $value){
+        array_push(
+            $_SESSION['dados'],
+            array(
+                'idCliente' =>  $value['idCliente'],
+                'idItem' =>  $value['idItem'],
+                'idVendedor' =>  $value2['idVendedor'],
+                'qtde' => $value['qtde'],
+                'preco' => $value['preco'],
+                'nomeProd' => $value['nomeProd']
+            )
+        );
+    }
+
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,7 +58,7 @@
     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
 
     <!--=============== CSS ===============-->
-    <link rel="stylesheet" href="assets/css/stylesInitial.css">
+    <link rel="stylesheet" href="assets/css/stylesInitials.css">
 
     <!-- font awesome cdn link  -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
@@ -65,13 +111,10 @@
 
                         <li class="nav__item">
                             <a href="login.php" class="fas fa-user nav__link"></a>
-                            <!--<div id="login-btn" class="fas fa-user nav__link"></div>-->
                         </li>
 
                         <li class="nav__item">
-                            <a href="logout.php" class="uil uil-signout nav__link"  style="font-size: 1.2rem !important"></a>
-                
-                            <!--<div id="login-btn" class="fas fa-user nav__link"></div>-->
+                            <a href="php/logout.php" class="uil uil-signout nav__link"  style="font-size: 1.2rem !important"></a>
                         </li>
                         <li class="nav__item">
                             <div class="fas fa-bars nav__link" id="menu-btn"></div>
@@ -83,47 +126,40 @@
             <div class="nav__toggle" id="nav-toggle">
                 <i class='bx bx-grid-alt'></i>
             </div>
-
-
         </nav>
 
 
 
-        <div class="shopping-cart">
-            <div class="box">
+        <div class="shopping-cart cartes">
+        <?php if($con2->rowCount() > 0){ ?>
+        <form action="#" method="POST" enctype="multipart/form-data">
+        <div class="box__maior" style=" overflow-y: scroll;height: 18rem;">
+            <?php while($dado2 = $conn2->fetch_array()){   ?>
+             <div class="box">
                 <i class="fas fa-times"></i>
-                <img src="assets/img/cart-1.jpg" alt="">
+                <img src="upload/<?php echo $dado2["foto"]; ?>" alt="">
                 <div class="content">
-                    <h3>Brócolis</h3>
-                    <span class="quantity">1</span>
+                    <h3><?php echo $dado2["nomeProd"]; ?></h3>
+                    <span class="quantity"><?php echo $dado2["qtde"]; ?></span>
                     <span class="multiply">x</span>
-                    <span class="price">R$2.50</span>
+                    <span class="price">R$ <?php echo number_format($dado2["preco"], 2, ",", "."); ?></span>
                 </div>
-            </div>
-            <div class="box">
-                <i class="fas fa-times"></i>
-                <img src="assets/img/cart-2.jpg" alt="">
-                <div class="content">
-                    <h3>Leite - 0 lactose</h3>
-                    <span class="quantity">1</span>
-                    <span class="multiply">x</span>
-                    <span class="price">R$6.99</span>
                 </div>
+            <?php } ?>
             </div>
-            <div class="box">
-                <i class="fas fa-times"></i>
-                <img src="assets/img/cart-3.jpg" alt="">
-                <div class="content">
-                    <h3>Trigo</h3>
-                    <span class="quantity">1</span>
-                    <span class="multiply">x</span>
-                    <span class="price">R$15.00</span>
-                </div>
-            </div>
-            <h3 class="total"> Total : <span>56.97</span> </h3>
-            <a href="#" class="btn">Finalizar Compra</a>
-        </div>
+            <h3 class="total"> Total : <?php while ($dado = $s->fetch_array()) {
+                                                        echo number_format($dado['total'], 2, ",", "."); ?></h3> <?php } ?> </h3>
+            <input class="btn" type="submit" name="sub" value="Finalizar Compra">
 
+            </div>
+            <?php } else {?>
+                <div class="box">
+                <img src="assets/img/carrinho-vazio.svg" alt="" class="carrinho__img">
+            </div>
+            <h3 class="total2"> Seu carrinho está vazio. Clique no botão abaixo para começar a comprar.  </h3>
+            <a href="produtores.php" class="btn">Começar a comprar</a>
+            <?php }?>
+        </form>
     </header>
 
     <main class="main initial__home">
@@ -189,45 +225,21 @@
             <h2>Produtos em Destaques</h2>
             <p>Itens mais amados entre nossos clientes</p>
             <div class="prod__container">
-                <div class="prod">
-                    <img src="assets/img/products/p1.png" alt="">
-                    <div class="des">
-                        <span>Produtor: Luiz Ricardo</span>
-                        <h5>Pimentão Amarelo</h5>
-                        <div class="star">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <h4>R$70,00</h4>
-                    </div>
-                    <a href="#"><i class="fas fa-shopping-cart"></i></a>
-                </div>
+            <?php
+             
+            while($dado = $conn->fetch_array()){   
 
-                <div class="prod">
-                    <img src="assets/img/products/p2.png" alt="">
-                    <div class="des">
-                        <span>Produtor: Luiz Ricardo</span>
-                        <h5>Pepino</h5>
-                        <div class="star">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <h4>R$15,00</h4>
-                    </div>
-                    <a href="#"><i class="fas fa-shopping-cart"></i></a>
-                </div>
+            $idProduto = $dado["idProduto"];
+            $consultaVend = "SELECT nome as nomeVend FROM tblVendedor as v inner join tblProduto as p on v.idVendedor = p.idVendedor where idProduto = $idProduto";
 
+            $connVend = $mysqli->query($consultaVend) or die($mysqli->error);
+            ?>
                 <div class="prod">
-                    <img src="assets/img/products/p3.png" alt="">
+                    <img src="upload/<?php echo $dado["foto"]; ?>" alt="">
                     <div class="des">
-                        <span>Produtor: Luiz Ricardo</span>
-                        <h5>Tomate</h5>
+                        <span>Produtor: <?php while ($dado2 = $connVend->fetch_array()) {
+                                                        echo $dado2['nomeVend']; ?></span>
+                        <h5><?php echo $dado["nomeProd"]; ?></h5><?php } ?></h2>
                         <div class="star">
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
@@ -235,95 +247,11 @@
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
                         </div>
-                        <h4>R$12,99</h4>
+                        <h4>R$ <?php echo number_format($dado["preco"], 2, ",", "."); ?></h4>
                     </div>
-                    <a href="#"><i class="fas fa-shopping-cart"></i></a>
+                    <a href="sproduto.php?idProduto=<?php echo $dado["idProduto"]; ?>"><i class="fas fa-shopping-cart"></i></a>
                 </div>
-
-                <div class="prod">
-                    <img src="assets/img/products/p4.png" alt="">
-                    <div class="des">
-                        <span>Produtor: Luiz Ricardo</span>
-                        <h5>Gengibre</h5>
-                        <div class="star">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <h4>R$3,50</h4>
-                    </div>
-                    <a href="#"><i class="fas fa-shopping-cart"></i></a>
-                </div>
-
-                <div class="prod">
-                    <img src="assets/img/products/p5.png" alt="">
-                    <div class="des">
-                        <span>Produtor: Luiz Ricardo</span>
-                        <h5>Repolho</h5>
-                        <div class="star">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <h4>R$5,00</h4>
-                    </div>
-                    <a href="#"><i class="fas fa-shopping-cart"></i></a>
-                </div>
-
-                <div class="prod">
-                    <img src="assets/img/products/p6.png" alt="">
-                    <div class="des">
-                        <span>Produtor: Luiz Ricardo</span>
-                        <h5>Couve Flor</h5>
-                        <div class="star">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <h4>R$8,00</h4>
-                    </div>
-                    <a href="#"><i class="fas fa-shopping-cart"></i></a>
-                </div>
-
-                <div class="prod">
-                    <img src="assets/img/products/p7.png" alt="">
-                    <div class="des">
-                        <span>Produtor: Luiz Ricardo</span>
-                        <h5>Cenoura</h5>
-                        <div class="star">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <h4>R$7,00</h4>
-                    </div>
-                    <a href="#"><i class="fas fa-shopping-cart"></i></a>
-                </div>
-
-                <div class="prod">
-                    <img src="assets/img/products/p8.png" alt="">
-                    <div class="des">
-                        <span>Produtor: Luiz Ricardo</span>
-                        <h5>Rúcula</h5>
-                        <div class="star">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <h4>R$10,00</h4>
-                    </div>
-                    <a href="#"><i class="fas fa-shopping-cart"></i></a>
-                </div>
+            <?php } ?>
             </div>
         </section>
 
@@ -569,6 +497,24 @@
         <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
 
         <script src="assets/js/mainInitial.js"></script>
-</body>
 
+    <?php
+
+    //verificar se a pessoa clicou no btnCadastrar
+    
+    if (isset($_POST['sub'])) {
+        foreach($_SESSION['dados'] as $produtos){
+            $insert = $pdo->prepare("
+            INSERT INTO tblPedido (idCliente,idItem,idVendedor) VALUES (?,?,?)");
+            $insert->bindParam(1,$produtos['idCliente']);
+            $insert->bindParam(2,$produtos['idItem']);
+            $insert->bindParam(3,$produtos['idVendedor']);
+            $insert->execute();
+            $bol=true;
+        }
+    } 
+
+
+    ?>
+</body>
 </html>

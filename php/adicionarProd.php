@@ -15,14 +15,14 @@ Class Usuario
         }                
     }
 
-    public function cadastrar($nome, $preco, $foto, $detalhe, $idVendedor, $statusProduto)
+    public function cadastrar($nomeProd, $preco, $foto, $detalhe, $idVendedor, $statusProduto)
     {
         global $pdo;
             
-            $sql = $pdo->prepare("INSERT INTO tblProduto (nome, preco, foto, detalhe, idVendedor, statusProduto) 
+            $sql = $pdo->prepare("INSERT INTO tblProduto (nomeProd, preco, foto, detalhe, idVendedor, statusProduto) 
                 VALUES (:n, :p, :f, :d, :i, :s)");
             
-             $sql->bindValue(":n",$nome);
+             $sql->bindValue(":n",$nomeProd);
              $sql->bindValue(":p",$preco);
              $sql->bindValue(":f",$foto);
              $sql->bindValue(":d",$detalhe);

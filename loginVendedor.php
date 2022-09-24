@@ -133,7 +133,7 @@ if(isset($_POST['email']) || isset($_POST['senha'])){
         $_SESSION['senha'] = $usuario['senha'];
         $_SESSION['imagem'] = $usuario['imagem'];
         $_SESSION['endereco'] = $usuario['endereco'];
-
+        $_SESSION['statusConta'] = $usuario['statusConta'];
         
         header("Location: indexVendedor.php");
         
