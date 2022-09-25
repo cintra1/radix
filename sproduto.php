@@ -45,7 +45,7 @@ if (isset($_POST['sub'])) {
     <header class="header" id="header">
         <nav class="nav nav__container">
 
-            <nav class="navbar">
+            <nav class="navbar naves">
                 <a href="initial.php">Home</a>
                 <a href="#packages">Produtores</a>
                 <a href="#services">Frutas</a>
@@ -69,11 +69,6 @@ if (isset($_POST['sub'])) {
 
                         <div class="fas fa-search" id="search-btn" style="display: none"></div>
 
-
-                        <li class="nav__item">
-                            <div id="cart-btn" class="uil uil-shopping-bag nav__link"></div>
-                        </li>
-
                         <li class="nav__item">
                             <a href="login.php" class="fas fa-user nav__link"></a>
                             <!--<div id="login-btn" class="fas fa-user nav__link"></div>-->
@@ -92,42 +87,6 @@ if (isset($_POST['sub'])) {
 
         </nav>
 
-
-
-        <div class="shopping-cart">
-            <div class="box">
-                <i class="fas fa-times"></i>
-                <img src="assets/img/cart-1.jpg" alt="">
-                <div class="content">
-                    <h3>Brócolis</h3>
-                    <span class="quantity">1</span>
-                    <span class="multiply">x</span>
-                    <span class="price">R$2.50</span>
-                </div>
-            </div>
-            <div class="box">
-                <i class="fas fa-times"></i>
-                <img src="assets/img/cart-2.jpg" alt="">
-                <div class="content">
-                    <h3>Leite - 0 lactose</h3>
-                    <span class="quantity">1</span>
-                    <span class="multiply">x</span>
-                    <span class="price">R$6.99</span>
-                </div>
-            </div>
-            <div class="box">
-                <i class="fas fa-times"></i>
-                <img src="assets/img/cart-3.jpg" alt="">
-                <div class="content">
-                    <h3>Trigo</h3>
-                    <span class="quantity">1</span>
-                    <span class="multiply">x</span>
-                    <span class="price">R$15.00</span>
-                </div>
-            </div>
-            <h3 class="total"> Total : <span>56.97</span> </h3>
-            <a href="#" class="btn">Finalizar Compra</a>
-        </div>
 
     </header>
 

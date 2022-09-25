@@ -34,30 +34,6 @@
             
           </div>
         </form>
-        <form action="#" method="POST" class="sign-up-form">
-          <h2 class="title">Registrar-se</h2>
-          <div class="input-field">
-            <i class="fas fa-user"></i>
-            <input type="text" placeholder="Nome do Usuário" name="nome"/>
-          </div>
-          <div class="input-field">
-          <i class="uil uil-postcard "></i>
-            <input type="text" placeholder="CPF" name="cpf"/>
-          </div>
-          <div class="input-field">
-            <i class="fas fa-envelope"></i>
-            <input type="email" placeholder="E-mail" name="email"/>
-          </div>
-          <div class="input-field">
-            <i class="fas fa-lock"></i>
-            <input type="password" placeholder="Senha" name="senha"/>
-          </div>
-          <input type="submit" class="btn" value="Sign up" />
-          <p class="social-text"></p>
-          <div class="social-media">
-          
-          </div>
-        </form>
       </div>
     </div>
 
@@ -76,18 +52,6 @@
           </a>
         </div>
         <img src="assets/img/Sign up-pana (1).svg" class="image img__register" alt="" />
-      </div>
-      <div class="panel right-panel">
-        <div class="content">
-          <h3>Já é de casa ?</h3>
-          <p>
-            Utilize sua conta já criada para ter acesso a nossa plataforma de compra e venda de alimentos agrícolas.
-          </p>
-          <button class="btn transparent" id="sign-in-btn">
-            Entrar
-          </button>
-        </div>
-        <img src="assets/img/Tablet login-pana (1).svg" class="image img__login" alt="" />
       </div>
     </div>
 

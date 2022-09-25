@@ -1,38 +1,48 @@
 <?php
-   include("php/conexao.php");
-   require('php/connection.php');
-   include('php/protect.php');
-   include('php/loadItem.php');
-   
-   if (isset($_POST['sub'])) {
-   header("Location: carrinho.php");
+include('php/conexao.php');
+require('php/connection.php');
+include('php/protect.php');
+include('php/loadItem.php');
+
+if (isset($_POST['sub'])) {
+    foreach ($_SESSION['dados'] as $produtos) {
+        $insert = $pdo->prepare("
+        INSERT INTO tblPedido (idCliente,idItem,idVendedor) VALUES (?,?,?)");
+        $insert->bindParam(1, $produtos['idCliente']);
+        $insert->bindParam(2, $produtos['idItem']);
+        $insert->bindParam(3, $produtos['idVendedor']);
+        $insert->execute();
+        $bol = true;
+    }
+    header("Location: carrinho.php");
 }
-   $_SESSION['dados'] = array();
-   $idCliente = $_SESSION['idCliente']; 
 
-   $consulta = "SELECT * FROM tblProduto WHERE statusProduto <> 0  ORDER BY RAND() LIMIT 8";
+$_SESSION['dados'] = array();
+$idCliente = $_SESSION['idCliente'];
 
-   $con = $pdo->query($consulta) or die($mysqli->error);
-   $conn = $mysqli->query($consulta) or die($mysqli->error);
+$consulta = "SELECT * FROM tblProduto WHERE statusProduto <> 0  ORDER BY RAND() LIMIT 8";
 
-   $consulta2 = "SELECT * from tblItem as i inner join tblProduto as p on i.idProduto = p.idProduto
+$con = $pdo->query($consulta) or die($mysqli->error);
+$conn = $mysqli->query($consulta) or die($mysqli->error);
+
+$consulta2 = "SELECT * from tblItem as i inner join tblProduto as p on i.idProduto = p.idProduto
     inner join tblVendedor as v on p.idVendedor = v.idVendedor where idCliente = $idCliente and statusItem <> 0";
 
-    $con2 = $pdo->query($consulta2) or die($mysqli->error);
-    $conn2 = $mysqli->query($consulta2) or die($mysqli->error);
+$con2 = $pdo->query($consulta2) or die($mysqli->error);
+$conn2 = $mysqli->query($consulta2) or die($mysqli->error);
 
-    $consulta3 = "SELECT * FROM tblProduto WHERE statusProduto <> 0 ORDER BY RAND() LIMIT 8";
+$consulta3 = "SELECT * FROM tblProduto WHERE statusProduto <> 0 ORDER BY RAND() LIMIT 8";
 
-    $con3 = $pdo->query($consulta3) or die($mysqli->error);
-    $conn3 = $mysqli->query($consulta3) or die($mysqli->error);
+$con3 = $pdo->query($consulta3) or die($mysqli->error);
+$conn3 = $mysqli->query($consulta3) or die($mysqli->error);
 
-   $soma = "SELECT SUM(p.preco*i.qtde) AS total FROM tblProduto as p inner join tblItem as i on p.idProduto = i.idProduto where statusItem <> 0";
-   $s = $mysqli->query($soma) or die($mysqli->error);
+$soma = "SELECT SUM(p.preco*i.qtde) AS total FROM tblProduto as p inner join tblItem as i on p.idProduto = i.idProduto where statusItem <> 0 and idCliente = $idCliente";
+$s = $mysqli->query($soma) or die($mysqli->error);
 
-    $sql = $pdo->query("SELECT * from tblItem as i inner join tblProduto as p on i.idProduto = p.idProduto
+$sql = $pdo->query("SELECT * from tblItem as i inner join tblProduto as p on i.idProduto = p.idProduto
      inner join tblVendedor as v on p.idVendedor = v.idVendedor where idCliente = $idCliente and statusItem <> 0;");
-    if($sql->rowCount() > 0){
-    foreach($sql->fetchAll() as $value){
+if ($sql->rowCount() > 0) {
+    foreach ($sql->fetchAll() as $value) {
         array_push(
             $_SESSION['dados'],
             array(
@@ -45,7 +55,6 @@
             )
         );
     }
-
 }
 
 ?>
@@ -97,7 +106,7 @@
 
             <div class="nav__menu" id="nav-menu">
                 <ul class="nav__list__initial">
-                <div></div>
+                    <div></div>
                     <form action="" class="search-form">
                         <input id="enter" type="search" placeholder="busque por produtor ou item..." id="search-box">
                         <a href="search.html">
@@ -105,9 +114,9 @@
                     </form>
 
                     <div class="nav__icon">
-                        
+
                         <div class="fas fa-search" id="search-btn" style="display: none"></div>
-                        
+
                         <li class="nav__item">
                             <div id="cart-btn" class="uil uil-shopping-bag nav__link"></div>
                         </li>
@@ -117,7 +126,7 @@
                         </li>
 
                         <li class="nav__item">
-                            <a href="php/logout.php" class="uil uil-signout nav__link"  style="font-size: 1.2rem !important"></a>
+                            <a href="php/logout.php" class="uil uil-signout nav__link" style="font-size: 1.2rem !important"></a>
                         </li>
                         <li class="nav__item">
                             <div class="fas fa-bars nav__link" id="menu-btn"></div>
@@ -134,35 +143,35 @@
 
 
         <div class="shopping-cart cartes">
-        <?php if($con2->rowCount() > 0){ ?>
-        <form action="#" method="POST" enctype="multipart/form-data">
-        <div class="box__maior" style=" overflow-y: scroll;height: 18rem;">
-            <?php while($dado2 = $conn2->fetch_array()){   ?>
-             <div class="box">
-                <i class="fas fa-times"></i>
-                <img src="upload/<?php echo $dado2["foto"]; ?>" alt="">
-                <div class="content">
-                    <h3><?php echo $dado2["nomeProd"]; ?></h3>
-                    <span class="quantity"><?php echo $dado2["qtde"]; ?></span>
-                    <span class="multiply">x</span>
-                    <span class="price">R$ <?php echo number_format($dado2["preco"], 2, ",", "."); ?></span>
-                </div>
-                </div>
-            <?php } ?>
-            </div>
-            <h3 class="total"> Total : <?php while ($dado = $s->fetch_array()) {
-                                                        echo number_format($dado['total'], 2, ",", "."); ?></h3> <?php } ?> </h3>
-            <input class="btn" type="submit" name="sub" value="Finalizar Compra">
+            <?php if ($con2->rowCount() > 0) { ?>
+                <form action="#" method="POST" enctype="multipart/form-data">
+                    <div class="box__maior" style=" overflow-y: scroll;height: 18rem;">
+                        <?php while ($dado2 = $conn2->fetch_array()) {   ?>
+                            <div class="box">
+                                <a href="remover.php?idItem=<?php echo $dado2["idItem"]; ?>"><i class="fas fa-times"></i></a>
+                                <img src="upload/<?php echo $dado2["foto"]; ?>" alt="">
+                                <div class="content">
+                                    <h3><?php echo $dado2["nomeProd"]; ?></h3>
+                                    <span class="quantity"><?php echo $dado2["qtde"]; ?></span>
+                                    <span class="multiply">x</span>
+                                    <span class="price">R$ <?php echo number_format($dado2["preco"], 2, ",", "."); ?></span>
+                                </div>
+                            </div>
+                        <?php } ?>
+                    </div>
+                    <h3 class="total"> Total : <?php while ($dado = $s->fetch_array()) {
+                                                    echo number_format($dado['total'], 2, ",", "."); ?></h3> <?php } ?> </h3>
+                <input class="btn" type="submit" name="sub" value="Finalizar Compra">
 
-            </div>
-            <?php } else {?>
-                <div class="box">
-                <img src="assets/img/carrinho-vazio.svg" alt="" class="carrinho__img">
-            </div>
-            <h3 class="total2"> Seu carrinho está vazio. Clique no botão abaixo para começar a comprar.  </h3>
-            <a href="produtores.php" class="btn">Começar a comprar</a>
-            <?php }?>
-        </form>
+        </div>
+    <?php } else { ?>
+        <div class="box">
+            <img src="assets/img/carrinho-vazio.svg" alt="" class="carrinho__img">
+        </div>
+        <h3 class="total2"> Seu carrinho está vazio. Clique no botão abaixo para começar a comprar. </h3>
+        <a href="produtores.php" class="btn">Começar a comprar</a>
+    <?php } ?>
+    </form>
     </header>
 
     <main class="main initial__home">
@@ -172,10 +181,10 @@
             <div class="svg">
                 <div class="initial__container grid">
                     <div class="content">
-                        <h3><span>orgânicos frescos<br></span>  na sua mão com até<br> 50% de economia</h3>
+                        <h3><span>orgânicos frescos<br></span> na sua mão com até<br> 50% de economia</h3>
                         <p>Nós levamos seu orgânico com qualidade radix que você já conhece, sem <br>
                             taxa de adesão e com frete grátis. Incrível, não?</p>
-                        
+
                     </div>
                     <div class="boxin">
                         <select name="" id="">
@@ -185,20 +194,20 @@
                             <option value="">Cesta Jumbo</option>
                         </select>
                         <a href="" class="button3">Faça sua cesta</a>
-                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
         <div class="invisivel">
-                <div class="box__inv">
-                    <div class="content2">
-                        <h3><span>orgânicos frescos<br></span>  na sua mão com até<br> 50% de economia</h3>
-                        <p>Nós levamos seu orgânico com qualidade radix que você já conhece, sem <br>
-                            taxa de adesão e com frete grátis. Incrível, não?</p>
-                    </div>
-                <a href="" class="button3">Faça sua cesta</a>
+            <div class="box__inv">
+                <div class="content2">
+                    <h3><span>orgânicos frescos<br></span> na sua mão com até<br> 50% de economia</h3>
+                    <p>Nós levamos seu orgânico com qualidade radix que você já conhece, sem <br>
+                        taxa de adesão e com frete grátis. Incrível, não?</p>
                 </div>
+                <a href="" class="button3">Faça sua cesta</a>
+            </div>
         </div>
 
         <section class="feature section-p1">
@@ -220,7 +229,7 @@
                 <h6>Ideal para uma família.</h6>
             </div>
 
-            
+
             </div>
         </section>
 
@@ -228,21 +237,21 @@
             <h2>Produtos em Destaques</h2>
             <p>Itens mais amados entre nossos clientes</p>
             <div class="prod__container">
-            <?php
-             
-            while($dado = $conn->fetch_array()){   
+                <?php
 
-            $idProduto = $dado["idProduto"];
-            $consultaVend = "SELECT nome as nomeVend FROM tblVendedor as v inner join tblProduto as p on v.idVendedor = p.idVendedor where idProduto = $idProduto";
+                while ($dado = $conn->fetch_array()) {
 
-            $connVend = $mysqli->query($consultaVend) or die($mysqli->error);
-            ?>
-                <div class="prod">
-                    <img src="upload/<?php echo $dado["foto"]; ?>" alt="">
-                    <div class="des">
-                        <span>Produtor: <?php while ($dado2 = $connVend->fetch_array()) {
-                                                        echo $dado2['nomeVend']; ?></span>
-                        <h5><?php echo $dado["nomeProd"]; ?></h5><?php } ?></h2>
+                    $idProduto = $dado["idProduto"];
+                    $consultaVend = "SELECT nome as nomeVend FROM tblVendedor as v inner join tblProduto as p on v.idVendedor = p.idVendedor where idProduto = $idProduto";
+
+                    $connVend = $mysqli->query($consultaVend) or die($mysqli->error);
+                ?>
+                    <div class="prod">
+                        <img src="upload/<?php echo $dado["foto"]; ?>" alt="">
+                        <div class="des">
+                            <span>Produtor: <?php while ($dado2 = $connVend->fetch_array()) {
+                                                echo $dado2['nomeVend']; ?></span>
+                            <h5><?php echo $dado["nomeProd"]; ?></h5><?php } ?></h2>
                         <div class="star">
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
@@ -251,10 +260,10 @@
                             <i class="fas fa-star"></i>
                         </div>
                         <h4>R$ <?php echo number_format($dado["preco"], 2, ",", "."); ?></h4>
+                        </div>
+                        <a href="sproduto.php?idProduto=<?php echo $dado["idProduto"]; ?>"><i class="fas fa-shopping-cart"></i></a>
                     </div>
-                    <a href="sproduto.php?idProduto=<?php echo $dado["idProduto"]; ?>"><i class="fas fa-shopping-cart"></i></a>
-                </div>
-            <?php } ?>
+                <?php } ?>
             </div>
         </section>
 
@@ -269,21 +278,21 @@
             <h2>Novos produtos</h2>
             <p>Seja o primeiro a experimentar esses produtos</p>
             <div class="prod__container">
-            <?php
-             
-            while($dado3 = $conn3->fetch_array()){   
+                <?php
 
-            $idProduto = $dado3["idProduto"];
-            $consultaVend2 = "SELECT nome as nomeVend FROM tblVendedor as v inner join tblProduto as p on v.idVendedor = p.idVendedor where idProduto = $idProduto";
+                while ($dado3 = $conn3->fetch_array()) {
 
-            $connVend2 = $mysqli->query($consultaVend2) or die($mysqli->error);
-            ?>
-                <div class="prod">
-                    <img src="upload/<?php echo $dado3["foto"]; ?>" alt="">
-                    <div class="des">
-                        <span>Produtor: <?php while ($dado4 = $connVend2->fetch_array()) {
-                                                        echo $dado4['nomeVend']; ?></span>
-                        <h5><?php echo $dado3["nomeProd"]; ?></h5><?php } ?></h2>
+                    $idProduto = $dado3["idProduto"];
+                    $consultaVend2 = "SELECT nome as nomeVend FROM tblVendedor as v inner join tblProduto as p on v.idVendedor = p.idVendedor where idProduto = $idProduto";
+
+                    $connVend2 = $mysqli->query($consultaVend2) or die($mysqli->error);
+                ?>
+                    <div class="prod">
+                        <img src="upload/<?php echo $dado3["foto"]; ?>" alt="">
+                        <div class="des">
+                            <span>Produtor: <?php while ($dado4 = $connVend2->fetch_array()) {
+                                                echo $dado4['nomeVend']; ?></span>
+                            <h5><?php echo $dado3["nomeProd"]; ?></h5><?php } ?></h2>
                         <div class="star">
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
@@ -292,10 +301,10 @@
                             <i class="fas fa-star"></i>
                         </div>
                         <h4>R$ <?php echo number_format($dado3["preco"], 2, ",", "."); ?></h4>
+                        </div>
+                        <a href="sproduto.php?idProduto=<?php echo $dado3["idProduto"]; ?>"><i class="fas fa-shopping-cart"></i></a>
                     </div>
-                    <a href="sproduto.php?idProduto=<?php echo $dado3["idProduto"]; ?>"><i class="fas fa-shopping-cart"></i></a>
-                </div>
-            <?php } ?>
+                <?php } ?>
             </div>
         </section>
 
@@ -332,7 +341,9 @@
             </div>
         </section>
 
-        <div class="alinhar"><div id="linha-horizontal"></div></div>
+        <div class="alinhar">
+            <div id="linha-horizontal"></div>
+        </div>
 
         <!--=============== FOOTER ===============-->
         <footer class="section-p1">
@@ -374,8 +385,8 @@
                 <div class="row">
                     <img src="assets/img/pay/app.jpg" alt="">
                     <img src="assets/img/pay/play.jpg" alt="">
-                </div>  
-                <p>Gateways de Pagamento Seguros</p>  
+                </div>
+                <p>Gateways de Pagamento Seguros</p>
                 <img src="assets/img/pay/pay.png" alt="">
             </div>
 
@@ -393,23 +404,8 @@
 
         <script src="assets/js/mainInitial.js"></script>
 
-    <?php
+        
 
-    //verificar se a pessoa clicou no btnCadastrar
-    
-    if (isset($_POST['sub'])) {
-        foreach($_SESSION['dados'] as $produtos){
-            $insert = $pdo->prepare("
-            INSERT INTO tblPedido (idCliente,idItem,idVendedor) VALUES (?,?,?)");
-            $insert->bindParam(1,$produtos['idCliente']);
-            $insert->bindParam(2,$produtos['idItem']);
-            $insert->bindParam(3,$produtos['idVendedor']);
-            $insert->execute();
-            $bol=true;
-        }
-    } 
-
-
-    ?>
 </body>
+
 </html>

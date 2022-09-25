@@ -9,8 +9,18 @@ if (isset($_POST['sub'])) {
     header("Location: initial.php");
  }
 
-
    $_SESSION['dados'] = array();
+
+   $sql0 = $pdo->query("SELECT v.idVendedor from tblVendedor as v inner join tblProduto as p on v.idVendedor = p.idVendedor inner join tblItem as i on p.idProduto = i.idProduto where i.idCliente = $idCliente");
+
+if ($sql0->rowCount() > 0) {
+    $idProduto = $value['idProduto'];
+    $sql2 = $pdo->query("SELECT v.idVendedor from tblVendedor as v inner join tblProduto as p on v.idVendedor = p.idVendedor inner join tblItem as i on p.idProduto = i.idProduto where p.idProduto = $idProduto");
+    if ($sql2->rowCount() > 0) {
+        foreach ($sql2->fetchAll() as $value2) {
+        }
+    }
+}
 
    $idCliente = $_SESSION['idCliente']; 
    $consulta = "SELECT * FROM tblPedido as ped inner join tblItem as i on ped.idItem = i.idItem inner join tblProduto as p on i.idProduto = p.idProduto WHERE ped.idCliente = $idCliente and statusItem <> 0";
@@ -18,11 +28,12 @@ if (isset($_POST['sub'])) {
    $con = $pdo->query($consulta) or die($mysqli->error);
    $conn = $mysqli->query($consulta) or die($mysqli->error);
 
-   $soma = "SELECT SUM(p.preco*i.qtde) AS total FROM tblProduto as p inner join tblItem as i on p.idProduto = i.idProduto where statusItem <> 0";
+   $soma = "SELECT SUM(p.preco*i.qtde) AS total FROM tblProduto as p inner join tblItem as i on p.idProduto = i.idProduto where statusItem <> 0 and idCliente = $idCliente";
    $s = $mysqli->query($soma) or die($mysqli->error);
 
-   $soma2 = "SELECT SUM(p.preco*i.qtde) AS total FROM tblProduto as p inner join tblItem as i on p.idProduto = i.idProduto where statusItem <> 0";
+   $soma2 = "SELECT SUM(p.preco*i.qtde) AS total FROM tblProduto as p inner join tblItem as i on p.idProduto = i.idProduto where statusItem <> 0 and idCliente = $idCliente";
    $s2 = $mysqli->query($soma2) or die($mysqli->error);
+   
 
    $sql = $pdo->query("SELECT * from tblItem as i inner join tblProduto as p on i.idProduto = p.idProduto
    inner join tblVendedor as v on p.idVendedor = v.idVendedor where idCliente = $idCliente and statusItem <> 0;");

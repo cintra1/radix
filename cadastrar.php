@@ -48,7 +48,7 @@
     </div>
 
     <div class="panels-container">
-      <div class="panel left-panel">
+      <div class="panel left-panel" style="display:unset;">
         
         <div class="content">
           <h3>Novo por aqui ?</h3>
@@ -59,7 +59,7 @@
             Registrar-se
           </button>
         </div>
-        <img src="assets/img/Sign up-pana (1).svg" class="image img__register" alt="" />
+        <img src="assets/img/Sign up-pana (1).svg" class="image img__register" alt="" style="display:unset;"/>
       </div>
       <div class="panel right-panel">
       <a href="index.html" class="nav__logo"> <i class="fa fa-leaf"></i> Radix </a>
