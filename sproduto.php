@@ -1,12 +1,19 @@
 <?php 
 include('php/protect.php');
 include('php/load.php');
-
+include('php/conexao.php');
+require('php/connection.php');
 include('php/protectIDProd2.php');
 
 if (isset($_POST['sub'])) {
     header("Location: initial.php");
  }
+
+ $consulta = "SELECT * FROM tblProduto WHERE statusProduto <> 0  ORDER BY RAND() LIMIT 4";
+
+$con = $pdo->query($consulta) or die($mysqli->error);
+$conn = $mysqli->query($consulta) or die($mysqli->error);
+
 
 ?>
 <!DOCTYPE html>
@@ -53,7 +60,7 @@ if (isset($_POST['sub'])) {
                 <a href="#review">Especiarias</a>
             </nav>
 
-            <a href="initial.html" class="nav__logo first"> <i class="fa fa-leaf"></i>Radix</a>
+            <a href="initial.php" class="nav__logo first"> <i class="fa fa-leaf"></i>Radix</a>
 
             <div class="nav__menu" id="nav-menu">
                 <ul class="nav__list__initial">
@@ -106,80 +113,41 @@ if (isset($_POST['sub'])) {
         </div>
     </form>
     </section>
-
-    <section class="produtos1 section-p1">
+    
+        
+        <section class="produtos1 section-p1">
         <h2>Produtos em Destaques</h2>
         <p>Itens mais amados entre nossos clientes</p>
-        <div class="prod__container">
-            <div class="prod">
-                <img src="assets/img/products/p1.png" alt="">
-                <div class="des">
-                    <span>Produtor: Luiz Ricardo</span>
-                    <h5>Pimentão Amarelo</h5>
-                    <div class="star">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <h4>R$70,00</h4>
-                </div>
-                <a href="#"><i class="fas fa-shopping-cart"></i></a>
-            </div>
+            <div class="prod__container">
+                <?php
 
-            <div class="prod">
-                <img src="assets/img/products/p2.png" alt="">
-                <div class="des">
-                    <span>Produtor: Luiz Ricardo</span>
-                    <h5>Pepino</h5>
-                    <div class="star">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <h4>R$15,00</h4>
-                </div>
-                <a href="#"><i class="fas fa-shopping-cart"></i></a>
-            </div>
+                while ($dado = $conn->fetch_array()) {
 
-            <div class="prod">
-                <img src="assets/img/products/p3.png" alt="">
-                <div class="des">
-                    <span>Produtor: Luiz Ricardo</span>
-                    <h5>Tomate</h5>
-                    <div class="star">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <h4>R$12,99</h4>
-                </div>
-                <a href="#"><i class="fas fa-shopping-cart"></i></a>
-            </div>
+                    $idProduto = $dado["idProduto"];
+                    $consultaVend = "SELECT nome as nomeVend FROM tblVendedor as v inner join tblProduto as p on v.idVendedor = p.idVendedor where idProduto = $idProduto";
 
-            <div class="prod">
-                <img src="assets/img/products/p4.png" alt="">
-                <div class="des">
-                    <span>Produtor: Luiz Ricardo</span>
-                    <h5>Gengibre</h5>
-                    <div class="star">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
+                    $connVend = $mysqli->query($consultaVend) or die($mysqli->error);
+                ?>
+                    <div class="prod">
+                        <img src="upload/<?php echo $dado["foto"]; ?>" alt="">
+                        <div class="des">
+                            <span>Produtor: <?php while ($dado2 = $connVend->fetch_array()) {
+                                                echo $dado2['nomeVend']; ?></span>
+                            <h5><?php echo $dado["nomeProd"]; ?></h5><?php } ?></h2>
+                        <div class="star">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <h4>R$ <?php echo number_format($dado["preco"], 2, ",", "."); ?></h4>
+                        </div>
+                        <a href="sproduto.php?idProduto=<?php echo $dado["idProduto"]; ?>"><i class="fas fa-shopping-cart"></i></a>
                     </div>
-                    <h4>R$3,50</h4>
-                </div>
-                <a href="#"><i class="fas fa-shopping-cart"></i></a>
+                <?php } ?>
             </div>
-        </div>
-    </section>
+        </section>
 
     <div class="alinhar">
         <div id="linha-horizontal"></div>

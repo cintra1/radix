@@ -66,7 +66,7 @@ if ($sql0->rowCount() > 0) {
     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
 
     <!--=============== CSS ===============-->
-    <link rel="stylesheet" href="assets/css/styleCarrinho.css">
+    <link rel="stylesheet" href="assets/css/styleCarrinhos.css">
 
     <!-- font awesome cdn link  -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
@@ -96,7 +96,7 @@ if ($sql0->rowCount() > 0) {
                 <a href="#review">Especiarias</a>
             </nav>
 
-            <a href="initial.html" class="nav__logo first"> <i class="fa fa-leaf"></i>Radix</a>
+            <a href="initial.php" class="nav__logo first"> <i class="fa fa-leaf"></i>Radix</a>
 
             <div class="nav__menu" id="nav-menu">
                 <ul class="nav__list__initial">
@@ -152,11 +152,11 @@ if ($sql0->rowCount() > 0) {
             <tbody>
             <?php  if($con->rowCount() > 0){ while($dado = $conn->fetch_array()){   ?>
                 <tr>
-                    <td><a href="#"></a><i class="far fa-times-circle"></i></a></td>
+                    <td> <a href="remover2.php?idItem=<?php echo $dado["idItem"]; ?>"><i class="far fa-times-circle"></i></a></td>
                     <td><img src="upload/<?php echo $dado["foto"]; ?>" alt=""></td>
                     <td><?php echo $dado["nomeProd"]; ?></td>
                     <td>R$ <?php echo number_format($dado['preco'], 2, ",", "."); ?></td>
-                    <td><input type="number" value="<?php echo $dado["qtde"]; ?>"></td>
+                    <td><input type="number" value="<?php echo $dado["qtde"]; ?>" style="width: 3rem" readonly></td>
                     <td>R$ <?php echo number_format(($dado['preco']*$dado['qtde']), 2, ",", "."); ?></td>
                 </tr>
             <?php } } else {?>
