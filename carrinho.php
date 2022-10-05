@@ -112,7 +112,7 @@ if ($sql0->rowCount() > 0) {
                         <div class="fas fa-search" id="search-btn" style="display: none"></div>
 
                         <li class="nav__item">
-                            <a href="login.php" class="fas fa-user nav__link"></a>
+                            <a href="perfilCliente.php" class="fas fa-user nav__link"></a>
                             <!--<div id="login-btn" class="fas fa-user nav__link"></div>-->
                         </li>
                         <li class="nav__item">
@@ -132,7 +132,7 @@ if ($sql0->rowCount() > 0) {
     </header>
 
     <main class="main initial__home">
-        <!--=============== cARRINHO ===============-->
+        <!--=============== CARRINHO ===============-->
         <section class="page__header">
             <h2>carrinho</h2>
             <p>Conclua sua Compra</p>

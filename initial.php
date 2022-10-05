@@ -123,7 +123,7 @@ if ($sql->rowCount() > 0) {
                         </li>
 
                         <li class="nav__item">
-                            <a href="login.php" class="fas fa-user nav__link"></a>
+                            <a href="perfilCliente.php" class="fas fa-user nav__link"></a>
                         </li>
 
                         <li class="nav__item">

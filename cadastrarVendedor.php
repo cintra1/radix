@@ -24,7 +24,7 @@
           <h2 class="title">Registrar-se</h2>
           <div class="input-field">
             <i class="fas fa-user"></i>
-            <input type="text" placeholder="Nome do Usuário" name="nome"/>
+            <input type="text" placeholder="Nome do Usuário" name="nomeVend"/>
           </div>
           <div class="input-field">
           <i class="uil uil-postcard "></i>
@@ -32,19 +32,19 @@
           </div>
           <div class="input-field">
             <i class="fas fa-envelope"></i>
-            <input type="email" placeholder="E-mail" name="email"/>
+            <input type="email" placeholder="E-mail" name="emailVend"/>
           </div>
           <div class="input-field">
             <i class="fas fa-lock"></i>
-            <input type="password" placeholder="Senha" name="senha"/>
+            <input type="password" placeholder="Senha" name="senhaVend"/>
           </div>
           <div class="input-field">
           <i class="uil uil-home"></i>
-            <input type="text" placeholder="Endereço" name="endereco"/>
+            <input type="text" placeholder="Endereço" name="enderecoVend"/>
           </div>
           
-          <input type="file" name="imagem"/>
-          <input id='img' name="imagem" type="file">
+          <input type="file" name="imagemVend"/>
+          <input id='img' name="imagemVend" type="file">
                 <label for='img'>ADICIONAR FOTO</label>
           
           <input type="submit" class="btn" value="Sign up" name="sub"/>
@@ -96,27 +96,27 @@ require_once 'php/cadastroVendedor.php';
 if(isset($_POST['sub']))
 {
 
-    $extensao = strtolower(substr($_FILES['imagem']['name'], -4)); 
+    $extensao = strtolower(substr($_FILES['imagemVend']['name'], -4)); 
     $novo_nome = md5(time()) . $extensao;
     $diretorio = "upload/";
 
-    move_uploaded_file($_FILES['imagem']['tmp_name'], $diretorio.$novo_nome);
+    move_uploaded_file($_FILES['imagemVend']['tmp_name'], $diretorio.$novo_nome);
 
-    $nome = addslashes($_POST['nome']);
+    $nomeVend = addslashes($_POST['nomeVend']);
     $cpfCnpj = addslashes($_POST['cpfCnpj']);
-    $email = addslashes($_POST['email']);
-    $senha = addslashes($_POST['senha']);
-    $imagem = $novo_nome;
-    $endereco = addslashes($_POST['endereco']);
+    $emailVend = addslashes($_POST['emailVend']);
+    $senhaVend = addslashes($_POST['senhaVend']);
+    $imagemVend = $novo_nome;
+    $enderecoVend = addslashes($_POST['enderecoVend']);
     $statusConta = '1';
 
     //verificar se esta preenchido
-    if(!empty($nome) && !empty($cpfCnpj) && !empty($email) && !empty($senha) && !empty($imagem) && !empty($endereco))
+    if(!empty($nomeVend) && !empty($cpfCnpj) && !empty($emailVend) && !empty($senhaVend) && !empty($imagemVend) && !empty($enderecoVend))
     {
         $u->conectar("Radix","localhost","root","");
         if($u->msgErro == "")//ta ok
         {
-                if($u->cadastrar($nome,$cpfCnpj,$email,$senha,$imagem,$endereco,$statusConta))
+                if($u->cadastrar($nomeVend,$cpfCnpj,$emailVend,$senhaVend,$imagemVend,$enderecoVend,$statusConta))
                 {
                       ?>
                      <div id="msg-sucesso">

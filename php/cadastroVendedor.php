@@ -15,14 +15,14 @@ Class Usuario
         }                
     }
 
-    public function cadastrar($nome, $cpfCnpj, $email, $senha, $imagem, $endereco, $statusConta)
+    public function cadastrar($nomeVend, $cpfCnpj, $emailVend, $senhaVend, $imagemVend, $enderecoVend, $statusConta)
     {
         global $pdo;
         //verificar se ja existe o email cadastrado
         $sql = $pdo -> prepare("SELECT idVendedor FROM tblVendedor 
-            WHERE email = :e");
+            WHERE emailVend = :e");
 
-        $sql->bindValue(":e",$email);
+        $sql->bindValue(":e",$emailVend);
         $sql->execute();
 
         if($sql->rowCount() > 0)
@@ -32,15 +32,15 @@ Class Usuario
         else
         {
             //caso nao, realizar cadastro
-            $sql = $pdo->prepare("INSERT INTO tblVendedor (nome, cpfCnpj, email, senha, imagem, endereco, statusConta) 
+            $sql = $pdo->prepare("INSERT INTO tblVendedor (nomeVend, cpfCnpj, emailVend, senhaVend, imagemVend, enderecoVend, statusConta) 
                 VALUES (:n, :t, :e, :s, :i, :d, :st)");
             
-             $sql->bindValue(":n",$nome);
+             $sql->bindValue(":n",$nomeVend);
              $sql->bindValue(":t",$cpfCnpj);
-             $sql->bindValue(":e",$email);
-             $sql->bindValue(":s",$senha);
-             $sql->bindValue(":i",$imagem);
-             $sql->bindValue(":d",$endereco);
+             $sql->bindValue(":e",$emailVend);
+             $sql->bindValue(":s",$senhaVend);
+             $sql->bindValue(":i",$imagemVend);
+             $sql->bindValue(":d",$enderecoVend);
              $sql->bindValue(":st",$statusConta);
              $sql->execute();
              return true;

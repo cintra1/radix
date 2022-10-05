@@ -22,11 +22,11 @@
           <h2 class="title">Entrar</h2>
           <div class="input-field">
             <i class="fas fa-user"></i>
-            <input type="text" placeholder="E-mail ou usuário" name="email"/>
+            <input type="text" placeholder="E-mail ou usuário" name="emailVend"/>
           </div>
           <div class="input-field">
             <i class="fas fa-lock"></i>
-            <input type="password" placeholder="Senha" name="senha"/>
+            <input type="password" placeholder="Senha" name="senhaVend"/>
           </div>
           <p class="social-text">Esqueceu a senha? <span style="color: #84C49A"> Cique aqui</span> </p>
           <input type="submit" value="Login" class="btn solid" />
@@ -34,30 +34,7 @@
             
           </div>
         </form>
-        <form action="#" method="POST" class="sign-up-form">
-          <h2 class="title">Registrar-se</h2>
-          <div class="input-field">
-            <i class="fas fa-user"></i>
-            <input type="text" placeholder="Nome do Usuário" name="nome"/>
-          </div>
-          <div class="input-field">
-          <i class="uil uil-postcard "></i>
-            <input type="text" placeholder="CPF" name="cpf"/>
-          </div>
-          <div class="input-field">
-            <i class="fas fa-envelope"></i>
-            <input type="email" placeholder="E-mail" name="email"/>
-          </div>
-          <div class="input-field">
-            <i class="fas fa-lock"></i>
-            <input type="password" placeholder="Senha" name="senha"/>
-          </div>
-          <input type="submit" class="btn" value="Sign up" />
-          <p class="social-text"></p>
-          <div class="social-media">
-          
-          </div>
-        </form>
+
       </div>
     </div>
 
@@ -94,15 +71,15 @@
     <?php
 include('php/conexao.php');
 
-if(isset($_POST['email']) || isset($_POST['senha'])){
+if(isset($_POST['emailVend']) || isset($_POST['senhaVend'])){
 
-  if(strlen($_POST['email']) == 0){
+  if(strlen($_POST['emailVend']) == 0){
     ?>
           <div class="msg-erro">
           Preencha todos os campos!
           </div>
         <?php
-  } else if(strlen($_POST['senha']) == 0){
+  } else if(strlen($_POST['senhaVend']) == 0){
     ?>
           <div class="msg-erro">
           Preencha todos os campos!
@@ -110,10 +87,10 @@ if(isset($_POST['email']) || isset($_POST['senha'])){
         <?php
   }else{
 
-      $email = $mysqli->real_escape_string($_POST['email']);
-      $senha = $mysqli->real_escape_string($_POST['senha']);
+      $emailVend = $mysqli->real_escape_string($_POST['emailVend']);
+      $senhaVend = $mysqli->real_escape_string($_POST['senhaVend']);
 
-      $sql_code = "SELECT * FROM tblVendedor WHERE email = '$email' AND senha = '$senha'";
+      $sql_code = "SELECT * FROM tblVendedor WHERE emailVend = '$emailVend' AND senhaVend = '$senhaVend'";
       $sql_query = $mysqli->query($sql_code) or die("Falha na exec do código SQL: ".$mysqli->error);
 
       $quantidade = $sql_query->num_rows;
@@ -127,12 +104,12 @@ if(isset($_POST['email']) || isset($_POST['senha'])){
         }
 
         $_SESSION['idVendedor'] = $usuario['idVendedor'];
-        $_SESSION['nome'] = $usuario['nome'];
+        $_SESSION['nomeVend'] = $usuario['nomeVend'];
         $_SESSION['cpfCnpj'] = $usuario['cpfCnpj'];
-        $_SESSION['email'] = $usuario['email'];
-        $_SESSION['senha'] = $usuario['senha'];
-        $_SESSION['imagem'] = $usuario['imagem'];
-        $_SESSION['endereco'] = $usuario['endereco'];
+        $_SESSION['emailVend'] = $usuario['emailVend'];
+        $_SESSION['senhaVend'] = $usuario['senhaVend'];
+        $_SESSION['imagemVend'] = $usuario['imagemVend'];
+        $_SESSION['enderecoVend'] = $usuario['enderecoVend'];
         $_SESSION['statusConta'] = $usuario['statusConta'];
         
         header("Location: indexVendedor.php");

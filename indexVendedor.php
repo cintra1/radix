@@ -77,11 +77,11 @@
 
                     <div class="circle__prod">
                        <!--<img class="img__Perfil" src="assets/img/bombom.jpg" alt="">-->
-                       <img class="img__Perfil" src="upload/<?php echo $_SESSION['imagem']; ?>" alt="">
+                       <img class="img__Perfil" src="upload/<?php echo $_SESSION['imagemVend']; ?>" alt="">
                     </div>
 
                     <div class="perfil__data">
-                        <h1 class="perfil__title">bem vindo <?php echo $_SESSION['nome']; ?> !</h1>
+                        <h1 class="perfil__title">bem vindo <?php echo $_SESSION['nomeVend']; ?> !</h1>
                         <p class="status">Status: <?php 
                         if($_SESSION['statusConta'] == 1){
                             ?> Conta Ativada <?php
@@ -90,8 +90,6 @@
                         }?></p>
 
                     </div>
-
-                    <a href="#" class="button .button__header__abrir button__abrir">ABRIR</a>
             </div>
         </section>    
     <div id="cima" >

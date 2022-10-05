@@ -15,18 +15,18 @@ Class Usuario
         }                
     }
 
-    public function atualizar($idVendedor,$nomeVend,$cpfCnpj,$emailVend,$senhaVend,$imagemVend,$enderecoVend)
+    public function atualizar($idCliente, $nome, $cpf, $email)
     {
         global $pdo;
       
-            $sql = $pdo->prepare("UPDATE tblVendedor SET nomeVend = '$nomeVend', cpfCnpj = '$cpfCnpj',
-             emailVend = '$emailVend', senhaVend = '$senhaVend', imagemVend = '$imagemVend', enderecoVend = '$enderecoVend'
-             WHERE idVendedor = '$idVendedor'");
+            $sql = $pdo->prepare("UPDATE tblCliente SET nome = '$nome', cpf = '$cpf',
+             email = '$email'
+             WHERE idCliente = '$idCliente'");
 
              $sql->execute();
            
         
-    } 
+    }
 }
     
 ?>

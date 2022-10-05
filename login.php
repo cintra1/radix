@@ -93,6 +93,8 @@ if(isset($_POST['email']) || isset($_POST['senha'])){
 
         $_SESSION['idCliente'] = $usuario['idCliente'];
         $_SESSION['nome'] = $usuario['nome'];
+        $_SESSION['email'] = $usuario['email'];
+        $_SESSION['cpf'] = $usuario['cpf'];
 
         header("Location: initial.php");
 

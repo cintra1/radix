@@ -37,20 +37,20 @@ include('php/protectVend.php');
         <h2 class="title">Home Vendedor > Editar Perfil </h2>
         <form action="#" method="POST" class="alter-form" enctype="multipart/form-data">
             <div class="caixa">
-                <input name="nome" type="text" id="nomeValue" value="<?php echo $_SESSION['nome']; ?>">
+                <input name="nomeVend" type="text" id="nomeValue" value="<?php echo $_SESSION['nomeVend']; ?>">
                 <input name="cpfCnpj" type="text" id="empValue" value="<?php echo $_SESSION['cpfCnpj']; ?>">
             </div>
             <div class="caixa__div">
-                <input name="email" type="text" id="creatorValue" value="<?php echo $_SESSION['email']; ?>">
-                <input name="endereco" type="text" id="dateValue" value="<?php echo $_SESSION['endereco']; ?>">
+                <input name="emailVend" type="text" id="creatorValue" value="<?php echo $_SESSION['emailVend']; ?>">
+                <input name="enderecoVend" type="text" id="dateValue" value="<?php echo $_SESSION['enderecoVend']; ?>">
             </div>
             <div class="caixa__alt">
-                <input name="senha" type="text" id="reqValue" value="<?php echo $_SESSION['senha']; ?>">
-                <input id='img' name="imagem" type="file" value="<?php echo $_SESSION['imagem']; ?>">
+                <input name="senhaVend" type="text" id="reqValue" value="<?php echo $_SESSION['senhaVend']; ?>">
+                <input id='img' name="imagemVend" type="file" value="<?php echo $_SESSION['imagemVend']; ?>">
                 <label for='img'>ALTERAR FOTO</label>
             </div>
             <div class="btns">
-                <input type="submit" class="btn3" value="Limpar Campos" name="sub"/>
+                <input type="submit" class="btn3" value="Limpar Campos" name="sub" style="visibility: hidden;"/>
                 <input type="submit" class="btn2" value="Alterar Dados" name="sub"/>
             </div>
         </form> 
@@ -68,27 +68,27 @@ require_once 'php/editarVendedor.php';
 if(isset($_POST['sub']))
 {
 
-    $extensao = strtolower(substr($_FILES['imagem']['name'], -4)); 
+    $extensao = strtolower(substr($_FILES['imagemVend']['name'], -4)); 
     $novo_nome = md5(time()) . $extensao;
     $diretorio = "upload/";
 
-    move_uploaded_file($_FILES['imagem']['tmp_name'], $diretorio.$novo_nome);
+    move_uploaded_file($_FILES['imagemVend']['tmp_name'], $diretorio.$novo_nome);
 
     $idVendedor = addslashes($_SESSION['idVendedor']);
-    $nome = addslashes($_POST['nome']);
+    $nomeVend = addslashes($_POST['nomeVend']);
     $cpfCnpj = addslashes($_POST['cpfCnpj']);
-    $email = addslashes($_POST['email']);
-    $senha = addslashes($_POST['senha']);
-    $imagem = $novo_nome;
-    $endereco = addslashes($_POST['endereco']);
+    $emailVend = addslashes($_POST['emailVend']);
+    $senhaVend = addslashes($_POST['senhaVend']);
+    $imagemVend = $novo_nome;
+    $enderecoVend = addslashes($_POST['enderecoVend']);
 
     //verificar se esta preenchido
-    if(!empty($nome) && !empty($cpfCnpj) && !empty($email) && !empty($senha) && !empty($imagem) && !empty($endereco))
+    if(!empty($nomeVend) && !empty($cpfCnpj) && !empty($emailVend) && !empty($senhaVend) && !empty($imagemVend) && !empty($enderecoVend))
     {
         $u->conectar("Radix","localhost","root","");
         if($u->msgErro == "")//ta ok
         {
-                if($u->atualizar($idVendedor,$nome,$cpfCnpj,$email,$senha,$imagem,$endereco))
+                if($u->atualizar($idVendedor,$nomeVend,$cpfCnpj,$emailVend,$senhaVend,$imagemVend,$enderecoVend))
                 {
                       ?>
                      <div id="msg-sucesso">
@@ -98,12 +98,11 @@ if(isset($_POST['sub']))
                 }
                 else
                 {
-                    $email = $mysqli->real_escape_string($_POST['email']);
-                    $senha = $mysqli->real_escape_string($_POST['senha']);
+                    $emailVend = $mysqli->real_escape_string($_POST['emailVend']);
+                    $senhaVend = $mysqli->real_escape_string($_POST['senhaVend']);
               
-                    $sql_code = "SELECT * FROM tblVendedor WHERE email = '$email' AND senha = '$senha'";
+                    $sql_code = "SELECT * FROM tblVendedor WHERE emailVend = '$emailVend' AND senhaVend = '$senhaVend'";
                     $sql_query = $mysqli->query($sql_code) or die("Falha na exec do código SQL: ".$mysqli->error);
-              
               
                     $usuario = $sql_query->fetch_assoc();
               
@@ -112,12 +111,12 @@ if(isset($_POST['sub']))
                       }
               
                       $_SESSION['idVendedor'] = $usuario['idVendedor'];
-                      $_SESSION['nome'] = $usuario['nome'];
+                      $_SESSION['nomeVend'] = $usuario['nomeVend'];
                       $_SESSION['cpfCnpj'] = $usuario['cpfCnpj'];
-                      $_SESSION['email'] = $usuario['email'];
-                      $_SESSION['senha'] = $usuario['senha'];
-                      $_SESSION['imagem'] = $usuario['imagem'];
-                      $_SESSION['endereco'] = $usuario['endereco'];
+                      $_SESSION['emailVend'] = $usuario['emailVend'];
+                      $_SESSION['senhaVend'] = $usuario['senhaVend'];
+                      $_SESSION['imagemVend'] = $usuario['imagemVend'];
+                      $_SESSION['enderecoVend'] = $usuario['enderecoVend'];
               
                       
                       header("Location: indexVendedor.php");
