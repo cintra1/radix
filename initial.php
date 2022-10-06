@@ -266,7 +266,7 @@ if ($sql->rowCount() > 0) {
                 while ($dado = $conn->fetch_array()) {
 
                     $idProduto = $dado["idProduto"];
-                    $consultaVend = "SELECT nome as nomeVend FROM tblVendedor as v inner join tblProduto as p on v.idVendedor = p.idVendedor where idProduto = $idProduto";
+                    $consultaVend = "SELECT nomeVend as nomeVend FROM tblVendedor as v inner join tblProduto as p on v.idVendedor = p.idVendedor where idProduto = $idProduto";
 
                     $connVend = $mysqli->query($consultaVend) or die($mysqli->error);
                 ?>
@@ -307,7 +307,7 @@ if ($sql->rowCount() > 0) {
                 while ($dado3 = $conn3->fetch_array()) {
 
                     $idProduto = $dado3["idProduto"];
-                    $consultaVend2 = "SELECT nome as nomeVend FROM tblVendedor as v inner join tblProduto as p on v.idVendedor = p.idVendedor where idProduto = $idProduto";
+                    $consultaVend2 = "SELECT nomeVend as nomeVend FROM tblVendedor as v inner join tblProduto as p on v.idVendedor = p.idVendedor where idProduto = $idProduto";
 
                     $connVend2 = $mysqli->query($consultaVend2) or die($mysqli->error);
                 ?>

@@ -15,16 +15,17 @@ Class Usuario
         }                
     }
 
-    public function cadastrar($nome, $detalhe, $num)
+    public function cadastrar($nomeCupom, $detalhe, $num, $idCliente)
     {
         global $pdo;
             
-            $sql = $pdo->prepare("INSERT INTO tblCupom (nome, detalhe, num) 
-                VALUES (:n, :p, :f)");
+            $sql = $pdo->prepare("INSERT INTO tblCupom (nomeCupom, detalhe, num, idCliente) 
+                VALUES (:n, :p, :f, :d)");
             
-             $sql->bindValue(":n",$nome);
+             $sql->bindValue(":n",$nomeCupom);
              $sql->bindValue(":p",$detalhe);
              $sql->bindValue(":f",$num);
+             $sql->bindValue(":d",$idCliente);
 
              $sql->execute();
            

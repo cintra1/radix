@@ -124,7 +124,7 @@ $conn = $mysqli->query($consulta) or die($mysqli->error);
                 while ($dado = $conn->fetch_array()) {
 
                     $idProduto = $dado["idProduto"];
-                    $consultaVend = "SELECT nome as nomeVend FROM tblVendedor as v inner join tblProduto as p on v.idVendedor = p.idVendedor where idProduto = $idProduto";
+                    $consultaVend = "SELECT nomeVend as nomeVend FROM tblVendedor as v inner join tblProduto as p on v.idVendedor = p.idVendedor where idProduto = $idProduto";
 
                     $connVend = $mysqli->query($consultaVend) or die($mysqli->error);
                 ?>

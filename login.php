@@ -57,6 +57,8 @@
 
     <?php
 include('php/conexao.php');
+require_once 'php/adicionarCupom.php';
+$u = new Usuario;
 
 if(isset($_POST['email']) || isset($_POST['senha'])){
 
@@ -96,7 +98,25 @@ if(isset($_POST['email']) || isset($_POST['senha'])){
         $_SESSION['email'] = $usuario['email'];
         $_SESSION['cpf'] = $usuario['cpf'];
 
-        header("Location: initial.php");
+        $idCliente =  $usuario['idCliente'];
+
+        $sql_code2 = "SELECT * FROM tblCupom WHERE idCliente = $idCliente";
+        $sql_query2 = $mysqli->query($sql_code2) or die("Falha na exec do código SQL: ".$mysqli->error);
+
+       $quant = $sql_query2->num_rows;
+
+       $nomeCupom = 'BEMVINDO10';
+       $detalhe = 'Cupom de R$ 10,00 para todos os novos usuários de nosso aplicativo, aproveite!';
+       $num = '10';
+
+        if($quant == 0){
+          $u->conectar("Radix","localhost","root","");
+          $u->cadastrar($nomeCupom, $detalhe, $num, $idCliente);
+          header("Location: initial.php");
+        }else{
+          header("Location: initial.php");
+        }
+        
 
       }else{
         ?>

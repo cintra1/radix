@@ -9,7 +9,7 @@ include('php/protectAdm.php');
     <meta name="viewport" content="widht=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/styleCupons.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/stylesCupom.css">
     <link rel="icon" type="image/x-icon" href="assets/img/icon.ico">
     <title>Radix</title>
 </head>
@@ -38,9 +38,12 @@ include('php/protectAdm.php');
     <div class="caixa__grande">
         <h2 class="title">Emitir Cupom</h2>
         <form action="#" method="POST" class="alter-form" enctype="multipart/form-data">
+            <div class="caixa__div1">
+                <input type="text" id="idValue" placeholder="ID do Cliente" name="idCliente">
+            </div>
             <div class="caixa__div">
-                <input type="text" id="creatorValue" placeholder="Nome Cupom" name="nome">
-                <input type="text" id="dateValue" placeholder="Cupom" name="num">
+                <input type="text" id="creatorValue" placeholder="Cupom" name="nomeCupom">
+                <input type="text" id="dateValue" placeholder="Desconto" name="num">
             </div>
             <div>
                 <input type="text" id="detValue" placeholder="Detalhes sobre o Cupom" name="detalhe">
@@ -57,16 +60,17 @@ include('php/protectAdm.php');
     //verificar se a pessoa clicou no btnCadastrar
     if (isset($_POST['sub'])) {
 
-        $nome = addslashes($_POST['nome']);
+        $nomeCupom = addslashes($_POST['nomeCupom']);
         $detalhe = addslashes($_POST['detalhe']);
         $num = addslashes($_POST['num']);
+        $idCliente= addslashes($_POST['idCliente']);
 
         //verificar se esta preenchido
-        if (!empty($nome) && !empty($detalhe)) {
+        if (!empty($nomeCupom) && !empty($detalhe) && !empty($num) && !empty($idCliente)) {
             $u->conectar("Radix", "localhost", "root", "");
             if ($u->msgErro == "") //ta ok
             {
-                if ($u->cadastrar($nome, $detalhe, $num)) {
+                if ($u->cadastrar($nomeCupom, $detalhe, $num, $idCliente)) {
     ?>
                     <div id="msg-sucesso">
                         Cadastrado com sucesso!
