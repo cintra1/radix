@@ -39,7 +39,7 @@ $sqlCupom = $pdo->query("SELECT num as desconto FROM tblCupom WHERE idCupom = $i
 if ($sqlCupom->rowCount() > 0) {
     $soma2 = "SELECT SUM(p.preco*i.qtde)-c.num AS total FROM tblCupom as c inner join tblCliente as cli on c.idCliente = cli.idCliente inner join tblItem as i on cli.idCliente = i.idCliente inner join tblProduto as p on i.idProduto = p.idProduto where statusItem <> 0 and cli.idCliente = $idCliente and c.idCupom = $idCupom";
     $s2 = $mysqli->query($soma2) or die($mysqli->error);
-}else{
+} else {
     $soma2 = "SELECT SUM(p.preco*i.qtde) AS total FROM tblProduto as p inner join tblItem as i on p.idProduto = i.idProduto where statusItem <> 0 and idCliente = $idCliente";
     $s2 = $mysqli->query($soma2) or die($mysqli->error);
 }
@@ -66,11 +66,13 @@ if ($sql->rowCount() > 0) {
                 'idVendedor' =>  $value2['idVendedor'],
                 'qtde' => $value['qtde'],
                 'preco' => $value['preco'],
-                'nomeProd' => $value['nomeProd']
+                'nomeProd' => $value['nomeProd'],
+                'statusEntrega' => 1
             )
         );
     }
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -206,7 +208,7 @@ if ($sql->rowCount() > 0) {
                                 <option value="0">Escolha seu Cupom </option>
                             <?php } else { ?>
                                 <option value="0"> <?php while ($dado5 = $c2->fetch_array()) {
-                                    echo $dado5['n']; ?> <?php } ?> (Selecionado) </option>
+                                                        echo $dado5['n']; ?> <?php } ?> (Selecionado) </option>
                             <?php } ?>
 
                             <?php
@@ -239,7 +241,7 @@ if ($sql->rowCount() > 0) {
                             <?php if ($sqlCupom->rowCount() > 0) { ?>
                                 - R$ <?php while ($dado3 = $c->fetch_array()) {
                                             echo number_format($dado3['desconto'], 2, ",", "."); ?> <?php }
-                                                                                                        } else { ?>
+                                                                                            } else { ?>
                                 Nenhum cupom adicionado<?php } ?>
                         </td>
                     </tr>
@@ -324,15 +326,30 @@ if ($sql->rowCount() > 0) {
         <script src="assets/js/mainInitial.js"></script>
 
         <?php
+        
         if (isset($_POST['sub'])) {
+            foreach ($_SESSION['dados'] as $produtos1) {
+                $insert1 = $pdo->prepare("
+        INSERT INTO tblEntrega (statusEntrega,idCliente,idItem,idVendedor) VALUES (?,?,?,?)");
+                $insert1->bindParam(1, $produtos1['statusEntrega']);
+                $insert1->bindParam(2, $produtos1['idCliente']);
+                $insert1->bindParam(3, $produtos1['idItem']);
+                $insert1->bindParam(4, $produtos1['idVendedor']);
+                $insert1->execute();
+                $bol = true;
+            }
+
             foreach ($_SESSION['dados'] as $produtos) {
                 $insert = $pdo->prepare("
-        UPDATE tblItem SET statusItem = 0 WHERE idCliente = ?;");
+                UPDATE tblItem SET statusItem = 0 WHERE idCliente = ?;");
                 $insert->bindParam(1, $produtos['idCliente']);
                 $insert->execute();
             }
+
+            header("Location: carrinho.php");
         }
 
+        
         ?>
 
         <?php
