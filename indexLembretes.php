@@ -112,50 +112,6 @@
         <?php } ?>
     </div>
 
-        <!--=============== FOOTER ===============-->
-        <footer class="footer section">
-            <div class="footer__container container grid">
-                <div class="footer__content1">
-                    <a href="index.html" class="nav__logo"> <i class="fa fa-leaf"></i> Radix </a>
-                    
-                </div>
-
-                <div class="footer__content">
-                    <a href="#" class="footer__logo">EMPRESA</a>
-                    <p class="footer__description">A Radix é o seu supermercado orgânico e saudável, que conecta você ao pequeno produtor. Com entrega rápida e otimizada.</p>
-                </div>
-
-                <div class="footer__content">
-                    <h1 class="footer__title">INTEGRANTES</h1>
-                    <ul class="footer__links">
-                        <li><a href="#" class="footer__link">Mateus Cintra </a></li>
-                        <li><a href="#" class="footer__link">Diego Carvalho</a></li>
-                        <li><a href="#" class="footer__link">Felipe Kurt</a></li>
-                        <li><a href="#" class="footer__link">Bruna Amorin</a></li>
-                        <li><a href="#" class="footer__link">Leonardo Moura</a></li>
-                    </ul>
-                </div>
-
-               
-
-                <div class="footer__content">
-                    <h3 class="footer__title"></h3>
-                    <ul class="footer__links">
-                        <li><a href="#" class="footer__link"></a></li>
-                        <li><a href="#" class="footer__link"></a></li>
-                        <li><a href="#" class="footer__link"></a></li>
-                    </ul>
-                </div>
-
-                <div class="footer__social">
-                    <a href="#" class="footer__social-link"><i class='bx bxl-facebook-circle '></i></a>
-                    <a href="#" class="footer__social-link"><i class='bx bxl-twitter'></i></a>
-                    <a href="#" class="footer__social-link"><i class='bx bxl-instagram-alt'></i></a>
-                </div>
-            </div>
-           
-        </footer>
-
         <!--=============== MAIN JS ===============-->
         <script src="assets/js/main.js"></script>
     </body>

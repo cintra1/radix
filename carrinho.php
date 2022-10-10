@@ -37,13 +37,12 @@ $idCupom = $_GET['idCupom'];
 $sqlCupom = $pdo->query("SELECT num as desconto FROM tblCupom WHERE idCupom = $idCupom");
 
 if ($sqlCupom->rowCount() > 0) {
-    $soma2 = "SELECT SUM(p.preco*i.qtde)-c.num AS total FROM tblCupom as c inner join tblCliente as cli on c.idCliente = cli.idCliente inner join tblItem as i on cli.idCliente = i.idCliente inner join tblProduto as p on i.idProduto = p.idProduto where statusItem <> 0 and cli.idCliente = $idCliente and c.idCupom = $idCupom";
+    $soma2 = "SELECT GREATEST(SUM(p.preco*i.qtde)-c.num, 0) AS total FROM tblCupom as c inner join tblCliente as cli on c.idCliente = cli.idCliente inner join tblItem as i on cli.idCliente = i.idCliente inner join tblProduto as p on i.idProduto = p.idProduto where statusItem <> 0 and cli.idCliente = $idCliente and c.idCupom = $idCupom";
     $s2 = $mysqli->query($soma2) or die($mysqli->error);
 } else {
     $soma2 = "SELECT SUM(p.preco*i.qtde) AS total FROM tblProduto as p inner join tblItem as i on p.idProduto = i.idProduto where statusItem <> 0 and idCliente = $idCliente";
     $s2 = $mysqli->query($soma2) or die($mysqli->error);
 }
-
 
 
 $cupom = "SELECT num as desconto FROM tblCupom WHERE idCupom = $idCupom";

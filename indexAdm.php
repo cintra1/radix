@@ -1,3 +1,20 @@
+<?php
+include("php/conexao.php");
+require('php/connection.php');
+include('php/protectADM.php');
+
+$idVendedor = $_SESSION['idVendedor'];
+
+
+$soma = "SELECT SUM(p.preco*i.qtde) as saldo from tblEntrega as e inner join tblItem as i on e.idItem = i.idItem inner join tblProduto as p on i.idProduto = p.idProduto inner join tblVendedor as v on p.idVendedor = v.idVendedor;";
+$s = $mysqli->query($soma) or die($mysqli->error);
+
+
+$contas = "SELECT COUNT(idCliente) as total from tblCliente";
+$c = $mysqli->query($contas) or die($mysqli->error);
+
+
+?>
 <!DOCTYPE html>
     <html lang="en">
     <head>
@@ -12,7 +29,7 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
         <!--=============== CSS ===============-->
-        <link rel="stylesheet" href="assets/css/stylesAdm.css">
+        <link rel="stylesheet" href="assets/css/stylesAdministracao.css">
 
         <!-- font awesome cdn link  -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
@@ -23,6 +40,55 @@
         <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
 
         <title>Radix</title>
+
+        
+    <!--Load the AJAX API-->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', {
+            'packages': ['corechart']
+        });
+
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+
+            // Create the data table.
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Topping');
+            data.addColumn('number', 'Slices');
+            <?php
+            include("php/conexao.php");
+            require('php/connection.php');
+
+            $sql = "SELECT v.nomeVend as Vendedor, count(idEntrega) as Vendas FROM tblVendedor v, tblEntrega e WHERE v.idVendedor = e.idVendedor GROUP BY v.idVendedor;";
+
+            $buscar = mysqli_query($mysqli,$sql);
+
+            while($dados = mysqli_fetch_array($buscar)){
+                $vendas = $dados['Vendas'];
+                $nomeVend = $dados['Vendedor'];
+            
+            ?>
+            data.addRows([
+                ['<?php echo $nomeVend?>', <?php echo $vendas ?>],
+            ]);
+
+            <?php } ?>
+
+            // Set chart options
+            var options = {
+                'width': 380,
+                'height': 185,
+                colors: ['#076D61', '#26A69A', '#227587', '#78E389', '#9AC2AB'],
+
+            };
+
+            // Instantiate and draw our chart, passing in some options.
+            var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+            chart.draw(data, options);
+        }
+    </script>
     </head>
     <body>
         <!--=============== HEADER ===============-->
@@ -58,27 +124,26 @@
         
     <div class="caixa container2">
         <div class="caixa__grid">
-            <h2 class="title__adm">Vendas feitas no mês</h2>
+            <h2 class="title__adm">Vendas</h2>
             <div id="um" class="box">
-                <p>Vendas</p>
-                <h1>R$ 350,00</h1>
-                <p>+8%</p>
-                <h2>Pedidos abertos</h2>
+                <p>Vendas Totais no aplicativo</p>
+                <h1>R$ <?php while ($dado2 = $s->fetch_array()) {
+                                    echo number_format($dado2['saldo'], 2, ",", "."); ?> <?php } ?></h1>
             </div>
         </div>
 
         <div class="caixa__grid">
             <h2 class="title__adm">Contas no APP</h2>
             <div class="box">
-                <p>Engajamento</p>
-                <h1>19%</h1>
-                <p>-11%</p>
-                <h2>Pedidos finalizads</h2>
+                <p>Total de clientes cadastrados</p>
+                <h1><?php while ($dado = $c->fetch_array()) {
+                                    echo $dado['total']; ?> <?php } ?></h1>
             </div>
         </div>
 
         <div class="caixa__grid">
             <h2 class="title__adm">Vendedores com mais vendas</h2>
+            <div id="chart_div"></div>
         </div>
     </div>
 
@@ -94,7 +159,7 @@
 
         <div class="caixa__grid">
             <div class="box__baixo" id="controle">
-                <a href="indexPagamentos.html">
+                <a href="indexPagamentos.php">
                     <h2>Controle de Gastos</h2>
                 </a>
             </div>
@@ -117,63 +182,12 @@
                 </a>
             </div>
             <div class="box__pequena" id="lembretes">
-                <a href="indexLembretes.html">
+                <a href="indexLembretes.php">
                     <h2>Lembretes</h2>
                 </a>
             </div>
         </div>
     </div>
-
-
-
-        <!--=============== FOOTER ===============-->
-        <footer class="footer section">
-            <div class="footer__container container grid">
-                <div class="footer__content1">
-                    <a href="index.html" class="nav__logo"> <i class="fa fa-leaf"></i> Radix </a>
-                    
-                </div>
-
-                <div class="footer__content">
-                    <a href="#" class="footer__logo">EMPRESA</a>
-                    <p class="footer__description">A Radix é o seu supermercado orgânico e saudável, que conecta você ao pequeno produtor. Com entrega rápida e otimizada.</p>
-                </div>
-
-                <div class="footer__content">
-                    <h1 class="footer__title">INTEGRANTES</h1>
-                    <ul class="footer__links">
-                        <li><a href="#" class="footer__link">Mateus Cintra </a></li>
-                        <li><a href="#" class="footer__link">Diego Carvalho</a></li>
-                        <li><a href="#" class="footer__link">Felipe Kurt</a></li>
-                        <li><a href="#" class="footer__link">Bruna Amorin</a></li>
-                        <li><a href="#" class="footer__link">Leonardo Moura</a></li>
-                    </ul>
-                </div>
-
-               
-
-                <div class="footer__content">
-                    <h3 class="footer__title"></h3>
-                    <ul class="footer__links">
-                        <li><a href="#" class="footer__link"></a></li>
-                        <li><a href="#" class="footer__link"></a></li>
-                        <li><a href="#" class="footer__link"></a></li>
-                    </ul>
-                </div>
-
-                <div class="footer__social">
-                    <a href="#" class="footer__social-link"><i class='bx bxl-facebook-circle '></i></a>
-                    <a href="#" class="footer__social-link"><i class='bx bxl-twitter'></i></a>
-                    <a href="#" class="footer__social-link"><i class='bx bxl-instagram-alt'></i></a>
-                </div>
-            </div>
-           
-        </footer>
-
-        <!--=============== SCROLL UP ===============-->
-        <a href="#" class="scrollup" id="scroll-up">
-            <i class='bx bx-up-arrow-alt scrollup__icon'></i>
-        </a>
 
         <!--=============== MAIN JS ===============-->
         <script src="assets/js/main.js"></script>

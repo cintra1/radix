@@ -19,6 +19,10 @@ $consultaF = "SELECT * FROM tblEntrega as e inner join tblItem as i on e.idItem 
 $conF = $pdo->query($consultaF) or die($mysqli->error);
 $connF = $mysqli->query($consultaF) or die($mysqli->error);
 
+$consultaSem = "SELECT * FROM tblEntrega as e inner join tblItem as i on e.idItem = i.idItem inner join tblProduto as p on i.idProduto = p.idProduto WHERE e.idVendedor = $idVendedor and statusEntrega = 1";
+
+                    $conS= $pdo->query($consultaSem) or die($mysqli->error);
+                    $connS = $mysqli->query($consultaSem) or die($mysqli->error);
 
 ?>
 <!DOCTYPE html>
@@ -92,6 +96,7 @@ $connF = $mysqli->query($consultaF) or die($mysqli->error);
         <div class="swiper-wrapper">
             <!-- Slides -->
             <?php
+             if ($conS->rowCount() > 0) {
                 while ($n1 = $nn->fetch_array()) {  
 
                     $idCliente = $n1['idCliente'];
@@ -140,13 +145,12 @@ $connF = $mysqli->query($consultaF) or die($mysqli->error);
                             </div>
                         </div>
 
-                <?php }
-                } else { ?>
+                <?php } } } } else { ?>
                 <div class="center">
                     <img src="assets/img/sem-ped.svg" alt="">
                     <p>Você está sem pedidos por enquanto,<br> aguarde que os clientes estão escolhendo as frutas e legumes.</p>
                 </div>
-            <?php }} ?>
+            <?php } ?>
         </div>
 
         <div class="swiper-pagination"></div>
@@ -229,7 +233,7 @@ $connF = $mysqli->query($consultaF) or die($mysqli->error);
     <!--=============== MAIN JS ===============-->
 
 
-    <script src="assets/js/pedi.js"></script>
+    <script src="assets/js/mainPedido.js"></script>
 
     <script src="assets/js/swiper-bundle.min11.js"></script>
 </body>

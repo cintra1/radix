@@ -568,7 +568,7 @@ footer .fa-leaf{
 }
 
 .perfil__data{
-  margin-left: 3rem;
+  text-align: center;
 }
 
 .perfil__selo{
@@ -1207,9 +1207,9 @@ footer .fa-leaf{
 }
 
 .caixa{
-  height: 17rem;
+  height: 16rem;
   width: 95%;
-  margin-bottom: 1vw;
+  margin-bottom: 2rem;
   border-radius: 1rem;
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
   display: grid;
@@ -1217,22 +1217,59 @@ footer .fa-leaf{
   margin-left: 2rem;
 }
 
+.caixa2{
+  height: 12rem;
+  width: 95%;
+  margin-bottom: 1vw;
+  border-radius: 1rem;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
+  display: grid;
+  grid-template-columns: repeat(3, 38% 38% 23%);
+  margin-left: 2rem;
+  margin-bottom: 3rem;
+}
+
+
+
+
 .caixa__baixo{
   height: 15rem;
   width: 97%;
   margin-bottom: 1vw;
   border-radius: 1rem;
   display: grid;
-  grid-template-columns: repeat(3, 33% 33% 45%);
+  grid-template-columns: repeat(3, 33%);
 }
 
+.caixa__grid2{
+  margin-top: 35%;
+  margin-left: 13%;
+}
 
 #um{
   margin-left: 1.5rem;
 }
+
+#pad{
+  margin-left: 1.5rem;
+}
+
+
 .box{
+  width: 80%;
+  height: 43%;
+  display: inline-block;
+  margin: 1vw 1vw;
+  border-radius: 1rem;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.30);
+  padding-top: 1.5rem;
+  padding-left: 1.5rem;
+  margin-top: 2rem;
+}
+
+.box__second{
   width: 93%;
-  height: 69%;
+  height: 7rem;
   display: inline-block;
   margin: 1vw 1vw;
   border-radius: 1rem;
@@ -1248,6 +1285,29 @@ footer .fa-leaf{
 
 .box p{
   font-size: 0.9rem;
+}
+
+#um{
+  background-color: #E6FAFE;
+}
+
+#dois{
+  background-color: #D3FFE5;
+}
+
+.title__box{
+  font-weight: 600 !important;
+  opacity: 100%;
+}
+
+.title__box2{
+  font-weight: 600 !important;
+  opacity: 100%;
+}
+
+.title__box2 i{
+  color: #70C28D;
+  font-size: 1.7rem;
 }
 
 .box__baixo{

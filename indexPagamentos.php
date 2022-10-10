@@ -128,7 +128,7 @@ $s3 = $mysqli->query($somaN) or die($mysqli->error);
                 </div>
             </div>
 
-            <div class="box__direita">
+            <div class="box__direita" style="margin-bottom: 1.2rem">
                 <div>
                     <h2 class="title__direita">Despesas Pendentes</h2>
                     <h2 class="valor__direita">R$ <?php while ($dado = $s3->fetch_array()) {

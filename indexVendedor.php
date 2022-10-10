@@ -122,13 +122,17 @@ include('php/protectVend.php');
             </div>
         </a>
 
+        <a href="selo.html">
         <div id="cinco">
             <h2>Selo de Produtor</h2>
         </div>
+        </a>
 
+        <a href="gastosVendedor.php">
         <div id="seis">
             <h2>Gastos semanais</h2>
         </div>
+        </a>
     </div>
 
     <div class="avaliações">
