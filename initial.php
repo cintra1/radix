@@ -57,6 +57,7 @@ if ($sql->rowCount() > 0) {
     }
 }
 
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -72,7 +73,7 @@ if ($sql->rowCount() > 0) {
     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
 
     <!--=============== CSS ===============-->
-    <link rel="stylesheet" href="assets/css/styleInitial.css">
+    <link rel="stylesheet" href="assets/css/styleInitialMain.css">
 
     <!-- font awesome cdn link  -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
@@ -110,8 +111,8 @@ if ($sql->rowCount() > 0) {
                     <div></div>
                     <form action="" class="search-form">
                         <input id="enter" type="search" placeholder="busque por produtor ou item..." id="search-box">
-                        <a href="search.html">
-                            <label for="search-box" class="fas fa-search"></label></a>
+                        <button onclick="searchData()">
+                            <label for="search-box" class="fas fa-search"></label></button>
                     </form>
 
                     <div class="nav__icon">
@@ -181,36 +182,36 @@ if ($sql->rowCount() > 0) {
         <section class="home" id="home">
             <div class="svg">
                 <div class="initial__container grid">
-                <div class="content">
+                    <div class="content">
                         <div class="fist">
-                        <h3><span>orgânicos frescos<br></span>  na sua mão com até<br> 50% de economia</h3>
-                        <p>Nós levamos seu orgânico com qualidade radix que você já conhece, sem <br>
-                            taxa de adesão e com frete grátis. Incrível, não?</p>
+                            <h3><span>orgânicos frescos<br></span> na sua mão com até<br> 50% de economia</h3>
+                            <p>Nós levamos seu orgânico com qualidade radix que você já conhece, sem <br>
+                                taxa de adesão e com frete grátis. Incrível, não?</p>
                         </div>
-                            <div class="inputs">
-                                <i class="material-icons">place</i>
-                                <input type="text" placeholder="Vila Mazzei, São Paulo" id="search_address">
-                                <i class="uil uil-angle-down"  id="search_arrow"></i>
-                                <i class="uil uil-shopping-basket"></i>
-                                <select name="" id="" class="search2">
-                                    <option value="">Conheça nossas cestas...</option>
-                                    <option value="">Cesta Júnior</option>
-                                    <option value="">Cesta Normal</option>
-                                    <option value="">Cesta Jumbo</option>
-                                </select>
-                                <div class="location__box" id="location__box">
-                                    <div class="loc">
-                                        <h3>
-                                            <i class="uil uil-compass"></i>
-                                            Detectar Localização Atual
-                                        </h3>
-                                        <p>Usando GPS</p>
-                                        <hr>
-                                    </div>
+                        <div class="inputs">
+                            <i class="material-icons">place</i>
+                            <input type="text" placeholder="Vila Mazzei, São Paulo" id="search_address">
+                            <i class="uil uil-angle-down" id="search_arrow"></i>
+                            <i class="uil uil-shopping-basket"></i>
+                            <select name="" id="" class="search2">
+                                <option value="">Conheça nossas cestas...</option>
+                                <option value="">Cesta Júnior</option>
+                                <option value="">Cesta Normal</option>
+                                <option value="">Cesta Jumbo</option>
+                            </select>
+                            <div class="location__box" id="location__box">
+                                <div class="loc">
+                                    <h3>
+                                        <i class="uil uil-compass"></i>
+                                        Detectar Localização Atual
+                                    </h3>
+                                    <p>Usando GPS</p>
+                                    <hr>
                                 </div>
                             </div>
+                        </div>
                     </div>
-                    <div class="boxin"  style="display: none">
+                    <div class="boxin" style="display: none">
                         <select name="" id="">
                             <option value="">Escolha uma cesta...</option>
                             <option value="">Cesta Júnior</option>
@@ -428,7 +429,23 @@ if ($sql->rowCount() > 0) {
 
         <script src="assets/js/mainInitial.js"></script>
 
+        <script>
+            var search = document.getElementById('enter');
+
+            search.addEventListener("keydown", function(event) {
+                if (event.key === "Enter") {
+                    searchData();
+                }
+            });
+
+            function searchData() {
+                window.location = 'pesquisar.php?search=' + search.value;
+            }
+
         
+        </script>
+
+
 
 </body>
 

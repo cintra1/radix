@@ -456,12 +456,15 @@ footer .fa-leaf{
   background-color: #F7F7F7;
 }
 
-.header .search-form a {
+.header .search-form button {
   font-size: 1.3rem;
   margin-right: 1rem;
   cursor: pointer;
   color: var(--cor-texto);
   transition: 1ms !important;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
 }
 
 .header .search-form a:hover {

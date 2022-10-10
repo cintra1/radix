@@ -4,8 +4,6 @@ require('php/connection.php');
 include('php/protectVend.php');
 
 
-$idVendedor = $_SESSION['idVendedor'];
-
 $consulta = "SELECT feedback,nome from tblFeedback as f inner join tblCliente as c on f.idCliente = c.idCliente;";
 
 $con = $pdo->query($consulta) or die($mysqli->error);

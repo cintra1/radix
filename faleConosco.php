@@ -48,26 +48,6 @@ include('php/protect.php');
 
             <a href="app.html" class="button button__header">LOGOUT</a>
         </nav>
-
-        <form action="" class="search-form">
-
-            <input type="search" placeholder="Busque por item ou loja" id="search-box">
-            <a href="search.html" for="search-box" class="fas fa-search"></a>
-        </form>
-
-
-        <form action="" class="login-form">
-            <h3>login</h3>
-            <input type="email" placeholder="E-mail ou usuário" class="box">
-            <input type="password" placeholder="Digite sua senha" class="box">
-            <div class="remember">
-                <input type="checkbox" name="" id="remember-me">
-                <label for="remember-me">Lembrar-me</label>
-            </div>
-            <input type="submit" value="ENTRAR" class="btn button">
-            <p class="senha">Esqueceu a senha? <a href="#">Clique aqui</a></p>
-            <p class="conta">Não tem uma conta? <a href="#">Crie uma</a></p>
-        </form>
     </header>
 
     <!--=============== BODY ===============-->

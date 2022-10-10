@@ -150,7 +150,7 @@ $c = $mysqli->query($contas) or die($mysqli->error);
     <div class="caixa__baixo container2">
         <div class="caixa__grid">
                 <div class="box__baixo" id="vendedores">
-                    <a href="vendas.html">
+                    <a href="vendas.php">
                         <h2>Vendedores ativos</h2>
                     </a>
                 </div>
