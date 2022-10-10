@@ -177,7 +177,7 @@ $c = $mysqli->query($contas) or die($mysqli->error);
                 </a>
             </div>
             <div class="box__pequena" id="feed">
-                <a href="feedback.html">
+                <a href="feedback.php">
                     <h2>Feedbacks</h2>
                 </a>
             </div>
