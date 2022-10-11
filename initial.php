@@ -14,6 +14,7 @@ if (isset($_POST['sub'])) {
         $insert->execute();
         $bol = true;
     }
+    
     header("Location: carrinho.php");
 }
 
@@ -73,7 +74,7 @@ if ($sql->rowCount() > 0) {
     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
 
     <!--=============== CSS ===============-->
-    <link rel="stylesheet" href="assets/css/styleInitialMain.css">
+    <link rel="stylesheet" href="assets/css/styleInitialM.css">
 
     <!-- font awesome cdn link  -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
@@ -267,15 +268,16 @@ if ($sql->rowCount() > 0) {
                 while ($dado = $conn->fetch_array()) {
 
                     $idProduto = $dado["idProduto"];
-                    $consultaVend = "SELECT nomeVend as nomeVend FROM tblVendedor as v inner join tblProduto as p on v.idVendedor = p.idVendedor where idProduto = $idProduto";
+                    $consultaVend = "SELECT nomeVend,v.idVendedor FROM tblVendedor as v inner join tblProduto as p on v.idVendedor = p.idVendedor where idProduto = $idProduto";
 
                     $connVend = $mysqli->query($consultaVend) or die($mysqli->error);
                 ?>
                     <div class="prod">
                         <img src="upload/<?php echo $dado["foto"]; ?>" alt="">
                         <div class="des">
-                            <span>Produtor: <?php while ($dado2 = $connVend->fetch_array()) {
-                                                echo $dado2['nomeVend']; ?></span>
+                        <?php while ($dado2 = $connVend->fetch_array()) { ?>
+                        <a href="sVendedor.php?idVendedor=<?php echo $dado2["idVendedor"]; ?>"><span>Produtor: <?php
+                                                echo $dado2['nomeVend']; ?></span></a>
                             <h5><?php echo $dado["nomeProd"]; ?></h5><?php } ?></h2>
                         <div class="star">
                             <i class="fas fa-star"></i>

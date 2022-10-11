@@ -14,6 +14,11 @@ if (isset($_POST['sub'])) {
 $con = $pdo->query($consulta) or die($mysqli->error);
 $conn = $mysqli->query($consulta) or die($mysqli->error);
 
+$idProduto = $value["idProduto"];
+$consultaVend = "SELECT nomeVend as nomeVend FROM tblVendedor as v inner join tblProduto as p on v.idVendedor = p.idVendedor where idProduto = $idProduto";
+
+$connVend = $mysqli->query($consultaVend) or die($mysqli->error);
+
 
 ?>
 <!DOCTYPE html>
@@ -30,7 +35,7 @@ $conn = $mysqli->query($consulta) or die($mysqli->error);
     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
 
     <!--=============== CSS ===============-->
-    <link rel="stylesheet" href="assets/css/styleSProd.css">
+    <link rel="stylesheet" href="assets/css/stylesSProduto.css">
 
     <!-- font awesome cdn link  -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
@@ -105,6 +110,8 @@ $conn = $mysqli->query($consulta) or die($mysqli->error);
 
         <div class="single-pro-details">
             <h4><?php echo $value['nomeProd']; ?></h4>
+            <a href="sVendedor.php?idVendedor=<?php echo $value["idVendedor"]; ?>"><span>Produtor: <?php while ($dado2 = $connVend->fetch_array()) {
+                                                echo $dado2['nomeVend']; ?></span><?php } ?></a>
             <h2>R$ <?php echo number_format($value["preco"], 2, ",", "."); ?></h2>
             <input type="number" value="1" name="qtde" min="0">
             <input type="submit" class="normal btn" name="sub" value="Adionar no carrinho">
