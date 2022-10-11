@@ -118,6 +118,12 @@ main{
 }
 
 
+.box__img img{
+  width: 10rem;
+  height: 10rem;
+}
+
+
 .title{
     width: 100%;
 }
@@ -295,7 +301,7 @@ main{
 
 .btn4 {
   position: absolute;
-  margin-top: -0.5%;
+  margin-top: -2%;
   margin-left: 17.5% !important;
   padding-top: 0.15rem;
   background-color:#FFFFFF;

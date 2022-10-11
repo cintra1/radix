@@ -1062,7 +1062,8 @@ input[type="search"]::-webkit-search-results-decoration {
 }
 
 .produtos1 .prod img{
-  width: 100%;
+  width: 15.5rem;
+  height: 15.5rem;
   border-radius: 20px;
 }
 
