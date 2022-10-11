@@ -25,7 +25,7 @@ $idCliente = $_SESSION['idCliente'];
 
 $sql = $pdo->query("SELECT * from tblCliente where idCliente = '$idCliente'");
 if ($sql->rowCount() > 0) {
-    foreach ($sql->fetchAll() as $value) {
+    foreach ($sql->fetchAll() as $value3) {
     }
 }
 
@@ -105,7 +105,7 @@ if ($sql->rowCount() > 0) {
     <header class="header" id="header">
         <nav class="nav nav__container">
 
-            <nav class="navbar">
+            <nav class="navbar naves">
                 <a href="initial.php">Home</a>
                 <a href="#packages">Produtores</a>
                 <a href="#services">Frutas</a>
@@ -187,17 +187,17 @@ if ($sql->rowCount() > 0) {
                 <form action="#" method="POST" class="alter-form" enctype="multipart/form-data">
                     <div class="caixa">
                         <label for="nome">ㅤㅤNome Completo:
-                            <input type="text" id="nome" placeholder="Nome Completo" name="nome" value="<?php echo $value['nome']; ?>">
+                            <input type="text" id="nome" placeholder="Nome Completo" name="nome" value="<?php echo $value3['nome']; ?>">
                         </label>
                     </div>
                     <div class="caixa2">
                         <label for="detalhe">E-mail:
-                            <input type="text" id="email" placeholder="E-mail" name="email" value="<?php echo $value['email']; ?>">
+                            <input type="text" id="email" placeholder="E-mail" name="email" value="<?php echo $value3['email']; ?>">
                         </label>
                     </div>
                     <div class="caixa3">
                         <label for="detalhe">CPF:
-                            <input type="text" id="cpf" placeholder="CPF" name="cpf" value="<?php echo $value['cpf']; ?>">
+                            <input type="text" id="cpf" placeholder="CPF" name="cpf" value="<?php echo $value3['cpf']; ?>">
                         </label>
                     </div>
                     <input type="submit" class="btn2" value="Alterar seus dados" name="sub">

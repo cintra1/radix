@@ -295,10 +295,10 @@ if ($sql->rowCount() > 0) {
         </section>
 
         <section class="banner section-m1">
-            <h4>qualidade radix</h4>
-            <h2>Diversidade de frutas e vegetais <span> orgânicos </span> direto do campo toda semana </h2>
-            <span>Nossos vendedores são produtores conectados diretamente a você.</span>
-            <a href="index.html#sobre"><button class="normal">Conheça mais</button></a>
+            <h4>cupom de desconto</h4>
+            <h2>Dê sua sugestão na tela de <span>feedbacks</span> para ganhar o cupom FALE5</h2>
+            <span>Cupom oferece R$ 5,00 na compra de qualquer produto no app.</span>
+            <a href="faleConosco.php"><button class="normal">Dar seu feedback</button></a>
         </section>
 
         <section class="produtos1 section-p1">
@@ -332,39 +332,6 @@ if ($sql->rowCount() > 0) {
                         <a href="sproduto.php?idProduto=<?php echo $dado3["idProduto"]; ?>"><i class="fas fa-shopping-cart"></i></a>
                     </div>
                 <?php } ?>
-            </div>
-        </section>
-
-        <section class="sm section-p1">
-            <div class="banner__box">
-                <h4>confiança radix</h4>
-                <h2>produtos frescos e maduros</h2>
-                <span>qualidade radix como você já conhece</span>
-                <a href="sobre.html"><button class="white">Saiba mais</button></a>
-            </div>
-
-            <div class="banner__box b2">
-                <h4>produtores ativos</h4>
-                <h2>novos produtos todos os dias</h2>
-                <span>os melhores produtores da sua região em nosso aplicativo</span>
-                <a href="sobre.html"><button class="white">Saiba mais</button></a>
-            </div>
-        </section>
-
-        <section class="banner3">
-            <div class="banner__box">
-                <h2>DESCONTOS DE INVERNO</h2>
-                <h3>Só no inverno - 50% off</h3>
-            </div>
-
-            <div class="banner__box b2">
-                <h2>CONSUMO CONSCIENTE</h2>
-                <h3>Compre produtos<br> conforme seu consumo.</h3>
-            </div>
-
-            <div class="banner__box b3">
-                <h2>Qualidade e Rapidez</h2>
-                <h3>Somente na radix.</h3>
             </div>
         </section>
 

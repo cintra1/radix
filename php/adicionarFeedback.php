@@ -28,6 +28,22 @@ Class Usuario
              $sql->execute();
            
     } 
+
+    public function cadastrarCupom($nomeCupom, $detalhe, $num, $idCliente)
+    {
+        global $pdo;
+            
+            $sql = $pdo->prepare("INSERT INTO tblCupom (nomeCupom, detalhe, num, idCliente) 
+                VALUES (:n, :p, :f, :d)");
+            
+             $sql->bindValue(":n",$nomeCupom);
+             $sql->bindValue(":p",$detalhe);
+             $sql->bindValue(":f",$num);
+             $sql->bindValue(":d",$idCliente);
+
+             $sql->execute();
+           
+    } 
 }
     
 ?>

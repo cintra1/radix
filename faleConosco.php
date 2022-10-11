@@ -92,7 +92,26 @@ include('php/protect.php');
                         Produto adicionado!
                     </div>
                 <?php
-                    header("Location: initial.php");
+
+                    $idCliente =  $_SESSION['idCliente'];
+
+                    $sql_code2 = "SELECT * FROM tblCupom WHERE idCliente = $idCliente";
+                    $sql_query2 = $mysqli->query($sql_code2) or die("Falha na exec do código SQL: ".$mysqli->error);
+            
+                   $quant = $sql_query2->num_rows;
+            
+                   $nomeCupom = 'FALE5';
+                   $detalhe = 'Cupom de R$ 5,00 para todos que deram suas sugestões para nosso app, aproveite!';
+                   $num = '5';
+            
+                    if($quant == 1){
+                      $u->conectar("Radix","localhost","root","");
+                      $u->cadastrarCupom($nomeCupom, $detalhe, $num, $idCliente);
+                      header("Location: initial.php");
+                    }else{
+                      header("Location: initial.php");
+                    }
+                    
                 }
             } else {
                 ?>
