@@ -2,7 +2,6 @@
 include('php/conexao.php');
 require('php/connection.php');
 include('php/protect.php');
-include('php/protectPesquisar.php');
 include('php/loadItem.php');
 
 if (isset($_POST['sub'])) {
@@ -58,14 +57,14 @@ if ($sql->rowCount() > 0) {
     }
 }
 
-if (!empty($_GET['search'])) {
-    $data = $_GET['search'];
+if (!empty($_GET['idVendedor'])) {
+    $data = $_GET['idVendedor'];
 
-    $sqlVend = "SELECT * from tblVendedor WHERE nomeVend LIKE '%$data%' ORDER BY RAND() LIMIT 8";
+    $sqlVend = "SELECT * from tblVendedor WHERE idVendedor = $data";
     $sv = $pdo->query($sqlVend) or die($mysqli->error);
     $svv = $mysqli->query($sqlVend) or die($mysqli->error);
 
-    $sqlProd = "SELECT * from tblProduto WHERE nomeProd LIKE '%$data%' and statusProduto <> 0  ORDER BY RAND() LIMIT 8";
+    $sqlProd = "SELECT * from tblProduto WHERE idVendedor = $data";
     $sp = $pdo->query($sqlProd) or die($mysqli->error);
     $spp = $mysqli->query($sqlProd) or die($mysqli->error);
 }
@@ -85,7 +84,7 @@ if (!empty($_GET['search'])) {
     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
 
     <!--=============== CSS ===============-->
-    <link rel="stylesheet" href="assets/css/stylesPesq.css">
+    <link rel="stylesheet" href="assets/css/stylesSingleVendedor.css">
 
     <!-- font awesome cdn link  -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
@@ -122,7 +121,7 @@ if (!empty($_GET['search'])) {
                 <ul class="nav__list__initial">
                     <div></div>
                     <form action="" class="search-form">
-                        <input id="enter" type="search" placeholder="<?php echo $data ?>" id="search-box">
+                        <input id="enter" type="search" placeholder="busque por produtor ou item..." id="search-box">
                         <a href="search.html">
                             <label for="search-box" class="fas fa-search"></label></a>
                     </form>
@@ -190,18 +189,63 @@ if (!empty($_GET['search'])) {
 
     <main class="main initial__home">
 
-        <!--=============== HOME ===============-->
-        <section class="home produtos1 section-p1" id="home">
-            <div id="linha-vertical"></div>
-            <h1 class="home__title">Buscando por <span style="color: #70C38D; cursor:initial;"><?php echo $data ?></span></h1>
+        <span class="main_bg"></span>
+        <?php while ($dadoV = $svv->fetch_array()) { ?>
+            <div class="container">
+                <section class="userProfile card">
+                    <div class="profile">
+                        <figure><img src="upload/<?php echo $dadoV['imagemVend']; ?>" alt="profile" width="250px" height="250px"></figure>
+                    </div>
+                </section>
 
-            <div class="caixa__grande">
-                <div class="esquerda">
-                    <div class="title__prod">
-                        <h2>Produtos</h2>
-                        <p>Produtos com as melhores qualificações</p>
+                <section class="work_skills card">
+                    <div class="work">
+                        <h1 class="heading">Sobre</h1>
+                        <div class="primary">
+                            <h1>Produtor de Amoras</h1>
+                            <p>Produzindo amoras das melhores maneiras para entregar melhor qualidade, compre conosco e com certeza não se arrependerá.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="userDetails card">
+                    <div class="userName">
+                        <h1 class="name"><?php echo $dadoV['nomeVend']; ?></h1>
+                        <div class="map">
+                            <i class="uil uil-map-marker"></i>
+                            <span><?php echo $dadoV['enderecoVend']; ?></span>
+                        </div>
+                        <p>Produtor</p>
                     </div>
 
+                    <div class="rank">
+                        <h1 class="heading">SELO</h1>
+                        <img src="assets/img/folha (2).png" alt="">
+                        <div class="rating">
+                            <span>Selo folha de produtor na média</span>
+                        </div>
+                    </div>
+
+                    <div class="btns">
+                        <ul>
+                            <li class="sendMsg">
+                                <i class="uil uil-comment"></i>
+                                <a href="#">Enviar mensagem</a>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section class="timeline_about card produtos1">
+                    <div class="tabs">
+                        <ul>
+                            <li class="timeline">
+                                <i class="uil uil-crockery"></i>
+                                <span>Produtos</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="contact_Info">
                     <div class="prod__container">
                         <?php if ($sp->rowCount() > 0) {
                             while ($dadoP = $spp->fetch_array()) {
@@ -230,112 +274,26 @@ if (!empty($_GET['search'])) {
                         } else {
                             ?>
                             <div class="sem-prod">
-                                <img src="assets/img/7966492.jpg" alt="" style="width: 15rem;">
-                                <h1>Nenhum produto encontrado com sua pesquisa.</h1>
-                                <p>Tente procurar por outro semelhante ou aguarde que nossos produtores com certeza vão conseguir trazer seu produto tão desejado.</p>
+                                <img src="assets/img/Marketplace-pana.svg" alt="" style="width: 15rem;">
+                                <h1>Nenhum produto encontrado.</h1>
+                                <p> Esse produtor ainda não tem produtos, aguarde ou envie uma mensagem para se informar melhor.</p>
                             </div>
                         <?php
                         } ?>
                     </div>
-                </div>
 
-                <div class="direita">
-                    <div class="title__prod">
-                        <h2>Produtores</h2>
-                        <p>Produtores que vendem esses produtos</p>
                     </div>
-
-
-                    <div class="prod__container">
-                        <?php if ($sv->rowCount() > 0) {
-                            while ($dadoV = $svv->fetch_array()) { ?>
-                                <div class="prod">
-                                    <img src="upload/<?php echo $dadoV['imagemVend']; ?>" alt="">
-                                    <div class="des">
-                                        <h5><?php echo $dadoV['nomeVend']; ?></h2>
-                                            <h4>Visitar Perfil</h4>
-                                    </div>
-                                    <a href="sVendedor.php?idVendedor=<?php echo $dadoV["idVendedor"]; ?>"><i class="uil uil-chat"></i></a>
-                                </div>
-                            <?php }
-                        } else {
-                            ?>
-                             <div class="sem-prod">
-                                <img src="assets/img/sem-prod - cor.svg" alt="" style="width: 15rem;">
-                                <h1>Nenhum vendedor encontrado com sua pesquisa.</h1>
-                                <p>Verifique se o nome foi digitado corretamente e tente de novo, o produtor está te esperando.</p>
-                            </div>
-                        <?php
-                        } ?>
-                    </div>
-                </div>
+                </section>
             </div>
-        </section>
-    </main>
+        <?php } ?>
 
 
-    <div class="alinhar">
-        <div id="linha-horizontal"></div>
-    </div>
+       
 
-    <!--=============== FOOTER ===============-->
-    <footer class="section-p1">
-        <div class="col">
-            <a href="index.html" class="nav__logo logo"> <i class="fa fa-leaf" style="color: #70C28D;"></i> Radix </a>
-            <h4>Contato</h4>
-            <p><strong>Endereço:</strong> Rua ABC, 300</p>
-            <p><strong>Telefone:</strong> +55 (11) 91111-5555</p>
-            <p><strong>Horas:</strong> 10:00 - 18:00, Segunda a Sexta</p>
-            <div class="follow">
-                <h4>Nos siga</h4>
-                <div class="icon">
-                    <i class="fab fa-facebook-f"></i>
-                    <i class="fab fa-twitter"></i>
-                    <i class="fab fa-instagram"></i>
-                    <i class="fab fa-pinterest-p"></i>
-                    <i class="fab fa-youtube"></i>
-                </div>
-            </div>
-        </div>
+        <!--=============== MAIN JS ===============-->
+        <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
 
-        <div class="col">
-            <h4>Sobre</h4>
-            <a href="#">Sobre nós</a>
-            <a href="#">Informações sobre entrega</a>
-            <a href="#">Política de privacidade</a>
-        </div>
-
-        <div class="col">
-            <h4>Minha Conta</h4>
-            <a href="#">Fazer Login</a>
-            <a href="#">Carrinho</a>
-            <a href="#">Ajuda</a>
-        </div>
-
-        <div class="col install">
-            <h4>Baixar App</h4>
-            <p>Baixar da App Store ou Google Play</p>
-            <div class="row">
-                <img src="assets/img/pay/app.jpg" alt="">
-                <img src="assets/img/pay/play.jpg" alt="">
-            </div>
-            <p>Gateways de Pagamento Seguros</p>
-            <img src="assets/img/pay/pay.png" alt="">
-        </div>
-
-        <div class="copyright">
-            <p>© Copyright 2021 - Radix - Todos os direitos reservados Radix com Agência de Restaurantes Online S.A.</p>
-        </div>
-    </footer>
-    <!--=============== SCROLL UP ===============-->
-    <a href="#" class="scrollup" id="scroll-up">
-        <i class='bx bx-up-arrow-alt scrollup__icon'></i>
-    </a>
-
-    <!--=============== MAIN JS ===============-->
-    <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
-
-    <script src="assets/js/mainInitial.js"></script>
+        <script src="assets/js/mainInitial.js"></script>
 
 
 
