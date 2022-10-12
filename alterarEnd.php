@@ -3,9 +3,11 @@ include("php/conexao.php");
 require('php/connection.php');
 include('php/protect.php');
 include('php/loadItem.php');
+include('php/protectIDEnd.php');
+include('php/loadEnd.php');
 
-if (isset($_POST['sub'])) {
-    header("Location: initial.php");
+if (isset($_POST['subAttEnd'])) {
+    header("Location: perfilCliente.php");
 }
 
 if (isset($_POST['sub5'])) {
@@ -48,7 +50,7 @@ $consulta3 = "SELECT * FROM tblProduto WHERE statusProduto <> 0 ORDER BY RAND() 
 $con3 = $pdo->query($consulta3) or die($mysqli->error);
 $conn3 = $mysqli->query($consulta3) or die($mysqli->error);
 
-$consultaEndereco = "SELECT * from tblEndereco where idCliente = $idCliente and statusEndereco = 1;";
+$consultaEndereco = "SELECT * from tblEndereco where idCliente = $idCliente;";
 
 $conEndereco = $pdo->query($consultaEndereco) or die($mysqli->error);
 $connEndereco = $mysqli->query($consultaEndereco) or die($mysqli->error);
@@ -179,140 +181,37 @@ if ($sql->rowCount() > 0) {
     <main class="main initial__home">
         <!--=============== Perfil ===============-->
 
-        <section class="page__header">
-            <h2>Meus Dados</h2>
-
-            <div class="caixa__grande">
-                <form action="#" method="POST" class="alter-form" enctype="multipart/form-data">
-                    <div class="caixa">
-                        <label for="nome">ㅤㅤNome Completo:
-                            <input type="text" id="nome" placeholder="Nome Completo" name="nome" value="<?php echo $value3['nome']; ?>">
-                        </label>
-                    </div>
-                    <div class="caixa2">
-                        <label for="detalhe">E-mail:
-                            <input type="text" id="email" placeholder="E-mail" name="email" value="<?php echo $value3['email']; ?>">
-                        </label>
-                    </div>
-                    <div class="caixa3">
-                        <label for="detalhe">CPF:
-                            <input type="text" id="cpf" placeholder="CPF" name="cpf" value="<?php echo $value3['cpf']; ?>">
-                        </label>
-                    </div>
-                    <input type="submit" class="btn2" value="Alterar seus dados" name="sub">
-                </form>
-            </div>
-        </section>
-
+      
         <section class="page__header">
             <div class="alinhar">
                 <div id="linha-horizontal"></div>
             </div>
-            <h2 style="margin-top: 2rem">Adicionar Endereço</h2>
-            <span style="font-size: 0.9rem;cursor: initial; margin-top:8px">O endereço é automaticamente adicionado como secundário,<br> você pode alterar para seu endereço principal na sessão abaixo</span>
+            <h2 style="margin-top: 4rem">Editar Endereço</h2>
 
-            <div class="caixa__grande">
+            <div class="caixa__grande"  style="margin-bottom: 2rem;">
                 <form action="#" method="POST" class="alter-form" enctype="multipart/form-data">
-                    <div class="caixa">
-                        <label for="nome">ㅤㅤEndereço:
-                            <input type="text" id="endereco" placeholder="Endereço" name="endereco">
-                        </label>
-                    </div>
-                    <div class="caixa2">
-                        <label for="detalhe">Número:
-                            <input type="text" id="cpf" placeholder="Número" name="numero">
-                        </label>
-                    </div>
-                    <div class="caixa2">
-                        <label for="detalhe">ㅤㅤComplemento:
-                            <input type="text" id="email" placeholder="Complemento" name="complemento">
-                        </label>
-                    </div>
-                    <div class="caixa3">
-                        <label for="detalhe">Apelido:
-                            <input type="text" id="cpf" placeholder="Apelido" name="apelidoEndereco">
-                        </label>
-                    </div>
-                    <input type="submit" class="btn2" value="Adicionar Endereço" name="subEnd">
-                </form>
-            </div>
-        </section>
-
-
-
-        <section class="page__header">
-            <div class="alinhar">
-                <div id="linha-horizontal"></div>
-            </div>
-            <h2 style="margin-top: 2rem">Seus Endereços</h2>
-
-            <div class="caixa__grande">
-                <form action="#" method="POST" class="alter-form" enctype="multipart/form-data">
-                    <?php if ($conEndereco->rowCount() > 0) { ?>
-                        <?php while ($dadoEnd = $connEndereco->fetch_array()) {
-                            $idEndereco = $dadoEnd['idEndereco'];
-
-                            $prin = "SELECT enderecoPrincipal from tblEndereco where idEndereco = $idEndereco";
-                            $p = $mysqli->query($prin) or die($mysqli->error);
-                            $pnn = $pdo->query($prin) or die($mysqli->error);
-
-                            $prin2 = "SELECT enderecoPrincipal from tblEndereco where idEndereco = $idEndereco";
-                            $p2 = $mysqli->query($prin2) or die($mysqli->error);
-                            $pnn2 = $pdo->query($prin2) or die($mysqli->error);
-                        ?>
-                            <p style="margin-top: 0rem; text-align:start; font-size:1.6rem"><?php echo $dadoEnd['apelidoEndereco']; ?>
-
-                                <?php while ($pp = $p->fetch_array()) {
-                                    if ($pp['enderecoPrincipal'] == 1) { ?>
-                                        (Principal)
-                                    <?php } else { ?>
-
-                                <?php }
-                                } ?>
-                            </p>
-
-                            <a class="btn4" href="alterarEnd.php?idEndereco=<?php echo $dadoEnd["idEndereco"]; ?>"><i class="uil uil-pen"></i></a>
-                            <a class="btn5" href="removerEndereco.php?idEndereco=<?php echo $dadoEnd["idEndereco"]; ?>"><i class="uil uil-trash"></i></a>
                             <div class="caixa">
                                 <label for="nome">ㅤㅤEndereço:
-                                    <input type="text" id="endereco" placeholder="Endereço" name="endereco" value="<?php echo $dadoEnd['endereco']; ?>">
+                                    <input type="text" id="endereco" placeholder="Endereço" name="endereco" value="<?php echo $valueEnd['endereco']; ?>">
                                 </label>
                             </div>
                             <div class="caixa2">
                                 <label for="detalhe">Número:
-                                    <input type="text" id="cpf" placeholder="Número" name="numero" value="<?php echo $dadoEnd['numero']; ?>">
+                                    <input type="text" id="cpf" placeholder="Número" name="numero" value="<?php echo $valueEnd['numero']; ?>">
                                 </label>
                             </div>
                             <div class="caixa2">
                                 <label for="detalhe">ㅤㅤComplemento:
-                                    <input type="text" id="email" placeholder="Complemento" name="complemento" value="<?php echo $dadoEnd['complemento']; ?>">
+                                    <input type="text" id="email" placeholder="Complemento" name="complemento" value="<?php echo $valueEnd['complemento']; ?>">
                                 </label>
                             </div>
-                            <div class="caixa3" style="margin-bottom: 1.2rem">
+                            <div class="caixa3">
                                 <label for="detalhe">Apelido:
-                                    <input type="text" id="cpf" placeholder="Apelido" name="apelidoEndereco" value="<?php echo $dadoEnd['apelidoEndereco']; ?>">
+                                    <input type="text" id="cpf" placeholder="Apelido" name="apelidoEndereco" value="<?php echo $valueEnd['apelidoEndereco']; ?>">
                                 </label>
 
                             </div>
-
-                            <?php while ($pp2 = $p2->fetch_array()) {
-                                    if ($pp2['enderecoPrincipal'] == 1) { ?>
-                                        
-                                    <?php } else { ?>
-                                        <a class="btn6" href="atualizarEndereco.php?idEndereco=<?php echo $dadoEnd["idEndereco"]; ?>">Alterar para endereço principal</a>
-                                <?php }
-                                } ?>
-
-
-                            <div class="alinhar">
-                                <div id="linha-horizontal2"></div>
-                            </div>
-                        <?php }
-                    } else {  ?>
-                        <div class="caixa">
-                            <span style="margin-bottom: 1rem">Você não tem endereços adicionados.</span>
-                        </div>
-                    <?php }  ?>
+                            <input type="submit" class="btn2" value="Editar Endereco" name="subAttEnd">
                 </form>
             </div>
         </section>
@@ -346,63 +245,14 @@ if ($sql->rowCount() > 0) {
         require_once 'php/editarCliente.php';
         $u = new Usuario;
 
-        //verificar se a pessoa clicou no btnCadastrar
-        if (isset($_POST['sub'])) {
 
-            $idCliente = addslashes($_SESSION['idCliente']);
-            $nome = addslashes($_POST['nome']);
-            $email = addslashes($_POST['email']);
-            $cpf = addslashes($_POST['cpf']);
+          //verificar se a pessoa clicou no btnCadastrar
+          if (isset($_POST['subAttEnd'])) {
 
-
-            //verificar se esta preenchido
-            if (!empty($nome) && !empty($cpf) && !empty($email)) {
-                $u->conectar("Radix", "localhost", "root", "");
-                if ($u->msgErro == "") //ta ok
-                {
-                    if ($u->atualizar($idCliente, $nome, $cpf, $email)) {
-        ?>
-                        <div id="msg-sucesso">
-                            Atualizado com sucesso!
-                        </div>
-                    <?php
-
-                    } else {
-                        session_reset();
-
-                        $_SESSION['idCliente'] = $usuario['idCliente'];
-                        $_SESSION['nome'] = $usuario['nome'];
-                        $_SESSION['email'] = $usuario['email'];
-                        $_SESSION['cpf'] = $usuario['cpf'];
-                    }
-                } else {
-                    ?>
-                    <div class="msg-erro">
-                        <?php echo "Erro: " . $u->msgErro; ?>
-                    </div>
-                <?php
-
-                }
-            } else {
-                ?>
-                <div class="msg-erro">
-                    Preencha todos os campos!
-                </div>
-                <?php
-
-            }
-        }
-
-        //verificar se a pessoa clicou no btnAdicionarEndereco
-        if (isset($_POST['subEnd'])) {
-
-            $idCliente = addslashes($_SESSION['idCliente']);
             $endereco = addslashes($_POST['endereco']);
             $complemento = addslashes($_POST['complemento']);
             $numero = addslashes($_POST['numero']);
             $apelidoEndereco = addslashes($_POST['apelidoEndereco']);
-        
-            $statusEndereco = 1;
 
 
             //verificar se esta preenchido
@@ -410,23 +260,15 @@ if ($sql->rowCount() > 0) {
                 $u->conectar("Radix", "localhost", "root", "");
                 if ($u->msgErro == "") //ta ok
                 {
-                    if ($u->adicionarEndereço(
-                        $endereco,
-                        $apelidoEndereco,
-                        $complemento,
-                        $numero,
-                        $enderecoPrincipal,
-                        $statusEndereco,
-                        $idCliente
-                    )) {
-                ?>
+                    if ($u->atualizarEndereço($idEndereco, $endereco, $apelidoEndereco, $complemento, $numero)) {
+        ?>
                         <div id="msg-sucesso">
                             Atualizado com sucesso!
                         </div>
                     <?php
 
                     } else {
-                        session_reset();
+                      
                     }
                 } else {
                     ?>
@@ -441,10 +283,11 @@ if ($sql->rowCount() > 0) {
                 <div class="msg-erro">
                     Preencha todos os campos!
                 </div>
-        <?php
+                <?php
 
             }
         }
+
 
         ?>
 </body>

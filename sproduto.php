@@ -82,11 +82,11 @@ $connVend = $mysqli->query($consultaVend) or die($mysqli->error);
                         <div class="fas fa-search" id="search-btn" style="display: none"></div>
 
                         <li class="nav__item">
-                            <a href="login.php" class="fas fa-user nav__link"></a>
+                            <a href="perfilCliente.php" class="fas fa-user nav__link"></a>
                             <!--<div id="login-btn" class="fas fa-user nav__link"></div>-->
                         </li>
                         <li class="nav__item">
-                            <div class="fas fa-bars nav__link" id="menu-btn"></div>
+                            <a href="php/logout.php" class="uil uil-signout nav__link" style="font-size: 1.2rem !important"></a>
                         </li>
                     </div>
                 </ul>
@@ -217,7 +217,7 @@ $connVend = $mysqli->query($consultaVend) or die($mysqli->error);
     <!--=============== MAIN JS ===============-->
     <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
 
-    <script src="assets/js/mainInitial.js"></script>
+    <script src="assets/js/mainInitialss.js"></script>
 
     
     <?php

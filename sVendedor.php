@@ -141,9 +141,7 @@ if (!empty($_GET['idVendedor'])) {
                         <li class="nav__item">
                             <a href="php/logout.php" class="uil uil-signout nav__link" style="font-size: 1.2rem !important"></a>
                         </li>
-                        <li class="nav__item">
-                            <div class="fas fa-bars nav__link" id="menu-btn"></div>
-                        </li>
+                       
                     </div>
                 </ul>
             </div>
@@ -293,7 +291,7 @@ if (!empty($_GET['idVendedor'])) {
         <!--=============== MAIN JS ===============-->
         <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
 
-        <script src="assets/js/mainInitial.js"></script>
+        <script src="assets/js/mainInitialss.js"></script>
 
 
 

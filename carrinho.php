@@ -137,7 +137,7 @@ if ($sql->rowCount() > 0) {
                             <!--<div id="login-btn" class="fas fa-user nav__link"></div>-->
                         </li>
                         <li class="nav__item">
-                            <div class="fas fa-bars nav__link" id="menu-btn"></div>
+                            <a href="php/logout.php" class="uil uil-signout nav__link" style="font-size: 1.2rem !important"></a>
                         </li>
                     </div>
                 </ul>
@@ -322,7 +322,7 @@ if ($sql->rowCount() > 0) {
         <!--=============== MAIN JS ===============-->
         <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
 
-        <script src="assets/js/mainInitial.js"></script>
+        <script src="assets/js/mainInitialss.js"></script>
 
         <?php
         

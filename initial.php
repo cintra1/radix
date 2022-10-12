@@ -14,7 +14,7 @@ if (isset($_POST['sub'])) {
         $insert->execute();
         $bol = true;
     }
-    
+
     header("Location: carrinho.php");
 }
 
@@ -36,6 +36,11 @@ $consulta3 = "SELECT * FROM tblProduto WHERE statusProduto <> 0 ORDER BY RAND() 
 
 $con3 = $pdo->query($consulta3) or die($mysqli->error);
 $conn3 = $mysqli->query($consulta3) or die($mysqli->error);
+
+$consultaCupom = "SELECT * FROM tblCupom WHERE idCliente = $idCliente";
+
+$conCupom = $pdo->query($consultaCupom) or die($mysqli->error);
+$connCupom = $mysqli->query($consultaCupom) or die($mysqli->error);
 
 $soma = "SELECT SUM(p.preco*i.qtde) AS total FROM tblProduto as p inner join tblItem as i on p.idProduto = i.idProduto where statusItem <> 0 and idCliente = $idCliente";
 $s = $mysqli->query($soma) or die($mysqli->error);
@@ -59,6 +64,8 @@ if ($sql->rowCount() > 0) {
 }
 
 
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -74,7 +81,7 @@ if ($sql->rowCount() > 0) {
     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
 
     <!--=============== CSS ===============-->
-    <link rel="stylesheet" href="assets/css/styleInitialMy.css">
+    <link rel="stylesheet" href="assets/css/style.css">
 
     <!-- font awesome cdn link  -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
@@ -121,7 +128,7 @@ if ($sql->rowCount() > 0) {
                         <div class="fas fa-search" id="search-btn" style="display: none"></div>
 
                         <li class="nav__item">
-                            <div id="cart-btn" class="uil uil-shopping-bag nav__link"></div>
+                            <div id="cart-btn" id="carts" class="uil uil-shopping-bag nav__link"></div>
                         </li>
 
                         <li class="nav__item">
@@ -131,9 +138,7 @@ if ($sql->rowCount() > 0) {
                         <li class="nav__item">
                             <a href="php/logout.php" class="uil uil-signout nav__link" style="font-size: 1.2rem !important"></a>
                         </li>
-                        <li class="nav__item">
-                            <div class="fas fa-bars nav__link" id="menu-btn"></div>
-                        </li>
+                      
                     </div>
                 </ul>
             </div>
@@ -145,7 +150,7 @@ if ($sql->rowCount() > 0) {
 
 
 
-        <div class="shopping-cart cartes">
+        <div class="shopping-cart cartes carts">
             <?php if ($con2->rowCount() > 0) { ?>
                 <form action="#" method="POST" enctype="multipart/form-data">
                     <div class="box__maior" style=" overflow-y: scroll;height: 18rem;">
@@ -191,14 +196,23 @@ if ($sql->rowCount() > 0) {
                         </div>
                         <div class="inputs">
                             <i class="material-icons">place</i>
-                            <input type="text" placeholder="Vila Mazzei, São Paulo" id="search_address">
-                            <i class="uil uil-angle-down" id="search_arrow"></i>
-                            <i class="uil uil-shopping-basket"></i>
+                            <?php
+                             $sql2 = $pdo->query("SELECT * from tblEndereco where idCliente = $idCliente and enderecoPrincipal = 1;");
+                             if ($sql2->rowCount() > 0) {
+                                 foreach ($sql2->fetchAll() as $value2) { ?>
+                            <input type="text" placeholder="<?php echo $value2['apelidoEndereco']; ?>: <?php echo $value2['endereco']; ?>" id="search_address" readonly><?php
+                                }
+                            }else{
+                                ?>  <a href="perfilCliente.php"><input  style="cursor:pointer" type="text" placeholder="Adicionar endereço principal" id="search_address" readonly></a> <?php
+                            } ?>
+                             
+                            <i class="uil uil-angle-down" id="search_arrow" style="visibility: hidden;"></i>
+                            <i class="uil uil-ticket"></i>
                             <select name="" id="" class="search2">
-                                <option value="">Conheça nossas cestas...</option>
-                                <option value="">Cesta Júnior</option>
-                                <option value="">Cesta Normal</option>
-                                <option value="">Cesta Jumbo</option>
+                                <option value="">Seus cupons...</option>
+                                <?php while ($dado4 = $connCupom->fetch_array()) {   ?>
+                                    <option value=""><?php echo $dado4['nomeCupom']; ?></option>
+                                <?php } ?>
                             </select>
                             <div class="location__box" id="location__box">
                                 <div class="loc">
@@ -275,18 +289,18 @@ if ($sql->rowCount() > 0) {
                     <div class="prod">
                         <img src="upload/<?php echo $dado["foto"]; ?>" alt="">
                         <div class="des">
-                        <?php while ($dado2 = $connVend->fetch_array()) { ?>
-                        <a href="sVendedor.php?idVendedor=<?php echo $dado2["idVendedor"]; ?>"><span>Produtor: <?php
-                                                echo $dado2['nomeVend']; ?></span></a>
-                            <h5><?php echo $dado["nomeProd"]; ?></h5><?php } ?></h2>
-                        <div class="star">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <h4>R$ <?php echo number_format($dado["preco"], 2, ",", "."); ?></h4>
+                            <?php while ($dado2 = $connVend->fetch_array()) { ?>
+                                <a href="sVendedor.php?idVendedor=<?php echo $dado2["idVendedor"]; ?>"><span>Produtor: <?php
+                                                                                                                        echo $dado2['nomeVend']; ?></span></a>
+                                <h5><?php echo $dado["nomeProd"]; ?></h5><?php } ?></h2>
+                            <div class="star">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <h4>R$ <?php echo number_format($dado["preco"], 2, ",", "."); ?></h4>
                         </div>
                         <a href="sproduto.php?idProduto=<?php echo $dado["idProduto"]; ?>"><i class="fas fa-shopping-cart"></i></a>
                     </div>
@@ -396,7 +410,7 @@ if ($sql->rowCount() > 0) {
         <!--=============== MAIN JS ===============-->
         <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
 
-        <script src="assets/js/mainInitial.js"></script>
+        <script src="assets/js/mainInitialss.js"></script>
 
         <script>
             var search = document.getElementById('enter');
@@ -410,8 +424,6 @@ if ($sql->rowCount() > 0) {
             function searchData() {
                 window.location = 'pesquisar.php?search=' + search.value;
             }
-
-        
         </script>
 
 

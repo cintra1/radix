@@ -4,12 +4,8 @@ let a = document.querySelector('.fa-search')
 let menu = document.querySelector('.nav')
 let cart = document.querySelector('.shopping-cart')
 let cartes = document.querySelector('.cartes')
+let carts = document.querySelector('.carts')
 
-document.querySelector('#menu-btn').onclick = () =>{
-    navbar.classList.toggle('active');
-    cartes.classList.remove('active');
-    nv.classList.toggle('active');
-}
 
 let searchForm = document.querySelector('.search-form');
 
@@ -25,6 +21,14 @@ document.querySelector('#cart-btn').onclick = () =>{
     cart.classList.toggle('active');
     navbar.classList.remove('active');
     menu.classList.remove('show-menu');
+
+};
+
+document.querySelector('#carts').onclick = () =>{
+    cart.classList.toggle('active');
+    navbar.classList.remove('active');
+    menu.classList.remove('show-menu');
+    carts.classList.toggle('active');
 };
 
 const inputEle = document.getElementById('enter');

@@ -818,7 +818,7 @@ input[type="search"]::-webkit-search-results-decoration {
   transition: .3s ease-in-out;
 }
 
-.inputs .uil-shopping-basket{
+.inputs .uil-ticket{
   width: 60px;
   border-left: 2px solid rgb(204, 204, 204);
   color: var(--cor-prim);

@@ -104,6 +104,8 @@ $consultaSem = "SELECT * FROM tblEntrega as e inner join tblItem as i on e.idIte
 
                     $con = $pdo->query($consulta) or die($mysqli->error);
                     $conn = $mysqli->query($consulta) or die($mysqli->error);
+
+                   
                     if ($con->rowCount() > 0) {
                         ?> <h2><?php echo $n1["nome"]; ?> </h2> <?php
                     while ($dado = $conn->fetch_array()) {   ?>
@@ -119,11 +121,17 @@ $consultaSem = "SELECT * FROM tblEntrega as e inner join tblItem as i on e.idIte
                                 $con2 = $pdo->query($consulta2) or die($mysqli->error);
                                 $conn2 = $mysqli->query($consulta2) or die($mysqli->error);
 
+                                $connEndereco = "SELECT * from tblEndereco where idCliente = $idCliente and enderecoPrincipal = 1";
+
+                                $end = $pdo->query($connEndereco) or die($mysqli->error);
+                                $ennd = $mysqli->query($connEndereco) or die($mysqli->error);
+
                                 while ($dado3 = $conn2->fetch_array()) {   ?>
                                     <p><span class="box__span">Cliente: </span> <?php echo $dado3["nome"]; ?></p>
                                 <?php } ?>
                                 <p><span class="box__span">Quantidade: </span> <?php echo $dado["qtde"]; ?></p>
-                                <p><span class="box__span">Endereço: </span> Rua ABC, 45</p>
+                                <?php while ($dado5 = $ennd->fetch_array()) { ?>
+                                <p><span class="box__span">Endereço: </span> <?php   echo $dado5['endereco']; } ?> </p>
                                 <p><span class="box__span">Total: </span><strong>R$
                                         <?php
 
@@ -188,12 +196,13 @@ $consultaSem = "SELECT * FROM tblEntrega as e inner join tblItem as i on e.idIte
 
                             $con2 = $pdo->query($consulta2) or die($mysqli->error);
                             $conn2 = $mysqli->query($consulta2) or die($mysqli->error);
+                            
 
                             while ($dado3 = $conn2->fetch_array()) {   ?>
                                 <p><span class="box__span">Cliente: </span> <?php echo $dado3["nome"]; ?></p>
                             <?php } ?>
                             <p><span class="box__span">Quantidade: </span> <?php echo $dado["qtde"]; ?></p>
-                            <p><span class="box__span">Endereço: </span> Rua ABC, 45</p>
+            
                             <p><span class="box__span">Total: </span><strong>R$
                                     <?php
 

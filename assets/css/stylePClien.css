@@ -136,6 +136,43 @@ img {
   height: auto;
 }
 
+.btn4{
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  border-radius: 50px;
+  background-color: #e8f6ea;
+  font-weight: 500;
+  color: #539169;
+  border: 1px solid #cce7d0;
+  position: absolute;
+  margin-top: -3.7rem;
+  right:28rem;
+}
+
+.btn5{
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  border-radius: 50px;
+  background-color: #e8f6ea;
+  font-weight: 500;
+  color: #539169;
+  border: 1px solid #cce7d0;
+  position: absolute;
+  margin-top: -3.7rem;
+  right:32rem;
+}
+
+.btn6{
+ padding: 0.5rem;
+  line-height: 40px;
+  border-radius: 50px;
+  background-color: #e8f6ea;
+  font-weight: 500;
+  color: #539169;
+  border: 1px solid #cce7d0;
+}
 
 /*========== VARIAVEIS do Dark theme ==========*/
 body.dark-theme {
@@ -895,7 +932,6 @@ input[type="search"]::-webkit-search-results-decoration {
 /*=============== INITIAL ===============*/
 .page__header{
   margin-top: 2rem;
-
   background-position: 20%;
   width: 100%;
   background-size: cover;
@@ -904,6 +940,7 @@ input[type="search"]::-webkit-search-results-decoration {
   text-align: center;
   flex-direction: column;
 }
+
 
 .page__header h2, .page__header p{
   color: #111;
@@ -914,6 +951,7 @@ input[type="search"]::-webkit-search-results-decoration {
 
 .caixa__grande{
   margin-top: 2rem;
+  position: relative;
 }
 
 .cart{
@@ -1407,6 +1445,15 @@ footer .copyright{
   opacity: 20%;
 }
 
+#linha-horizontal2 {
+  width: 100%;
+  margin-top: 7%;
+  margin-bottom: 7%;
+  height: 0.2px;
+  background-color: #000;
+  opacity: 20%;
+}
+
 .nav__logo{
   color: var(--cor-titulo);
   font-weight: var(--fonte-semi-bold);
@@ -1421,7 +1468,7 @@ footer .copyright{
 }
 
 .caixa__grande{
-  height: 25rem;
+
   display: flex;
   width: 100%;
   justify-content: center;
