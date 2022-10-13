@@ -82,7 +82,7 @@ include('php/protectAdm.php');
                         Produto adicionado!
                     </div>
                 <?php
-                    header("Location: indexPagamentos.php");
+                    header("Location: indexCupom.php");
                 }
             } else {
                 ?>

@@ -177,7 +177,7 @@ if ($sql->rowCount() > 0) {
             <img src="assets/img/carrinho-vazio.svg" alt="" class="carrinho__img">
         </div>
         <h3 class="total2"> Seu carrinho está vazio. Clique no botão abaixo para começar a comprar. </h3>
-        <a href="produtores.php" class="btn">Começar a comprar</a>
+        <a href="initial.php" class="btn">Começar a comprar</a>
     <?php } ?>
     </form>
     </header>
@@ -273,7 +273,7 @@ if ($sql->rowCount() > 0) {
             </div>
         </section>
 
-        <section class="produtos1 section-p1">
+        <section class="produtos1 section-p1" id="prod">
             <h2>Produtos em Destaques</h2>
             <p>Itens mais amados entre nossos clientes</p>
             <div class="prod__container">

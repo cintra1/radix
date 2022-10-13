@@ -17,7 +17,7 @@ $conn = $mysqli->query($consulta) or die($mysqli->error);
     <meta name="viewport" content="widht=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/styleIndexCupons.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/styleICupons.css">
     <link rel="icon" type="image/x-icon" href="assets/img/icon.ico">
     <title>Radix</title>
 
@@ -72,9 +72,9 @@ $conn = $mysqli->query($consulta) or die($mysqli->error);
                 <?php }
             } else {
                 ?>
-                <h1 class="title__sem">Nenhum produto adicionado</h1>
-                <h1 class="title__sem2">Clique no botão abaixo para iniciar sua jornada como vendedor.</h1>
-                <img class="img2" src="assets/img/sem-prod.svg" alt="" style="width:23rem !important; margin-left:75%; margin-top: -1rem;  margin-bottom: 5rem;">
+                <h1 class="title__sem">Nenhum Cupom adicionado</h1>
+                <h1 class="title__sem2">Clique no botão abaixo para adicionar um cupom.</h1>
+                <img class="img2" src="assets/img/Discount-pana.svg" alt="" style="width:25rem !important; margin-left:70%; margin-top: -1rem;  margin-bottom: 3rem;">
             <?php
             } ?>
         </div>

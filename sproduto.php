@@ -35,7 +35,7 @@ $connVend = $mysqli->query($consultaVend) or die($mysqli->error);
     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
 
     <!--=============== CSS ===============-->
-    <link rel="stylesheet" href="assets/css/stylesSProduto.css">
+    <link rel="stylesheet" href="assets/css/stylesSProd.css">
 
     <!-- font awesome cdn link  -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
@@ -72,8 +72,8 @@ $connVend = $mysqli->query($consultaVend) or die($mysqli->error);
                     <div></div>
                     <form action="" class="search-form">
                         <input id="enter" type="search" placeholder="busque por produtor ou item..." id="search-box">
-                        <a href="search.html">
-                            <label for="search-box" class="fas fa-search"></label></a>
+                        <button onclick="searchData()">
+                            <label for="search-box" class="fas fa-search"></label></button>
                     </form>
 
                     <div class="nav__icon">
@@ -272,5 +272,21 @@ $connVend = $mysqli->query($consultaVend) or die($mysqli->error);
 
     ?>
 </body>
+
+
+<script>
+            var search = document.getElementById('enter');
+
+            search.addEventListener("keydown", function(event) {
+                if (event.key === "Enter") {
+                    searchData();
+                }
+            });
+
+            function searchData() {
+                window.location = 'pesquisar.php?search=' + search.value;
+            }
+        </script>
+
 
 </html>

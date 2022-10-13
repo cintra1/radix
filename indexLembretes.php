@@ -22,7 +22,7 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
         <!--=============== CSS ===============-->
-        <link rel="stylesheet" href="assets/css/styleIndexLembrete.css">
+        <link rel="stylesheet" href="assets/css/styleILembretes.css">
 
         <!-- font awesome cdn link  -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
@@ -90,7 +90,9 @@
         </section>  
 
         <div id="cima" class="caixa__grande">
-        <?php while($dado = $conn->fetch_array()){ ?>
+        <?php 
+        if ($con->rowCount() > 0) {
+        while($dado = $conn->fetch_array()){ ?>
           <div class="box esquerda">
           <a class="btn4" href="alterarLembrete.php?idLembrete=<?php echo $dado["idLembrete"]; ?>"><i class="uil uil-pen"></i></a>
             <h2><?php echo $dado["titulo"]; ?></h2>
@@ -109,7 +111,11 @@
                 <?php } ?>
             </p>
         </div>
-        <?php } ?>
+        <?php } } else {?>
+            <h1 class="title__sem">Nenhum Lembrete</h1>
+                <h1 class="title__sem2">Clique no botão abaixo para adicionar um lembrete.</h1>
+                <img class="img2" src="assets/img/Meeting-pana.svg" alt="" style="width:18rem !important; margin-left:70%; margin-top: -1rem;  margin-bottom: 3rem;">
+            <?php } ?>
     </div>
 
         <!--=============== MAIN JS ===============-->

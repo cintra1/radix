@@ -85,7 +85,7 @@ if (!empty($_GET['search'])) {
     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
 
     <!--=============== CSS ===============-->
-    <link rel="stylesheet" href="assets/css/stylesPesq.css">
+    <link rel="stylesheet" href="assets/css/stylesP.css">
 
     <!-- font awesome cdn link  -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
@@ -122,9 +122,9 @@ if (!empty($_GET['search'])) {
                 <ul class="nav__list__initial">
                     <div></div>
                     <form action="" class="search-form">
-                        <input id="enter" type="search" placeholder="<?php echo $data ?>" id="search-box">
-                        <a href="search.html">
-                            <label for="search-box" class="fas fa-search"></label></a>
+                        <input id="enter" type="search" placeholder="busque por produtor ou item..." id="search-box" style=" border: none;">
+                        <button onclick="searchData()">
+                            <label for="search-box" class="fas fa-search"></label></button>
                     </form>
 
                     <div class="nav__icon">
@@ -181,7 +181,7 @@ if (!empty($_GET['search'])) {
             <img src="assets/img/carrinho-vazio.svg" alt="" class="carrinho__img">
         </div>
         <h3 class="total2"> Seu carrinho está vazio. Clique no botão abaixo para começar a comprar. </h3>
-        <a href="produtores.php" class="btn">Começar a comprar</a>
+        <a href="initial.php" class="btn">Começar a comprar</a>
     <?php } ?>
     </form>
     </header>
@@ -334,6 +334,20 @@ if (!empty($_GET['search'])) {
     <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
 
     <script src="assets/js/mainInitialss.js"></script>
+
+    <script>
+            var search = document.getElementById('enter');
+
+            search.addEventListener("keydown", function(event) {
+                if (event.key === "Enter") {
+                    searchData();
+                }
+            });
+
+            function searchData() {
+                window.location = 'pesquisar.php?search=' + search.value;
+            }
+        </script>
 
 
 

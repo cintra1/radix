@@ -47,7 +47,7 @@
           <input id='img' name="imagemVend" type="file">
                 <label for='img'>ADICIONAR FOTO</label>
           
-          <input type="submit" class="btn" value="Sign up" name="sub"/>
+          <input type="submit" class="btn" value="Registrar-se" name="sub"/>
           <p class="social-text"></p>
           <div class="social-media">
           

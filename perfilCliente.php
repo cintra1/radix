@@ -8,6 +8,10 @@ if (isset($_POST['sub'])) {
     header("Location: initial.php");
 }
 
+if (isset($_POST['subEnd'])) {
+    header("Location: initial.php");
+}
+
 if (isset($_POST['sub5'])) {
     foreach ($_SESSION['dados'] as $produtos) {
         $insert = $pdo->prepare("
@@ -88,7 +92,7 @@ if ($sql->rowCount() > 0) {
     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
 
     <!--=============== CSS ===============-->
-    <link rel="stylesheet" href="assets/css/stylePClien.css">
+    <link rel="stylesheet" href="assets/css/stylePClient.css">
 
     <!-- font awesome cdn link  -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
@@ -119,8 +123,8 @@ if ($sql->rowCount() > 0) {
                     <div></div>
                     <form action="" class="search-form">
                         <input id="enter" type="search" placeholder="busque por produtor ou item..." id="search-box">
-                        <a href="search.html">
-                            <label for="search-box" class="fas fa-search"></label></a>
+                        <button onclick="searchData()">
+                            <label for="search-box" class="fas fa-search"></label></button>
                     </form>
 
                     <div class="nav__icon">
@@ -448,5 +452,19 @@ if ($sql->rowCount() > 0) {
 
         ?>
 </body>
+
+<script>
+            var search = document.getElementById('enter');
+
+            search.addEventListener("keydown", function(event) {
+                if (event.key === "Enter") {
+                    searchData();
+                }
+            });
+
+            function searchData() {
+                window.location = 'pesquisar.php?search=' + search.value;
+            }
+        </script>
 
 </html>
