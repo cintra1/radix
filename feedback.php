@@ -1,7 +1,7 @@
 <?php
 include("php/conexao.php");
 require('php/connection.php');
-include('php/protectVend.php');
+include('php/protectAdm.php');
 
 
 $consulta = "SELECT feedback,nome from tblFeedback as f inner join tblCliente as c on f.idCliente = c.idCliente;";

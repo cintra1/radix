@@ -1,7 +1,7 @@
 <?php
 include("php/conexao.php");
 require('php/connection.php');
-include('php/protectVend.php');
+include('php/protectAdm.php');
 
 $consulta = "SELECT * from tblVendedor;";
 

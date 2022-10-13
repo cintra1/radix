@@ -65,7 +65,7 @@ $s3 = $mysqli->query($somaN) or die($mysqli->error);
                 <i class='bx bx-grid-alt'></i>
             </div>
 
-            <a href="app.html" class="button button__header">LOGOUT</a>
+            <a href="php/logout.php" class="button button__header">LOGOUT</a>
         </nav>
 
     </header>
@@ -139,8 +139,8 @@ $s3 = $mysqli->query($somaN) or die($mysqli->error);
         </div>
     </div>
 
-    <div class="baixo">
-        <div class="box2">
+    <div class="baixo" d>
+        <div class="box2" style="visibility: hidden;">
             <i class="uil uil-angle-left"></i>
             <h2>Março <span style="font-weight: 500;">2021</span> </h2>
             <i class="uil uil-angle-right"></i>

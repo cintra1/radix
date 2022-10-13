@@ -1,9 +1,7 @@
 <?php 
 include('php/protectAdm.php');
-include('php/loadDespesa.php');
-
-include('php/protectIDDespesa.php');
-
+include('php/loadCupom.php');
+include('php/protectIDCupom.php');
 ?>
 <!DOCTYPE html>
 <html>
@@ -12,7 +10,7 @@ include('php/protectIDDespesa.php');
     <meta name="viewport" content="widht=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/stylesAlterarDesp.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/styleAlterarProd.css">
     <link rel="icon" type="image/x-icon" href="assets/img/icon.ico">
     <title>Radix</title>
     
@@ -41,50 +39,29 @@ include('php/protectIDDespesa.php');
     </header>
 
     <div class="caixa__grande">
-        <h2 class="title">Editar Despesa</h2>
+        <h2 class="title">Administração > Editar Cupons > Alterar Cupom</h2>
         <form action="#" method="POST" class="alter-form" enctype="multipart/form-data">
             <div class="caixa2">
-            <label for="idProd">ID da Despesa:
-                <input type="text" id="idDespesas" name="idDespesas" value="<?php echo $_GET['idDespesas']; ?>"  readonly=“true”>
+            <label for="idProd">ID do Cupom:
+                <input type="text" id="idProd" name="idCupom" value="<?php echo $_GET['idCupom']; ?>"  readonly=“true”>
             </label>
             </div>
             <div class="caixa">
-            <label for="nome">Descrição:<BR>
-                <input type="text" id="desc" placeholder="Descrição da Despesa" name="descricao" value="<?php echo $value['descricao']; ?>">
+            <label for="nome">Nome do Cupom:<BR>
+                <input type="text" id="nome" placeholder="Nome Produto" name="nomeCupom" value="<?php echo $value['nomeCupom']; ?>">
+            </label>
+            <label for="preco" id="preco">Valor (Utilizar . ):
+                <input type="text"  placeholder="Preço" name="num" value="<?php echo $value['num']; ?>">
             </label>
             </div>
             <div class="caixa3">
-            <label for="cr" id="cr2" >Conta:<br>
-                <input type="text"  id="cr" placeholder="Conta utilizada" name="conta" value="<?php echo $value['conta']; ?>">
-            </label>
-
-            <label for="data" id="data2">Data:<br>
-                <input wrap="hard" type="date" id="data" placeholder="Data da Despesa" name="dia" value="<?php echo $value['dia']; ?>">
+            <label for="detalhe">Detalhes :
+                <input wrap="hard" type="text" id="detalhe" placeholder="Detalhes Produto" name="detalhe" value="<?php echo $value['detalhe']; ?>">
             </label>
             </div>
-            <div class="caixa">
-            <label for="req" id="req2">Conta:<br>
-                <input id="req" type="text" id="reqValue" name="valor" placeholder="Valor da Despesa" value="<?php echo $value['valor']; ?>">
-            </div>
-            </label>
-            <div class="caixa">
-                <!-- <input type="text" id="statusValue" placeholder="Status"> -->
-                <label for="st" id="st2">Situação:<Br>
-                <select id="st" placeholder="Situação da Despesa" name="situacao">
-                    <?php if($value['situacao']=="Pago"){ ?>
-                    <option value="<?php echo $value['situacao']; ?>"><?php echo $value['situacao']; ?></option> 
-                    <option value="Não Pago">Não Pago</option>
-                    <?php } else {?>
-                    <option value="<?php echo $value['situacao']; ?>"><?php echo $value['situacao']; ?></option> 
-                    <option value="Pago">Pago</option>
-                    <?php }?>
-                </select>
-                </label>
-            </div>
-
-            <div class="baixo__vend"> 
-                <input type="submit" class="btn3" value="Excluir Despesa" name="del"/>
-                <input type="submit" class="btn2" value="Alterar Despesa" name="sub">
+            <div class="baixo__vend" style="text-align: start;"> 
+                <input type="submit" class="btn3" value="Deletar Cupom" name="del" style="margin-left: -3rem"/>
+                <input type="submit" class="btn2" value="Alterar Cupom" name="sub">
             </div>
             <div class="result"></div>
     </form> 
@@ -97,26 +74,26 @@ include('php/protectIDDespesa.php');
 <?php
 
 include('php/conexao.php');
-require_once 'php/editarDespesas.php';
+require_once 'php/editarCupom.php';
   $u = new Usuario;
 
 //verificar se a pessoa clicou no btnCadastrar
 if(isset($_POST['sub']))
 {
-    $idDespesas = addslashes($_GET['idDespesas']);
-    $descricao = addslashes($_POST['descricao']);
-    $valor = addslashes($_POST['valor']);
-    $dia = addslashes($_POST['dia']);
-    $conta = addslashes($_POST['conta']);
-    $situacao = addslashes($_POST['situacao']);
+
+    $idCupom = addslashes($_GET['idCupom']);
+    $nomeCupom = addslashes($_POST['nomeCupom']);
+    $num = addslashes($_POST['num']);
+    $detalhe = addslashes($_POST['detalhe']);
+
 
     //verificar se esta preenchido
-    if(!empty($descricao) && !empty($valor) && !empty($dia) && !empty($conta) && !empty($situacao))
+    if(!empty($nomeCupom) && !empty($num) && !empty($detalhe))
     {
         $u->conectar("Radix","localhost","root","");
         if($u->msgErro == "")//ta ok
         {
-                if($u->atualizar($idDespesas, $descricao, $valor, $dia, $conta,  $situacao))
+                if($u->atualizar($idCupom, $nomeCupom, $detalhe, $num))
                 {
                       ?>
                      <div id="msg-sucesso">
@@ -127,7 +104,7 @@ if(isset($_POST['sub']))
                 }
                 else
                 {
-                    header("Location: indexPagamentos.php");
+                    header("Location: indexCupom.php");
                 }
         }
         else
@@ -156,16 +133,16 @@ if(isset($_POST['sub']))
 <?php
 
 include('php/conexao.php');
-require_once 'php/editarDespesas.php';
+require_once 'php/editarCupom.php';
   $u = new Usuario;
 if(isset($_POST['del']))
 {
-    $idDespesas = addslashes($_GET['idDespesas']);
+    $idCupom = addslashes($_GET['idCupom']);
 
         $u->conectar("Radix","localhost","root","");
         if($u->msgErro == "")//ta ok
         {
-                if($u->deletar($idDespesas))
+                if($u->deletar($idCupom))
                 {
                       ?>
                      <div id="msg-sucesso">
@@ -176,7 +153,7 @@ if(isset($_POST['del']))
                 }
                 else
                 {
-                    header("Location: indexPagamentos.php");
+                    header("Location: indexCupom.php");
                 }
         }
         else
@@ -191,7 +168,6 @@ if(isset($_POST['del']))
     }
 
     ?>
-
 
 </body>
 </html>

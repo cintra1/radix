@@ -29,7 +29,7 @@ include('php/protectVend.php');
                 <i class='bx bx-grid-alt'></i>
             </div>
 
-            <a href="app.html" class="button button__header">LOGOUT</a>
+            <a href="php/logout.php" class="button button__header">LOGOUT</a>
         </nav>
     </header>
     

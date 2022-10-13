@@ -167,7 +167,7 @@ $c = $mysqli->query($contas) or die($mysqli->error);
 
         <div class="caixa__grid">
             <div class="box__pequena" id="cupons">
-                <a href="cupom.html">
+                <a href="indexCupom.php">
                     <h2>Cupons</h2>
                 </a>
             </div>

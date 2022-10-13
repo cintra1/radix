@@ -15,25 +15,24 @@ Class Usuario
         }                
     }
 
-    public function atualizar($idDespesas, $descricao, $valor, $dia, $conta,  $situacao)
+    public function atualizar($idCupom, $nomeCupom, $detalhe, $num)
     {
         global $pdo;
       
-            $sql = $pdo->prepare("UPDATE tblDespesas SET descricao = '$descricao', valor = '$valor',
-             dia = '$dia', conta = '$conta', situacao = '$situacao'
-             WHERE idDespesas = '$idDespesas'");
+            $sql = $pdo->prepare("UPDATE tblCupom SET nomeCupom = '$nomeCupom', detalhe = '$detalhe',
+             num = '$num', detalhe = '$detalhe'
+             WHERE idCupom = '$idCupom'");
 
              $sql->execute();
            
         
     } 
 
-    public function deletar($idDespesas)
+    public function deletar($idCupom)
     {
         global $pdo;
       
-            $sql = $pdo->prepare("DELETE FROM tblDespesas WHERE idDespesas = $idDespesas");
-
+            $sql = $pdo->prepare("DELETE from tblCupom where idCupom = $idCupom;");
              $sql->execute();
            
         
