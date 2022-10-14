@@ -81,7 +81,7 @@ if ($sql->rowCount() > 0) {
     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
 
     <!--=============== CSS ===============-->
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/styleInicials.css">
 
     <!-- font awesome cdn link  -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
@@ -149,7 +149,6 @@ if ($sql->rowCount() > 0) {
         </nav>
 
 
-
         <div class="shopping-cart cartes carts">
             <?php if ($con2->rowCount() > 0) { ?>
                 <form action="#" method="POST" enctype="multipart/form-data">
@@ -214,7 +213,7 @@ if ($sql->rowCount() > 0) {
                                     <option value=""><?php echo $dado4['nomeCupom']; ?></option>
                                 <?php } ?>
                             </select>
-                            <div class="location__box" id="location__box">
+                            <div class="location__box" id="location__box" style="display: none;">
                                 <div class="loc">
                                     <h3>
                                         <i class="uil uil-compass"></i>
@@ -246,26 +245,26 @@ if ($sql->rowCount() > 0) {
                     <p>Nós levamos seu orgânico com qualidade radix que você já conhece, sem <br>
                         taxa de adesão e com frete grátis. Incrível, não?</p>
                 </div>
-                <a href="" class="button3">Faça sua cesta</a>
+                <a href="" class="button3">Começe a comprar já</a>
             </div>
         </div>
 
         <section class="feature section-p1">
             <div class="f__box">
                 <img src="assets/img/solo.png" style="width: 150px;" alt="">
-                <p>Cesta Júnior</p>
-                <h6>Ideal para uma pessoa.</h6>
+                <p>Faltou um tomate na sua salada?</p>
+                <h6>Peça na Radix, a entrega é rápida.</h6>
             </div>
 
             <div class="f__box">
                 <img src="assets/img/casal.png" style="width: 150px;" alt="">
-                <p>Cesta Normal</p>
-                <h6>Ideal para um casal.</h6>
+                <p>Vai fazer um prato especial?</p>
+                <h6>Peça os ingredientes na Radix e arrase.</h6>
             </div>
 
             <div class="f__box">
                 <img src="assets/img/family.png" style="width: 150px;" alt="">
-                <p>Cesta Jumbo</p>
+                <p>Quer fazer as compras do mês?</p>
                 <h6>Ideal para uma família.</h6>
             </div>
 
@@ -410,7 +409,7 @@ if ($sql->rowCount() > 0) {
         <!--=============== MAIN JS ===============-->
         <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
 
-        <script src="assets/js/mainInitialss.js"></script>
+        <script src="assets/js/initial.js"></script>
 
         <script>
             var search = document.getElementById('enter');

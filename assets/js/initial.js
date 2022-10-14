@@ -4,7 +4,7 @@ let a = document.querySelector('.fa-search')
 let menu = document.querySelector('.nav')
 let cart = document.querySelector('.shopping-cart')
 let cartes = document.querySelector('.cartes')
-let carts = document.querySelector('.carts')
+let carts = document.querySelector('.cart-btn')
 
 
 let searchForm = document.querySelector('.search-form');
@@ -21,15 +21,27 @@ document.querySelector('#cart-btn').onclick = () =>{
     cart.classList.toggle('active');
     navbar.classList.remove('active');
     menu.classList.remove('show-menu');
-
-};
-
-document.querySelector('#carts').onclick = () =>{
-    cart.classList.toggle('active');
-    navbar.classList.remove('active');
-    menu.classList.remove('show-menu');
     carts.classList.toggle('active');
+    nav.classList.remove('show-menu')
+
 };
+const showMenu = (toggleId, navId) =>{
+    const toggle = document.getElementById(toggleId),
+    nav = document.getElementById(navId)
+    
+    // Validate that variables exist
+    if(toggle && nav){
+        toggle.addEventListener('click', ()=>{
+            // We add the show-menu class to the div tag with the nav__menu class
+            nav.classList.toggle('show-menu')
+            navbar.classList.remove('active');
+            cartes.classList.remove('active');
+            carts.classList.remove('active');
+        })
+    }
+}
+showMenu('nav-toggle','nav-menu')
+
 
 const inputEle = document.getElementById('enter');
 inputEle.addEventListener('keyup', function(e){
@@ -58,21 +70,7 @@ search_address.addEventListener('focusout', ()=>{
 
 
 /*=============== SHOW MENU ===============*/
-const showMenu = (toggleId, navId) =>{
-    const toggle = document.getElementById(toggleId),
-    nav = document.getElementById(navId)
-    
-    // Validate that variables exist
-    if(toggle && nav){
-        toggle.addEventListener('click', ()=>{
-            // We add the show-menu class to the div tag with the nav__menu class
-            nav.classList.toggle('show-menu')
-            navbar.classList.remove('active');
-            cartes.classList.remove('active');
-        })
-    }
-}
-showMenu('nav-toggle','nav-menu')
+
 
 var swiper = new Swiper(".product-slider", {
     loop:true,

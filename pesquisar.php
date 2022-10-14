@@ -2,6 +2,7 @@
 include('php/conexao.php');
 require('php/connection.php');
 include('php/protect.php');
+include('php/protectSearch.php');
 include('php/protectPesquisar.php');
 include('php/loadItem.php');
 
@@ -85,7 +86,7 @@ if (!empty($_GET['search'])) {
     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
 
     <!--=============== CSS ===============-->
-    <link rel="stylesheet" href="assets/css/stylesP.css">
+    <link rel="stylesheet" href="assets/css/stylesPsq.css">
 
     <!-- font awesome cdn link  -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
@@ -132,7 +133,7 @@ if (!empty($_GET['search'])) {
                         <div class="fas fa-search" id="search-btn" style="display: none"></div>
 
                         <li class="nav__item">
-                            <div id="cart-btn" class="uil uil-shopping-bag nav__link"></div>
+                            <div id="cart-btn" id="carts" class="uil uil-shopping-bag nav__link"></div>
                         </li>
 
                         <li class="nav__item">
@@ -269,7 +270,8 @@ if (!empty($_GET['search'])) {
                 </div>
             </div>
         </section>
-    </main>
+        </main>
+
 
 
     <div class="alinhar">
@@ -333,7 +335,7 @@ if (!empty($_GET['search'])) {
     <!--=============== MAIN JS ===============-->
     <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
 
-    <script src="assets/js/mainInitialss.js"></script>
+    <script src="assets/js/initial.js"></script>
 
     <script>
             var search = document.getElementById('enter');
@@ -348,7 +350,6 @@ if (!empty($_GET['search'])) {
                 window.location = 'pesquisar.php?search=' + search.value;
             }
         </script>
-
 
 
 </body>
