@@ -1505,11 +1505,20 @@ footer .copyright{
   padding:.5rem 0;
 }
 
-.products .product-slider .box .stars i{
+.products .product-slider .box .star i{
   font-size: 1rem;
   color:var(--cor-principal);
   padding:.5rem 0;
 }
+
+
+.star__img{
+  width: 1rem !important;
+  height: 1rem !important;
+  position: absolute;
+  top: 74%;
+}
+
 
 .category .box-container {
   display: -ms-grid;

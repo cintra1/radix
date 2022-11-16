@@ -1,67 +1,18 @@
 <?php
 include('php/conexao.php');
 require('php/connection.php');
-include('php/protect.php');
-include('php/loadItem.php');
-
-if (isset($_POST['sub'])) {
-    foreach ($_SESSION['dados'] as $produtos) {
-        $insert = $pdo->prepare("
-        INSERT INTO tblPedido (idCliente,idItem,idVendedor) VALUES (?,?,?)");
-        $insert->bindParam(1, $produtos['idCliente']);
-        $insert->bindParam(2, $produtos['idItem']);
-        $insert->bindParam(3, $produtos['idVendedor']);
-        $insert->execute();
-        $bol = true;
-    }
-
-    header("Location: carrinho.php");
-}
-
-$_SESSION['dados'] = array();
-$idCliente = $_SESSION['idCliente'];
 
 $consulta = "SELECT * FROM tblProduto WHERE statusProduto <> 0  ORDER BY RAND() LIMIT 8";
 
 $con = $pdo->query($consulta) or die($mysqli->error);
 $conn = $mysqli->query($consulta) or die($mysqli->error);
 
-$consulta2 = "SELECT * from tblItem as i inner join tblProduto as p on i.idProduto = p.idProduto
-    inner join tblVendedor as v on p.idVendedor = v.idVendedor where idCliente = $idCliente and statusItem <> 0";
-
-$con2 = $pdo->query($consulta2) or die($mysqli->error);
-$conn2 = $mysqli->query($consulta2) or die($mysqli->error);
 
 $consulta3 = "SELECT * FROM tblProduto WHERE statusProduto <> 0 ORDER BY RAND() LIMIT 8";
 
 $con3 = $pdo->query($consulta3) or die($mysqli->error);
 $conn3 = $mysqli->query($consulta3) or die($mysqli->error);
 
-$consultaCupom = "SELECT * FROM tblCupom WHERE idCliente = $idCliente";
-
-$conCupom = $pdo->query($consultaCupom) or die($mysqli->error);
-$connCupom = $mysqli->query($consultaCupom) or die($mysqli->error);
-
-$soma = "SELECT SUM(p.preco*i.qtde) AS total FROM tblProduto as p inner join tblItem as i on p.idProduto = i.idProduto where statusItem <> 0 and idCliente = $idCliente";
-$s = $mysqli->query($soma) or die($mysqli->error);
-
-$sql = $pdo->query("SELECT * from tblItem as i inner join tblProduto as p on i.idProduto = p.idProduto
-     inner join tblVendedor as v on p.idVendedor = v.idVendedor where idCliente = $idCliente and statusItem <> 0;");
-if ($sql->rowCount() > 0) {
-    foreach ($sql->fetchAll() as $value) {
-        array_push(
-            $_SESSION['dados'],
-            array(
-                'idCliente' =>  $value['idCliente'],
-                'idItem' =>  $value['idItem'],
-                'idVendedor' =>  $value2['idVendedor'],
-                'qtde' => $value['qtde'],
-                'preco' => $value['preco'],
-                'nomeProd' => $value['nomeProd']
-            )
-        );
-    }
-}
 
 ?>
 <!DOCTYPE html>
@@ -109,7 +60,7 @@ if ($sql->rowCount() > 0) {
                 <a href="#review">Especiarias</a>
             </nav>
 
-            <a href="initial.html" class="nav__logo first"> <i class="fa fa-leaf"></i>Radix</a>
+            <a href="initial.php" class="nav__logo first"> <i class="fa fa-leaf"></i>Radix</a>
 
             <div class="nav__menu" id="nav-menu">
                 <ul class="nav__list__initial">
@@ -129,12 +80,10 @@ if ($sql->rowCount() > 0) {
                         </li>
 
                         <li class="nav__item">
-                            <a href="perfilCliente.php" class="fas fa-user nav__link"></a>
+                            <a href="login.php" class="fas fa-user nav__link"></a>
                         </li>
 
-                        <li class="nav__item">
-                            <a href="php/logout.php" class="uil uil-signout nav__link" style="font-size: 1.2rem !important"></a>
-                        </li>
+                       
                       
                     </div>
                 </ul>
@@ -147,35 +96,13 @@ if ($sql->rowCount() > 0) {
 
 
         <div class="shopping-cart cartes carts">
-            <?php if ($con2->rowCount() > 0) { ?>
-                <form action="#" method="POST" enctype="multipart/form-data">
-                    <div class="box__maior" style=" overflow-y: scroll;height: 18rem;">
-                        <?php while ($dado2 = $conn2->fetch_array()) {   ?>
-                            <div class="box">
-                                <a href="remover.php?idItem=<?php echo $dado2["idItem"]; ?>"><i class="fas fa-times"></i></a>
-                                <img src="upload/<?php echo $dado2["foto"]; ?>" alt="">
-                                <div class="content">
-                                    <h3><?php echo $dado2["nomeProd"]; ?></h3>
-                                    <span class="quantity"><?php echo $dado2["qtde"]; ?></span>
-                                    <span class="multiply">x</span>
-                                    <span class="price">R$ <?php echo number_format($dado2["preco"], 2, ",", "."); ?></span>
-                                </div>
-                            </div>
-                        <?php } ?>
-                    </div>
-                    <h3 class="total"> Total : <?php while ($dado = $s->fetch_array()) {
-                                                    echo number_format($dado['total'], 2, ",", "."); ?></h3> <?php } ?> </h3>
-                <input class="btn" type="submit" name="sub" value="Finalizar Compra">
-
+            <div class="box">
+                <img src="assets/img/carrinho-vazio.svg" alt="" class="carrinho__img">
+            </div>
+            <h3 class="total2"> Você não está logado. Clique no botão abaixo para fazer login e começar a comprar.  </h3>
+            <a href="login.php" class="btn">Fazer Login</a>
         </div>
-    <?php } else { ?>
-        <div class="box">
-            <img src="assets/img/carrinho-vazio.svg" alt="" class="carrinho__img">
-        </div>
-        <h3 class="total2"> Seu carrinho está vazio. Clique no botão abaixo para começar a comprar. </h3>
-        <a href="initial.php" class="btn">Começar a comprar</a>
-    <?php } ?>
-    </form>
+        
     </header>
 
     <main class="main initial__home">
@@ -192,23 +119,15 @@ if ($sql->rowCount() > 0) {
                         </div>
                         <div class="inputs">
                             <i class="material-icons">place</i>
-                            <?php
-                             $sql2 = $pdo->query("SELECT * from tblEndereco where idCliente = $idCliente and enderecoPrincipal = 1;");
-                             if ($sql2->rowCount() > 0) {
-                                 foreach ($sql2->fetchAll() as $value2) { ?>
-                            <input type="text" placeholder="<?php echo $value2['apelidoEndereco']; ?>: <?php echo $value2['endereco']; ?>" id="search_address" readonly><?php
-                                }
-                            }else{
-                                ?>  <a href="perfilCliente.php"><input  style="cursor:pointer" type="text" placeholder="Adicionar endereço principal" id="search_address" readonly></a> <?php
-                            } ?>
+                            
+                            <a href="login.php" style="cursor: pointer;"><input type="text" style="cursor: pointer;" placeholder="Faça login para adicionar um endereço" id="search_address" readonly></a>
+                               
                              
                             <i class="uil uil-angle-down" id="search_arrow" style="visibility: hidden;"></i>
                             <i class="uil uil-ticket"></i>
                             <select name="" id="" class="search2">
-                                <option value="">Seus cupons...</option>
-                                <?php while ($dado4 = $connCupom->fetch_array()) {   ?>
-                                    <option value=""><?php echo $dado4['nomeCupom']; ?></option>
-                                <?php } ?>
+                                <option value="">Sem cupons...</option>
+                    
                             </select>
                             <div class="location__box" id="location__box" style="display: none;">
                                 <div class="loc">
@@ -302,14 +221,14 @@ if ($sql->rowCount() > 0) {
                                 <?php }else if($dado3['entrega'] < 3){ ?>
 
                                     <img src="assets/img/folha.png" alt="" class="star__img">
-                                <?php }else if($dado3['entrega'] < 5 ){ ?>
+                                <?php }else if($dado3['entrega'] > 3 ){ ?>
                                     <img src="assets/img/tree.png" alt="" class="star__img">
                                     <?php } }?>
                                 <h5><?php echo $dado["nomeProd"]; ?></h5><?php } ?></h2>
                           
                             <h4>R$ <?php echo number_format($dado["preco"], 2, ",", "."); ?></h4>
                         </div>
-                        <a href="sproduto.php?idProduto=<?php echo $dado["idProduto"]; ?>"><i class="fas fa-shopping-cart"></i></a>
+                        <a href="login.php"><i class="fas fa-shopping-cart"></i></a>
                     </div>
                 <?php } ?>
             </div>
@@ -319,7 +238,7 @@ if ($sql->rowCount() > 0) {
             <h4>cupom de desconto</h4>
             <h2>Dê sua sugestão na tela de <span>feedbacks</span> para ganhar o cupom FALE5</h2>
             <span>Cupom oferece R$ 5,00 na compra de qualquer produto no app.</span>
-            <a href="faleConosco.php"><button class="normal">Dar seu feedback</button></a>
+            <a href="login.php"><button class="normal">Dar seu feedback</button></a>
         </section>
 
         <section class="produtos1 section-p1">
@@ -355,7 +274,7 @@ if ($sql->rowCount() > 0) {
                                 <?php }else if($dado5['entrega'] < 3){ ?>
 
                                     <img src="assets/img/folha.png" alt="" class="star__img">
-                                <?php }else if($dado5['entrega'] > 5 ){ ?>
+                                <?php }else if($dado5['entrega'] < 5 ){ ?>
                                     <img src="assets/img/tree.png" alt="" class="star__img">
                                     <?php } }?>
                                 <h5><?php echo $dado3["nomeProd"]; ?></h5><?php } ?></h2>
@@ -363,7 +282,7 @@ if ($sql->rowCount() > 0) {
                       
                         <h4>R$ <?php echo number_format($dado3["preco"], 2, ",", "."); ?></h4>
                         </div>
-                        <a href="sproduto.php?idProduto=<?php echo $dado3["idProduto"]; ?>"><i class="fas fa-shopping-cart"></i></a>
+                        <a href="login.php"><i class="fas fa-shopping-cart"></i></a>
                     </div>
                 <?php } ?>
             </div>
@@ -392,6 +311,7 @@ if ($sql->rowCount() > 0) {
                     </div>
                 </div>
             </div>
+
             <div class="col">
                 <h4>Sobre</h4>
                 <a href="index.html#sobre">Sobre nós</a>
@@ -441,7 +361,7 @@ if ($sql->rowCount() > 0) {
             });
 
             function searchData() {
-                window.location = 'pesquisar.php?search=' + search.value;
+                window.location = 'login.php';
             }
         </script>
 

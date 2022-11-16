@@ -4,6 +4,6 @@
     }
 
 if(!isset($_SESSION['idCliente'])){
-    header("Location: initial.html");
+    header("Location: initialNoUser.php");
 }
 ?>

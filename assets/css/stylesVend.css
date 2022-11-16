@@ -745,8 +745,6 @@ main{
 }
 
 .box__vendas{
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
   text-align: center;
 }
 

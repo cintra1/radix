@@ -31,18 +31,14 @@ Class Usuario
            
     } 
 
-    public function status($status,$idVendedor)
+    public function status($idVendedor)
     {
         global $pdo;
             
             $sql = $pdo->prepare("UPDATE tblVendedor
-            SET statusConta = :s,
-            WHERE idVendedor = :id " );
+            SET statusConta = 0 WHERE idVendedor = :id " );
 
-            $sql->bindValue(":s",$status);
             $sql->bindValue(":id",$idVendedor);
-            
-            
             $sql->execute();
            
     } 

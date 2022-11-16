@@ -17,7 +17,7 @@ $conn = $mysqli->query($consulta) or die($mysqli->error);
     <meta name="viewport" content="widht=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/stylesVenda.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/stylesVend.css">
     <link rel="icon" type="image/x-icon" href="assets/img/icon.ico">
     <title>Radix</title>
 </head>
@@ -47,32 +47,7 @@ $conn = $mysqli->query($consulta) or die($mysqli->error);
         <div class="perfil">
             <h1 class="title" style="white-space: nowrap;">Vendedores Ativos</h1>
         </div>
-        <div class="inputFields">
-            <div class="caixa__d">
-                <div class="results">
-                    <div class="box__peq">
-                        <img src="assets/img/semente.png" alt="">
-                        <h1>0</h1>
-                    </div>
-
-                    <div class="box__peq">
-                        <img src="assets/img/folha.png" alt="">
-                        <h1>0</h1>
-                    </div>
-
-                    <div class="box__peq">
-                        <img src="assets/img/folha-media.png" alt="">
-                        <h1>0</h1>
-                    </div>
-
-                    <div class="box__peq">
-                        <img src="assets/img/folha-ruim.png" alt="">
-                        <h1>0</h1>
-                    </div>
-
-                </div>
-            </div>
-        </div>
+       
 
         <div class="home__container container grid2 box row">
             <?php if ($con->rowCount() > 0) {
@@ -80,7 +55,33 @@ $conn = $mysqli->query($consulta) or die($mysqli->error);
                     <div class="home__box home__container container">
                         <div class="fist">
                             <div class="box__circle">
-                                <img src="assets/img/semente.png" alt="">
+                                
+                                
+                               <?php 
+                                $idVendedor = $dado['idVendedor'];
+                                $consultaVe = "SELECT count(*) as entrega from tblEntrega where idVendedor = $idVendedor;";
+
+                                $connVe = $mysqli->query($consultaVe) or die($mysqli->error);
+
+                                ?>
+                              
+                                <?php while ($dado5 = $connVe->fetch_array()) {
+                                   if($dado5['entrega'] == 0){  ?>
+                                <img src="assets/img/semente.png" alt="" >
+
+                   
+
+                                <?php }else if($dado5['entrega'] < 3){ ?>
+
+                                    <img src="assets/img/folha.png" alt="" >
+
+                      
+                                <?php }else if($dado5['entrega'] > 3){ ?>
+                                    <img src="assets/img/tree.png" alt="" >
+
+                   
+                                    <?php }}?>
+                      
                             </div>
                             <div class="home__data">
                                 <h1 class="home__titlet"><?php echo $dado['nomeVend']; ?></h1>
@@ -98,15 +99,6 @@ $conn = $mysqli->query($consulta) or die($mysqli->error);
                                         echo $dado2['vendas']; ?> <?php } ?> </h2>
                             </div>
 
-                            <div>
-                                <p class="title__vendas">Vendedor á: </p>
-                                <h2>1 mês</h2>
-                            </div>
-
-                            <div>
-                                <p class="title__vendas">Próximo Selo:</p>
-                                <h2>10 pts.</h2>
-                            </div>
                         </div>
                     </div>
             <?php }

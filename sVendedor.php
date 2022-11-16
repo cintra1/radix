@@ -153,7 +153,7 @@ if (!empty($_GET['idVendedor'])) {
 
 
 
-        <div class="shopping-cart cartes">
+        <div class="shopping-cart cartes carts">
             <?php if ($con2->rowCount() > 0) { ?>
                 <form action="#" method="POST" enctype="multipart/form-data">
                     <div class="box__maior" style=" overflow-y: scroll;height: 18rem;">
@@ -218,10 +218,34 @@ if (!empty($_GET['idVendedor'])) {
 
                     <div class="rank">
                         <h1 class="heading">SELO</h1>
-                        <img src="assets/img/folha (2).png" alt="">
-                        <div class="rating">
-                            <span>Selo folha de produtor na média</span>
+                          <?php 
+                                $idVendedor = $_GET['idVendedor'];
+                                $consultaVe = "SELECT count(*) as entrega from tblEntrega where idVendedor = $idVendedor;";
+
+                                $connVe = $mysqli->query($consultaVe) or die($mysqli->error);
+
+                                ?>
+                              
+                                <?php while ($dado5 = $connVe->fetch_array()) {
+                                   if($dado5['entrega'] == 0){  ?>
+                                <img src="assets/img/semente.png" alt="" class="star__img">
+                                <div class="rating">
+                            <span>Selo semente azul de novo produtor</span>
                         </div>
+
+                                <?php }else if($dado5['entrega'] < 3){ ?>
+
+                                    <img src="assets/img/folha.png" alt="" class="star__img">
+                                    <div class="rating">
+                                    <span>Selo folha de produtor na média</span>
+                        </div>
+                                <?php }else if($dado5['entrega'] < 5 ){ ?>
+                                    <img src="assets/img/tree.png" alt="" class="star__img">
+                                    <div class="rating">
+                            <span>Selo árvore de produtor ultra confiável</span>
+                        </div>
+                                    <?php }?>
+
                     </div>
 
                     <div class="btns">
@@ -264,7 +288,7 @@ if (!empty($_GET['idVendedor'])) {
                                             <i class="fas fa-star"></i>
                                             <i class="fas fa-star"></i>
                                         </div>
-                                        <h4>R$ <?php echo $dadoP['preco']; ?></h4>
+                                        <h4>R$ <?php echo number_format($dadoP["preco"], 2, ",", "."); ?></h4>
                                     </div>
                                     <a href="sproduto.php?idProduto=<?php echo $dadoP["idProduto"]; ?>"><i class="fas fa-shopping-cart"></i></a>
                                 </div>
@@ -283,7 +307,7 @@ if (!empty($_GET['idVendedor'])) {
                     </div>
                 </section>
             </div>
-        <?php } ?>
+        <?php }} ?>
 
 
        
@@ -291,7 +315,7 @@ if (!empty($_GET['idVendedor'])) {
         <!--=============== MAIN JS ===============-->
         <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
 
-        <script src="assets/js/mainInitialss.js"></script>
+        <script src="assets/js/initial.js"></script>
 
         <script>
             var search = document.getElementById('enter');

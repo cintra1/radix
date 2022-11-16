@@ -26,6 +26,7 @@ body{
     margin-top: 2.5rem;
 }
 
+
 .caixa__grande{
   position: absolute;
   top: 8%;
@@ -38,14 +39,14 @@ body{
  .inputFields{
     margin: 25px 0;
     display: grid;
-    grid-template-rows: repeat(4, 15% 15% 15% 70%);
+    grid-template-rows: repeat(4, 5% 15% 15% 70%);
     grid-row-gap: 2rem;
     height: 20rem;
     width: 60rem;
     margin-bottom: 2rem;
 }
 
- .inputFields input[type="text"]{
+ .inputFields input[type="text"], .inputFields select{
     border: 1px solid #84CA9D;
     outline: none;
     width: calc(100% - 60px);
@@ -118,7 +119,6 @@ body{
     font-size: 1rem;
     cursor: pointer;
     transition: .3s;
-    margin-top: 1rem;
 }
 
 .espaco{

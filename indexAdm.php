@@ -28,6 +28,7 @@ $c = $mysqli->query($contas) or die($mysqli->error);
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+        
         <!--=============== CSS ===============-->
         <link rel="stylesheet" href="assets/css/stylesAdministracao.css">
 
@@ -172,7 +173,7 @@ $c = $mysqli->query($contas) or die($mysqli->error);
                 </a>
             </div>
             <div class="box__pequena" id="punicoes">
-                <a href="punicoes.html">
+                <a href="punicoes.php">
                 <h2>Punições</h2>
                 </a>
             </div>
