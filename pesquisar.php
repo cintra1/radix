@@ -214,13 +214,7 @@ if (!empty($_GET['search'])) {
                                         <span>Produtor: <?php while ($dado2 = $connVend->fetch_array()) {
                                                             echo $dado2['nomeVend']; ?> </span><?php } ?>
                                     <h5><?php echo $dadoP['nomeProd']; ?></h2>
-                                        <div class="star">
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                        </div>
+                                    
                                         <h4>R$ <?php echo $dadoP['preco']; ?></h4>
                                     </div>
                                     <a href="sproduto.php?idProduto=<?php echo $dadoP["idProduto"]; ?>"><i class="fas fa-shopping-cart"></i></a>

@@ -76,7 +76,7 @@ $s3 = $mysqli->query($somaN) or die($mysqli->error);
 
         <div class="perfil">
             <div class="perfil__data">
-                <h1 class="perfil__title">Aréa de Admnistração da Equipe</h1>
+                <h1 class="perfil__title"><a href="indexAdm.php" style="color: #70C28D;">Aréa De Admnistração </a> > Controle de Despesas</h1>
             </div>
         </div>
     </section>

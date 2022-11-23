@@ -13,6 +13,9 @@ $s = $mysqli->query($soma) or die($mysqli->error);
 $soma2 = "SELECT SUM(p.preco*i.qtde) as saldo from tblEntrega as e inner join tblItem as i on e.idItem = i.idItem inner join tblProduto as p on i.idProduto = p.idProduto inner join tblVendedor as v on p.idVendedor = v.idVendedor where e.idVendedor = $idVendedor";
 $s2 = $mysqli->query($soma2) or die($mysqli->error);
 
+$soma3 = "SELECT count(*) as vendas from tblPedido where idVendedor = $idVendedor;";
+$s3 = $mysqli->query($soma3) or die($mysqli->error);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -117,7 +120,7 @@ $s2 = $mysqli->query($soma2) or die($mysqli->error);
 
         <div class="perfil">
             <div class="perfil__data">
-                <h1 class="perfil__title">Home Vendedor > Gastos Semanais</h1>
+                <h1 class="perfil__title"> <a href="indexVendedor.php" style="color: #70C28D;">Home Vendedor </a> > Gastos Semanais</h1>
             </div>
         </div>
     </section>
@@ -168,7 +171,8 @@ $s2 = $mysqli->query($soma2) or die($mysqli->error);
             <h2 class="title__adm">Avaliações</h2>
             <div class="box__second">
                 <p>Engajamento</p>
-                <h1>19%</h1>
+                <h1><?php while ($dado3 = $s3->fetch_array()) {
+                                 echo $dado3['vendas']; ?> <?php } ?> Vendas</h1>
             </div>
         </div>
 

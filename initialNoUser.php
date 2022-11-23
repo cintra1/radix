@@ -218,7 +218,7 @@ $conn3 = $mysqli->query($consulta3) or die($mysqli->error);
                                    if($dado3['entrega'] == 0){  ?>
                                 <img src="assets/img/semente.png" alt="" class="star__img">
 
-                                <?php }else if($dado3['entrega'] < 3){ ?>
+                                <?php }else if($dado3['entrega'] <= 3){ ?>
 
                                     <img src="assets/img/folha.png" alt="" class="star__img">
                                 <?php }else if($dado3['entrega'] > 3 ){ ?>
@@ -271,10 +271,10 @@ $conn3 = $mysqli->query($consulta3) or die($mysqli->error);
                                    if($dado5['entrega'] == 0){  ?>
                                 <img src="assets/img/semente.png" alt="" class="star__img">
 
-                                <?php }else if($dado5['entrega'] < 3){ ?>
+                                <?php }else if($dado5['entrega'] <= 3){ ?>
 
                                     <img src="assets/img/folha.png" alt="" class="star__img">
-                                <?php }else if($dado5['entrega'] < 5 ){ ?>
+                                <?php }else if($dado5['entrega'] > 3 ){ ?>
                                     <img src="assets/img/tree.png" alt="" class="star__img">
                                     <?php } }?>
                                 <h5><?php echo $dado3["nomeProd"]; ?></h5><?php } ?></h2>

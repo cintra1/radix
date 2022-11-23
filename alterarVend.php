@@ -34,7 +34,7 @@ include('php/protectVend.php');
     </header>
     
     <div class="caixa__grande">
-        <h2 class="title">Home Vendedor > Editar Perfil </h2>
+        <h2 class="title"> <a href="indexVendedor.php" style="color: #70C28D;">Home Vendedor </a> > Editar Perfil </h2>
         <form action="#" method="POST" class="alter-form" enctype="multipart/form-data">
             <div class="caixa">
                 <input name="nomeVend" type="text" id="nomeValue" value="<?php echo $_SESSION['nomeVend']; ?>">

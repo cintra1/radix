@@ -112,6 +112,7 @@ $connVend = $mysqli->query($consultaVend) or die($mysqli->error);
             <h4><?php echo $value['nomeProd']; ?></h4>
             <a href="sVendedor.php?idVendedor=<?php echo $value["idVendedor"]; ?>"><span>Produtor: <?php while ($dado2 = $connVend->fetch_array()) {
                                                 echo $dado2['nomeVend']; ?></span><?php } ?></a>
+                                                
             <h2>R$ <?php echo number_format($value["preco"], 2, ",", "."); ?></h2>
             <input type="number" value="1" name="qtde" min="0">
             <input type="submit" class="normal btn" name="sub" value="Adionar no carrinho">
@@ -141,13 +142,7 @@ $connVend = $mysqli->query($consultaVend) or die($mysqli->error);
                             <span>Produtor: <?php while ($dado2 = $connVend->fetch_array()) {
                                                 echo $dado2['nomeVend']; ?></span>
                             <h5><?php echo $dado["nomeProd"]; ?></h5><?php } ?></h2>
-                        <div class="star">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
+                     
                         <h4>R$ <?php echo number_format($dado["preco"], 2, ",", "."); ?></h4>
                         </div>
                         <a href="sproduto.php?idProduto=<?php echo $dado["idProduto"]; ?>"><i class="fas fa-shopping-cart"></i></a>

@@ -122,7 +122,7 @@ include('php/protectVend.php');
             </div>
         </a>
 
-        <a href="selo.html">
+        <a href="selo.php">
         <div id="cinco">
             <h2>Selo de Produtor</h2>
         </div>
@@ -134,15 +134,6 @@ include('php/protectVend.php');
         </div>
         </a>
     </div>
-
-    <div class="avaliações">
-        <div class="av">
-            <a href="indexVendedor.html">
-                <h3>Ler avaliações dos clientes</h3>
-            </a>
-        </div>
-    </div>
-
 
     <!--=============== MAIN JS ===============-->
     <script src="assets/js/main.js"></script>

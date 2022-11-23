@@ -47,7 +47,7 @@ $conn = $mysqli->query($consulta) or die($mysqli->error);
     </header>
 
     <div class="caixa__grande">
-        <h2 class="title__top"> Administração > Editar Cupons</h2>
+        <h2 class="title__top"> <a href="indexAdm.php" style="color: #70C28D;">Aréa De Admnistração </a> > Editar Cupons</h2>
         <div class="boxes">
             <?php if ($con->rowCount() > 0) {
                 while ($dado = $conn->fetch_array()) { ?>

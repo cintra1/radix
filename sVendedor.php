@@ -198,10 +198,10 @@ if (!empty($_GET['idVendedor'])) {
 
                 <section class="work_skills card">
                     <div class="work">
-                        <h1 class="heading">Sobre</h1>
+                        <h1 class="heading">Dados<h1>
                         <div class="primary">
-                            <h1>Produtor de Amoras</h1>
-                            <p>Produzindo amoras das melhores maneiras para entregar melhor qualidade, compre conosco e com certeza não se arrependerá.</p>
+                            <h1>Produtor da Radix</h1>
+                            <p>Alimentos agrícolas certificados e fiscalizados pela ANVISA.</p>
                         </div>
                     </div>
                 </section>
@@ -217,7 +217,7 @@ if (!empty($_GET['idVendedor'])) {
                     </div>
 
                     <div class="rank">
-                        <h1 class="heading">SELO</h1>
+                        <h1 class="heading" >SELO</h1>
                           <?php 
                                 $idVendedor = $_GET['idVendedor'];
                                 $consultaVe = "SELECT count(*) as entrega from tblEntrega where idVendedor = $idVendedor;";
@@ -239,22 +239,13 @@ if (!empty($_GET['idVendedor'])) {
                                     <div class="rating">
                                     <span>Selo folha de produtor na média</span>
                         </div>
-                                <?php }else if($dado5['entrega'] < 5 ){ ?>
+                                <?php }else if($dado5['entrega'] > 3 ){ ?>
                                     <img src="assets/img/tree.png" alt="" class="star__img">
                                     <div class="rating">
                             <span>Selo árvore de produtor ultra confiável</span>
                         </div>
                                     <?php }?>
 
-                    </div>
-
-                    <div class="btns">
-                        <ul>
-                            <li class="sendMsg">
-                                <i class="uil uil-comment"></i>
-                                <a href="#">Enviar mensagem</a>
-                            </li>
-                        </ul>
                     </div>
                 </section>
 
@@ -281,13 +272,7 @@ if (!empty($_GET['idVendedor'])) {
                                         <span>Produtor: <?php while ($dado2 = $connVend->fetch_array()) {
                                                             echo $dado2['nomeVend']; ?> </span><?php } ?>
                                     <h5><?php echo $dadoP['nomeProd']; ?></h2>
-                                        <div class="star">
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                        </div>
+                                        
                                         <h4>R$ <?php echo number_format($dadoP["preco"], 2, ",", "."); ?></h4>
                                     </div>
                                     <a href="sproduto.php?idProduto=<?php echo $dadoP["idProduto"]; ?>"><i class="fas fa-shopping-cart"></i></a>

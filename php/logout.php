@@ -6,4 +6,4 @@ if(!isset($_SESSION)){
 
 session_destroy();
 
-header("Location: ../initial.html");
+header("Location: ../initialNoUser.php");

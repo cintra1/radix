@@ -31,12 +31,12 @@ include('php/protectAdm.php');
                 <i class='bx bx-grid-alt'></i>
             </div>
 
-            <a href="app.html" class="button button__header">LOGOUT</a>
+            <a href="php/logout.php" class="button button__header">LOGOUT</a>
         </nav>
     </header>
 
     <div class="caixa__grande">
-        <h2 class="title">Aplicar Punições</h2>
+        <h2 class="title"><a href="indexAdm.php" style="color: #70C28D;">Aréa De Admnistração </a> >Aplicar Punições</h2>
         <form action="#" method="POST">
     
             <div class="inputFields">

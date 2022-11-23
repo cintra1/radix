@@ -118,6 +118,11 @@ p{
   padding: 40px 80px;
 }
 
+.section-p12{
+  padding: 0px 80px;
+  padding-top: 50px;
+}
+
 .section-m1{
   margin: 40px 0;
 }
@@ -914,6 +919,7 @@ input[type="search"]::-webkit-search-results-decoration {
   border-collapse: collapse;
   table-layout: fixed;
   white-space: nowrap;
+  margin-bottom: -2rem;
 }
 
 .cart table img{
@@ -1940,3 +1946,85 @@ footer .copyright{
   }
 }
 
+.containr{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.containr form{
+  padding:20px;
+  width:700px;
+  background: #fff;
+  border: 1px solid;
+  border-color: #E2E9E1;
+  margin-top: -5rem;
+}
+
+.containr form .row{
+  display: flex;
+  flex-wrap: wrap;
+  gap:15px;
+}
+
+.containr form .row .col{
+  flex:1 1 250px;
+}
+
+.containr form .row .col .title{
+  font-size: 20px;
+  color:#333;
+  padding-bottom: 5px;
+  text-transform: uppercase;
+}
+
+.containr form .row .col .inputBox{
+  margin:15px 0;
+}
+
+.containr form .row .col .inputBox span{
+  margin-bottom: 10px;
+  display: block;
+}
+
+.containr form .row .col .inputBox input{
+  width: 100%;
+  border:1px solid #ccc;
+  padding:10px 15px;
+  font-size: 15px;
+  text-transform: none;
+}
+
+.containr form .row .col .inputBox input:focus{
+  border:1px solid #000;
+}
+
+.containr form .row .col .flex{
+  display: flex;
+  gap:15px;
+}
+
+.containr form .row .col .flex .inputBox{
+  margin-top: 5px;
+}
+
+.containr form .row .col .inputBox img{
+  height: 28px;
+  margin-top: 5px;
+  filter: drop-shadow(0 0 1px #000);
+}
+
+.containr form .submit-btn{
+  width: 100%;
+  padding:12px;
+  font-size: 17px;
+  background: #27ae60;
+  color:#fff;
+  margin-top: 5px;
+  cursor: pointer;
+}
+
+.containr form .submit-btn:hover{
+  background: #2ecc71;
+}

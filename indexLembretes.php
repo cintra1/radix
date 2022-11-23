@@ -81,7 +81,7 @@
             
             <div class="perfil">
                     <div class="perfil__data">
-                        <h1 class="perfil__title">Lembretes para Reuniões, Alterações</h1>
+                        <h1 class="perfil__title"><a href="indexAdm.php" style="color: #70C28D;">Aréa De Admnistração </a> > Lembretes </h1>
                     </div>
                     <a href="lembrete.php" class="button  button__abrir">
                      <i class="fa fa-plus"></i> Novo Lembrete

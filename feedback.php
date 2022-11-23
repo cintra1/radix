@@ -54,7 +54,7 @@ $conn = $mysqli->query($consulta) or die($mysqli->error);
                 <i class='bx bx-grid-alt'></i>
             </div>
 
-            <a href="app.html" class="button button__header">LOGOUT</a>
+            <a href="php/logout.php" class="button button__header">LOGOUT</a>
         </nav>
 
     </header>
@@ -65,7 +65,7 @@ $conn = $mysqli->query($consulta) or die($mysqli->error);
 
         <div class="perfil">
             <div class="perfil__data">
-                <h1 class="perfil__title">Feedback de nossos clientes e Vendedores</h1>
+                <h1 class="perfil__title"><a href="indexAdm.php" style="color: #70C28D;">Aréa De Admnistração </a> > Feedback de nossos clientes e Vendedores</h1>
             </div>
         </div>
     </section>

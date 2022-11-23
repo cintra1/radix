@@ -1,3 +1,8 @@
+<?php
+include('php/protectVend.php');
+include('php/conexao.php');
+require('php/connection.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -53,7 +58,7 @@
 
         <div class="perfil">
             <div class="perfil__data">
-                <h1 class="perfil__title">Home Vendedor > Selo de Produtor</h1>
+                <h1 class="perfil__title"> <a href="indexVendedor.php" style="color: #70C28D;">Home Vendedor </a> > Selo de Produtor</h1>
             </div>
         </div>
     </section>
@@ -75,7 +80,6 @@
 
                 <div class="icon">
                     <img src="assets/img/tulip.png" style="width: 3rem !important;" alt="">
-                    <h2>Você</h2>
                 </div>
 
                 <div class="icon">
@@ -93,10 +97,36 @@
         </div>
 
         <div class="caixa__baixo">
-            <h2>Para nós do Radix, o cliente vem em primeiro lugar. Por isso, com base<br>
+        <h2>Para nós do Radix, o cliente vem em primeiro lugar. Por isso, com base<br>
                 nas suas vendas e nas avaliações dos clientes, você irá ser ranqueado<br>
                 entre 6 selos (semente, árvore, flor, folha, flor morta e árvore morta).<br>
                 Para aprender sobre os selos e seus benefícios, <a href="expSelo.html" style="color: #71D6A7">clique aqui.</a></h2>
+      <?php 
+        $idVendedor = $_SESSION['idVendedor'];
+         $consultaVend = "SELECT * from tblVendedor where idVendedor = $idVendedor;";
+
+         $connVend = $mysqli->query($consultaVend) or die($mysqli->error);
+        while ($dado2 = $connVend->fetch_array()) { 
+                                
+                                $idVendedor = $dado2["idVendedor"];
+                                $consultaV = "SELECT count(*) as entrega from tblEntrega where idVendedor = $idVendedor;";
+
+                                $connV = $mysqli->query($consultaV) or die($mysqli->error);
+
+                                ?>
+                               <h1 style="margin-top:10rem; white-space:nowrap"> Seu selo é:
+                                <?php while ($dado3 = $connV->fetch_array()) {
+                                   if($dado3['entrega'] == 0){  ?>
+                                <img src="assets/img/semente.png" alt="" class="star__img">
+
+                                <?php }else if($dado3['entrega'] <= 3){ ?>
+                                    <img src="assets/img/folha.png" alt="" class="star__img">
+                                <?php }else if($dado3['entrega'] > 3 ){ ?>
+                                    <img src="assets/img/tree.png" alt="" class="star__img">
+                                    <?php } } }?></h1>
+       
+
+          
         </div>
     </div>
 

@@ -39,13 +39,13 @@ $conn = $mysqli->query($consulta) or die($mysqli->error);
                 <i class='bx bx-grid-alt'></i>
             </div>
 
-            <a href="app.html" class="button button__header">LOGOUT</a>
+            <a href="php/logout.php" class="button button__header">LOGOUT</a>
         </nav>
     </header>
 
     <div class="caixa__grande">
         <div class="perfil">
-            <h1 class="title" style="white-space: nowrap;">Vendedores Ativos</h1>
+            <h1 class="title" style="white-space: nowrap;"><a href="indexAdm.php" style="color: #70C28D;">Aréa De Admnistração </a> > Vendedores Ativos</h1>
         </div>
        
 
@@ -71,7 +71,7 @@ $conn = $mysqli->query($consulta) or die($mysqli->error);
 
                    
 
-                                <?php }else if($dado5['entrega'] < 3){ ?>
+                                <?php }else if($dado5['entrega'] <= 3){ ?>
 
                                     <img src="assets/img/folha.png" alt="" >
 

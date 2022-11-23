@@ -87,7 +87,7 @@ if ($sql->rowCount() > 0) {
     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
 
     <!--=============== CSS ===============-->
-    <link rel="stylesheet" href="assets/css/styleCarrin.css">
+    <link rel="stylesheet" href="assets/css/styleCarr.css">
 
     <!-- font awesome cdn link  -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
@@ -191,7 +191,7 @@ if ($sql->rowCount() > 0) {
             </table>
         </section>
 
-        <section class="cart-add section-p1">
+        <section class="cart-add section-p12">
             <div class="cupom">
                 <h3>Aplicar Cupom</h3>
                 <div>
@@ -254,12 +254,86 @@ if ($sql->rowCount() > 0) {
                                             echo number_format($dado2['total'], 2, ",", "."); ?> <?php } ?></strong></td>
                     </tr>
                 </table>
-                <form action="" method="POST" enctype="multipart/form-data">
-                    <input class="normal final" type="submit" name="sub" value="Finalizar Compra">
-                </form>
             </div>
 
         </section>
+
+        <div class="containr">
+
+<form action="" method="POST" enctype="multipart/form-data">
+
+    <div class="row">
+
+        <div class="col">
+
+            <h3 class="title">dados pessoais</h3>
+
+            <div class="inputBox">
+                <span>Nome Completo :</span>
+                <input type="text" placeholder="João da Silva">
+            </div>
+            <div class="inputBox">
+                <span>E-mail :</span>
+                <input type="email" placeholder="exemplo@gmail.com">
+            </div>
+            <div class="inputBox">
+                <span>Cidade :</span>
+                <input type="text" placeholder="São Paulo">
+            </div>
+
+            <div class="flex">
+                <div class="inputBox">
+                    <span>Estado :</span>
+                    <input type="text" placeholder="Minas Gerais">
+                </div>
+                <div class="inputBox">
+                    <span>CEP :</span>
+                    <input type="text" placeholder="01015-050">
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col">
+
+            <h3 class="title">pagamentos</h3>
+
+            <div class="inputBox">
+                <span>Cartões aceitos :</span>
+                <img src="assets/img/card_img.png" alt="">
+            </div>
+            <div class="inputBox">
+                <span>Número do Cartão :</span>
+                <input type="number" placeholder="1111-2222-3333-4444">
+            </div>
+            <div class="inputBox">
+                <span>Mês de expiração :</span>
+                <input type="text" placeholder="Janeiro">
+            </div>
+
+            <div class="flex">
+                <div class="inputBox">
+                    <span>Ano de expiração :</span>
+                    <input type="number" placeholder="2022">
+                </div>
+                <div class="inputBox">
+                    <span>CVV :</span>
+                    <input type="text" placeholder="1234">
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+        <input class="normal final" type="submit" name="sub" value="Finalizar Compra" style="background-color: #70C28D !important;
+color: #FFF !important;
+padding: 12px 20px;">
+
+
+</form>
+
+</div>
 
         <div class="alinhar">
             <div id="linha-horizontal"></div>
@@ -325,7 +399,7 @@ if ($sql->rowCount() > 0) {
         <script src="assets/js/mainInitialss.js"></script>
 
         <?php
-        
+
         if (isset($_POST['sub'])) {
             foreach ($_SESSION['dados'] as $produtos1) {
                 $insert1 = $pdo->prepare("
@@ -345,10 +419,10 @@ if ($sql->rowCount() > 0) {
                 $insert->execute();
             }
 
-            header("Location: carrinho.php");
+            header("Location: initial.php");
         }
 
-        
+
         ?>
 
         <?php
@@ -366,18 +440,18 @@ if ($sql->rowCount() > 0) {
 </body>
 
 <script>
-            var search = document.getElementById('enter');
+    var search = document.getElementById('enter');
 
-            search.addEventListener("keydown", function(event) {
-                if (event.key === "Enter") {
-                    searchData();
-                }
-            });
+    search.addEventListener("keydown", function(event) {
+        if (event.key === "Enter") {
+            searchData();
+        }
+    });
 
-            function searchData() {
-                window.location = 'pesquisar.php?search=' + search.value;
-            }
-        </script>
+    function searchData() {
+        window.location = 'pesquisar.php?search=' + search.value;
+    }
+</script>
 
 
 </html>

@@ -85,7 +85,7 @@ $consultaSem = "SELECT * FROM tblEntrega as e inner join tblItem as i on e.idIte
 
         <div class="perfil">
             <div class="perfil__data">
-                <h1 class="perfil__title">Home Vendedor > Pedidos Abertos</h1>
+                <h1 class="perfil__title"> <a href="indexVendedor.php" style="color: #70C28D;">Home Vendedor </a> > Pedidos Abertos</h1>
             </div>
         </div>
     </section>
