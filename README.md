@@ -5,7 +5,7 @@
 
 
 ## Sobre
-O Radix é uma plataforma de delivery de produtos orgânicos, com intuito de facilitar o acesso das pessoas a alimentos saudáveis e diminuir o desperdício de alimentos. Projeto de TCC realizado no meu 3° ano na ETEC de São Paulo.
+O Radix é uma plataforma de delivery de produtos orgânicos, com intuito de facilitar o acesso das pessoas a alimentos saudáveis e diminuir o desperdício de alimentos. Projeto de TCC realizado no meu 3° ano do técnico de Desenvolvimento de Sistemas pela ETEC de São Paulo.
 
 # Como Executar?
 1 - Faça download de todos arquivos do repositório. </br>
