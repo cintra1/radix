@@ -4,7 +4,7 @@
 ![radix-initial-prod](https://github.com/cintra1/radix/assets/101955322/08406ea2-8590-4f18-a495-2f375dbae4dd)
 
 
-#
+## Sobre
 O Radix é uma plataforma de delivery de produtos orgânicos, com intuito de facilitar o acesso das pessoas a alimentos saudáveis e diminuir o desperdício de alimentos. Projeto de TCC realizado no meu 3° ano na ETEC de São Paulo.
 
 # Como Executar?
