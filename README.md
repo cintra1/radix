@@ -12,4 +12,4 @@ O Radix é uma plataforma de delivery de produtos orgânicos, com intuito de fac
 2 - Instale o servidor XAMPP na sua máquina e conecte com o MySQL. </br>
 3 - Abra o MySql e execute o arquivo .sql presente no repositório criando o Banco de Dados (Lembre de alterar no arquivo de conexão nome do root e a senha de sua máquina) </br>
 4 - Baixe a extensão de abrir arquivos PHP com servidor no Visual Studio. </br>
-5 - Abra o arquivo index.php e clique em abrir em PHP. </br>
+5 - Abra o arquivo initialNoUser.php e clique em abrir em PHP. </br>
