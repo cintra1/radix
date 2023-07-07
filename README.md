@@ -1,6 +1,7 @@
 # Radix - PHP
 
-![c6fdec174047073 649af6a3486e6](https://github.com/cintra1/radix/assets/101955322/fd530bf3-f72c-4928-b1d9-245affe35d18)
+![radix-eyecatch](https://github.com/cintra1/radix/assets/101955322/24fb39c5-973b-4534-b505-e50282702b63)
+![radix-project](https://github.com/cintra1/radix/assets/101955322/4830d812-1339-46a7-a59b-7b6cc0ef3fd6)
 
 # Como Executar?
 1 - Faça download de todos arquivos do repositório. </br>
