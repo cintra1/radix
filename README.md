@@ -1,5 +1,7 @@
 # Radix - PHP
 
+O Radix é uma plataforma de delivery de produtos orgânicos, com intuito de facilitar o acesso das pessoas a alimentos saudáveis e diminuir o desperdício de alimentos. O projeto está totalmente funcional, incluindo cadastro de cliente e vendedores, sessão para nossa administração das vendas e lucro. Projeto realizado como TCC do 3° ano.
+
 ![radix-eyecatch](https://github.com/cintra1/radix/assets/101955322/24fb39c5-973b-4534-b505-e50282702b63)
 ![radix-project](https://github.com/cintra1/radix/assets/101955322/4830d812-1339-46a7-a59b-7b6cc0ef3fd6)
 
